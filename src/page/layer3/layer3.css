@@ -1,0 +1,29 @@
+.layer3-container {
+    /* margin: 20px;
+    padding: 20px; */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .loading {
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .error {
+    margin: 20px;
+    padding: 20px;
+    color: red;
+  }
+  
+  .data {
+    margin-top: 20px;
+  }
+  
+  .data p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+    
+  }
+  

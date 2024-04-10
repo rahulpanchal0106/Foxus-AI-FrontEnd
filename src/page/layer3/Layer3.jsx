@@ -1,5 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import "./layer3.css"; // Import your CSS file for styling
+
 const Layer3 = () => {
   const location = useLocation();
   const [data, setData] = useState(null);
@@ -45,15 +47,20 @@ const Layer3 = () => {
     fetchData();
   }, [location]);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <div className="loading">Loading...</div>;
+  if (error) return <div className="error">Error: {error}</div>;
   if (!data) return null;
 
+  // Split data into paragraphs
+  const paragraphs = data.split("\n").map((paragraph, index) => (
+    <p key={index}>{paragraph}</p>
+  ));
+
   return (
-    <div>
+    <div className="layer3-container">
       <h1>Level 3 Data</h1>
       <h2>{location.state.lessonName}</h2>
-      <div>{data}</div>
+      <div className="data">{paragraphs}</div>
     </div>
   );
 };

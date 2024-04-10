@@ -2,7 +2,7 @@ import Layer0 from "../layer0/layer0"
 
 const Home = () => {
   return (
-    <div>
+    <div >
       <Layer0 />
     </div>
   )

@@ -10,13 +10,13 @@ export const Navbar = () => {
       
       <div className={styles.logo}>AI Learner</div>
       <div className={styles.links}>
-        <ThemeToggle />
-        <button className='btn' >
-          <NavLink to="/register">Sign Up</NavLink>
-        </button>
-        <button className='btn' >
-          <NavLink to="/login">Log in</NavLink>
-        </button>
+        <ThemeToggle  />
+        
+          <NavLink to="/register"  className={styles.navLink}>Sign Up</NavLink>
+        
+        
+          <NavLink to="/login" className={styles.navLink}>Log in</NavLink>
+        
         
       </div>
     </div>

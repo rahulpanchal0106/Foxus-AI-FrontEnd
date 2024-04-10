@@ -10,7 +10,7 @@
 
 .logo{
     flex: 1;
-    text-align: center;
+    text-align:center;
     font-size: 36px;
     font-weight: bold;
 }
@@ -23,19 +23,21 @@
     font-size: 15px;
 }
 
-.btn {
+
+
+.navLink{
     display: inline-block;
     padding: 10px 20px;
-    background-color: #007bff; /* Blue color, you can change it to fit your design */
-    color: white;
+    background-color: var(--textColor); /* Blue color, you can change it to fit your design */
+    color: var(--bg);
     border: none;
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn:hover {
-    background-color: #0056b3; /* Darker blue color on hover */
+}
+
+
+  .navLink:hover {
+    background-color: #da6060; /* Darker blue color on hover */
   }
   

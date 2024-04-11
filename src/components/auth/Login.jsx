@@ -3,6 +3,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { NavLink,useNavigate } from "react-router-dom";
 import "./mix.css"; // Replace with your actual CSS file
+import Cookies from 'js-cookies';
 
 const Login = () => {
     const [passShow, setPassShow] = useState(false);
@@ -47,15 +48,13 @@ const Login = () => {
                 },
                 body: JSON.stringify({ username, password })
               });
-              // console.log(username);
-              // console.log(password);
-              // console.log(response.ok);
-
             if (response.ok) {
                 const data = await response.json();
                 navigate('/')
                 // Handle successful login (e.g., store token, redirect)
                 console.log("Login successful!", data); 
+                const token = data.token;
+                Cookies.setItem('token',token,{expires:'5h'});
                 // navigate("/"); // If using useNavigate
             } else {
                 const errorText = await response.text();

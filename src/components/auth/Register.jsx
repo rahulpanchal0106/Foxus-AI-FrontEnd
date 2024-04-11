@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import "./mix.css";
 import { AlternateEmail, Backspace, Visibility, VisibilityOff } from '@mui/icons-material';
 import { NavLink } from "react-router-dom";
-
+import axios from 'axios'
 
 export const Register = () => {
 
@@ -12,7 +12,7 @@ export const Register = () => {
 
   const [inpval, setInpval] = useState({
     fname: "",
-    email: "",
+    username: "",
     password: "",
     cpassword: ""
   })
@@ -33,31 +33,44 @@ export const Register = () => {
   const addUserdata = async (e) => {
     e.preventDefault();
 
-    const { fname, email, password, cpassword } = inpval;
+    const { fname, username, password, cpassword } = inpval;
 
     if (fname === "") {
       alert("please enter your name");
 
-    } else if (email === "") {
-      alert("please enter your email");
+    }
+    if (username === "") {
+      alert("please enter your username");
 
     }
-    else if (password === "") {
+    if (password === "") {
       alert("enter your password")
-    } else if (password.length < 6) {
+    }
+    if (password.length < 6) {
       alert("password must be 6 char")
-    } else if (cpassword === "") {
+    }
+    if (cpassword === "") {
       alert("enter your confirm password")
-    } else if (cpassword.length < 6) {
+    }
+    if (cpassword.length < 6) {
       alert("password must be 6 char")
-    } else if (password !== cpassword) {
+    }
+    
+    if (password !== cpassword) {
       alert("password and confirm password not match")
-    } else {
+
+    }else{
       console.log("user registration done")
       
       // Backend code 
-
-      
+      axios.post('http://localhost:3000/signup',{
+        username:inpval.username,
+        password:inpval.password,
+      }).then(res=>{
+        console.log("/signup response: ",res.data);
+      }).catch(err=>{
+        console.log(err);
+      });
     }
 
   }
@@ -68,7 +81,7 @@ export const Register = () => {
         <div className='form_data' >
           <div className='form_heading'>
             <h1>Sign Up</h1>
-            <p>We're excited that you'll be using our project to manage your <br />  task! We hope you'll find it enjoyable and useful.</p>
+            <p>We're excited that you'll be using our project to learn <br />  something new! We hope you'll find it enjoyable and useful.</p>
           </div>
 
           <form>
@@ -78,8 +91,8 @@ export const Register = () => {
             </div>
 
             <div className='form_input'>
-              <label htmlFor='email'>Email</label>
-              <input type="email" onChange={setVal} value={inpval.email} name="email" id='email' placeholder='Enter Your Email Address'></input>
+              <label htmlFor='username'>Username</label>
+              <input type="text" onChange={setVal} value={inpval.username} name="username" id='username' placeholder='Enter Your username'></input>
             </div>
 
             <div className='form_input'>

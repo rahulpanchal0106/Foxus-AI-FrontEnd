@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
 import Layer1Card from '../../components/layer1Card/Layer1Card';
+import Cookies from 'js-cookies'
 
 const Layer1 = () => {
   const location = useLocation();
@@ -13,11 +14,13 @@ const Layer1 = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+      const token = Cookies.getItem('token');
       try {
         const response = await fetch("http://localhost:3000/layer1", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Authorization":`Bearer ${token}`
           },
           body: JSON.stringify({
             prompt: {

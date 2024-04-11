@@ -1,6 +1,8 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./layer3.css"; // Import your CSS file for styling
+import Cookies from 'js-cookies'
+
 
 const Layer3 = () => {
   const location = useLocation();
@@ -11,11 +13,13 @@ const Layer3 = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+      const token = Cookies.getItem('token');
       try {
         const response = await fetch("http://localhost:3000/layer3", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Authorization":`Bearer ${token}`
           },
           body: JSON.stringify({
             prompt: {

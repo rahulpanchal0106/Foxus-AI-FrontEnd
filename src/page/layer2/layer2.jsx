@@ -1,21 +1,24 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Layer2Card from "../../components/layer2Card/Layer2Card";
+import Cookies from 'js-cookies'
 
 const Layer2 = () => {
   const location = useLocation();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+      const token = Cookies.getItem('token');
       try {
         const response = await fetch("http://localhost:3000/layer2", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Authorization":`Bearer ${token}`
           },
           body: JSON.stringify({
             prompt: {

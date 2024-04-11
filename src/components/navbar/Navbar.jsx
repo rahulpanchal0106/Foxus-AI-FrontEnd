@@ -1,14 +1,18 @@
 
 import styles from "./navbar.module.css"
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import ThemeToggle from "../themeToggle/ThemeToggle"
 
 
 export const Navbar = () => {
   return (
     <div className={styles.container}>
-      
-      <div className={styles.logo}>AI Learner</div>
+      <div className={styles.social}>
+        <imag src="/instagram.png" alt="instagram" width={24} height={24}/>
+      </div>
+      <Link to="/" className={styles.logo}>
+      <div >AI Learner</div>
+      </Link>
       <div className={styles.links}>
         <ThemeToggle  />
         

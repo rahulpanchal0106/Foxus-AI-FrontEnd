@@ -52,15 +52,17 @@ const Layer3 = () => {
   if (!data) return null;
 
   // Split data into paragraphs
-  const paragraphs = data.split("\n").map((paragraph, index) => (
-    <p key={index}>{paragraph}</p>
-  ));
+  const cleanedParagraphs = data.split("\n").map((paragraph) => {
+    // Use regular expression to replace asterisks and numbers with empty string
+    const cleanedText = paragraph.replace(/[*0-9]/g, "");
+    return <p key={Math.random()}>{cleanedText}</p>;
+  });
 
   return (
     <div className="layer3-container">
       <h1>Level 3 Data</h1>
       <h2>{location.state.lessonName}</h2>
-      <div className="data">{paragraphs}</div>
+      <div className="data">{cleanedParagraphs}</div>
     </div>
   );
 };

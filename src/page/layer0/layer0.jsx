@@ -33,10 +33,13 @@ const Layer0 = () => {
     }
 
     try {
+      const token = localStorage.getItem('accessToken');
+      console.log(token);
       const response = await fetch("http://localhost:3000/layer0", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}` // Include token in Authorization header
         },
         body: JSON.stringify({ prompt }),
       });

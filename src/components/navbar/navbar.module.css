@@ -32,6 +32,9 @@
     font-size: 15px;
 }
 
+.icon {
+    border-radius: 50%;
+}
 
 
 .navLink{

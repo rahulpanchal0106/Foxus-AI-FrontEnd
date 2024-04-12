@@ -76,10 +76,10 @@ const Layer0 = () => {
         className={styles.btn}
       >
         {loading ? (
-          <img src="/loading.gif" alt="" className={styles.icon} />
+          <img src="/search.gif" alt="" className={styles.icon} />
         ) : (
           
-            <img src="/search.gif" alt="" className={styles.icon} />
+            <img src="/search.png" alt="" className={styles.icon} />
           
         )}
       </button>

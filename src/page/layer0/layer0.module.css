@@ -20,11 +20,12 @@
     border-radius: 5px;
     outline: none;
     margin-left: 5px;
-  
+    background-color: white;
 }
 
 .icon {
     width: 15px;
     font-size: 14px;
+    
   }
 

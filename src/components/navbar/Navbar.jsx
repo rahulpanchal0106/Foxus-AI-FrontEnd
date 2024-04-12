@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./navbar.module.css";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import ThemeToggle from "../themeToggle/ThemeToggle";
@@ -21,7 +21,7 @@ export const Navbar = () => {
   return (
     <div className={styles.container}>
       <div className={styles.social}>
-        <img src="/logo.png" alt="instagram" width={50} height={50} />
+        <img src="/bird.png" alt="logo" width={50} height={50}  className={styles.icon}/>
       </div>
       <Link to="/" className={styles.logo}>
         <div>AI Learner</div>

@@ -30,18 +30,26 @@ const Layer3 = () => {
               subject: location.state.subject
             }
           }),
-        });
+        }).then(res=>{
+          if(res){
+            console.log(res.message)
+            return res.json();
+          }
 
+        });
         if (!response.ok) {
-          throw new Error("Failed to get result from backend.");
+          const errMess = response.message;
+          console.log("🔥🔥🔥 ",errMess)
+          throw new Error(errMess);  //Error showing only on console here ⚠️⚠️⚠️⚠️
         }
+
 
         const resultData = await response.json();
         setData(resultData.result);
         setError(null);
       } catch (error) {
         console.error("Error:", error.message);
-        setError("Failed to fetch result from backend.");
+        setError();
         setData(null);
       } finally {
         setLoading(false);

@@ -46,7 +46,7 @@ const Layer0 = () => {
       })
 
       if (!response.ok) {
-        throw new Error('Failed to get result from backend.')
+        throw new Error(response.message || 'Failed to get result from backend.')
       }
 
       const resultData = await response.json()
@@ -54,7 +54,7 @@ const Layer0 = () => {
       setError(null)
     } catch (error) {
       console.error('Error:', error.message)
-      setError('Failed to fetch result from backend.')
+      setError(error.message)
       setResult(null)
     } finally {
       setLoading(false) // Update loading state regardless of success or failure

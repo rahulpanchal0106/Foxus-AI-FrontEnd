@@ -32,7 +32,7 @@ const Layer1 = () => {
         });
 
         if (!response.ok) {
-          throw new Error("Failed to get result from backend.");
+          throw new Error(response.message || "Failed to get result from backend.");
         }
 
         const resultData = await response.json();

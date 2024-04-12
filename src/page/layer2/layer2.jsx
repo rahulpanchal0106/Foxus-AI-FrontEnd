@@ -31,7 +31,7 @@ const Layer2 = () => {
         
         console.log(location.state.subject);
         if (!response.ok) {
-          throw new Error("Failed to get result from backend.");
+          throw new Error(response.message || "Failed to get result from backend.");
         }
 
         const resultData = await response.json();

@@ -9,8 +9,9 @@
     border-radius: 5px;
     outline: none;
     margin-bottom: 14px;
-    margin-top: 9px;
+    margin-top: 25px;
     font-size: 14px;
+    color: var(--bg);
 }
 
 .btn{

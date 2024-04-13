@@ -3,10 +3,11 @@
 @import 'tailwindcss/components';
 
 .container{
+    min-width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
+    height: 100px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
 

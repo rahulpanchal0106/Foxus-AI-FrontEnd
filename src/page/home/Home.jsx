@@ -6,7 +6,6 @@ const Home = () => {
     <div >
       <Layer0 />
 
-
     </div>
   )
 }

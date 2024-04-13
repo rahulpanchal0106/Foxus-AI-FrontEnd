@@ -45,15 +45,16 @@ const Layer0 = () => {
         body: JSON.stringify({ prompt }),
       })
 
-      if (!response.ok) {
-        throw new Error(response.message || 'Failed to get result from backend.')
-      }
-
+      
       const resultData = await response.json()
+      console.log("⚠️⚠️⚠️",resultData)
+      if (!response.ok) {
+        throw new Error(resultData.message || 'Failed to get result from backend.')
+      }
       setResult(resultData)
       setError(null)
     } catch (error) {
-      console.error('Error:', error.message)
+      console.error('⭕Error:', error.message)
       setError(error.message)
       setResult(null)
     } finally {

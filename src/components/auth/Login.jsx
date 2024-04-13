@@ -54,7 +54,7 @@ const Login = () => {
                 // Handle successful login (e.g., store token, redirect)
                 console.log("Login successful!", data); 
                 const token = data.token;
-                Cookies.setItem('token',token,{expires:'5h'});
+                Cookies.setItem('token',token,{expires:'24h'});
                 // navigate("/"); // If using useNavigate
             } else {
                 const errorText = await response.text();

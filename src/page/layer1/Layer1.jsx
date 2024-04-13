@@ -31,16 +31,16 @@ const Layer1 = () => {
           }),
         });
 
-        if (!response.ok) {
-          throw new Error("Failed to get result from backend.");
-        }
-
+        
         const resultData = await response.json();
+        if (!response.ok) {
+          throw new Error(resultData.message || "Failed to get result from backend.");
+        }
         setData(resultData);
         setError(null);
       } catch (error) {
         console.error("Error:", error.message);
-        setError("Failed to fetch result from backend.");
+        setError(error.message);
         setData(null);
       } finally {
         setLoading(false); // Update loading state regardless of success or failure

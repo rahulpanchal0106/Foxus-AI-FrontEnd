@@ -13,6 +13,9 @@ import { Register } from "./components/auth/Register";  //import the register co
 import { ThemeContextProvider } from "./context/ThemeContext";
 import ThemeProvider from "./providers/ThemeProvider";
 import "./App.css";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const App = () => {
   return (
@@ -40,7 +43,9 @@ const App = () => {
           </div>
         </ThemeProvider>
       </ThemeContextProvider>
+      <ToastContainer />
     </Router>
+    
   );
 };
 

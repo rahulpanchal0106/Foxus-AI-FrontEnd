@@ -8,46 +8,50 @@ const Layer2 = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const token = Cookies.getItem('token');
-      try {
-        const response = await fetch("http://localhost:3000/layer2", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization":`Bearer ${token}`
-          },
-          body: JSON.stringify({
-            prompt: {
-              chapter: location.state.chapter,
-              subject: location.state.subject,
-              levelName: location.state.level,
-            },
-          }),
-        });
-        
-        console.log(location.state.subject);
-        
-        const resultData = await response.json();
-        if (!response.ok) {
-          throw new Error(resultData.message || "Failed to get result from backend.");
-        }
-        setData(resultData);
-        setError(null);
-      } catch (error) {
-        console.error("Error:", error.message);
-        setError(error.message);
-        setData(null);
-      } finally {
-        setLoading(false); // Update loading state regardless of success or failure
-      }
-    };
+  const [apiCalled, setApiCalled] = useState(false); // Introduce a flag
 
-    fetchData();
-  }, [location]);
+  useEffect(() => {
+    if (!apiCalled) { // Check if API call has already been made
+      const fetchData = async () => {
+        setLoading(true);
+        const token = Cookies.getItem('token');
+        try {
+          const response = await fetch("http://localhost:3000/layer2", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization":`Bearer ${token}`
+            },
+            body: JSON.stringify({
+              prompt: {
+                chapter: location.state.chapter,
+                subject: location.state.subject,
+                levelName: location.state.level,
+              },
+            }),
+          });
+          
+          console.log(location.state.subject);
+          
+          const resultData = await response.json();
+          if (!response.ok) {
+            throw new Error(resultData.message || "Failed to get result from backend.");
+          }
+          setData(resultData);
+          setError(null);
+        } catch (error) {
+          console.error("Error:", error.message);
+          setError(error.message);
+          setData(null);
+        } finally {
+          setLoading(false);
+          setApiCalled(true); // Set the flag to true after API call
+        }
+      };
+
+      fetchData();
+    }
+  }, [location, apiCalled]); // Include apiCalled in the dependencies array
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;

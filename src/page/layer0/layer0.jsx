@@ -86,7 +86,7 @@ const Layer0 = () => {
 
       {error && <p>{error}</p>}
       {result && (
-        <div>
+        <div className='card'>
           {Array.isArray(result) ? ( // Check if result is an array
             result.map((level, index) => (
               //card for LAYER

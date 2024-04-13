@@ -1,19 +1,34 @@
-/* Layer0Card.jsx */
+.layer0-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
 .layer0-card {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    cursor: pointer; /* Indicate that it's clickable */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-  }
-  
-  .layer0-card:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .layer0-card strong {
-    font-weight: bold;
-    display: block; /* Ensure levelName is on its own line */
-    margin-bottom: 5px;
-  }
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex: 0 0 calc(33.33% - 20px);
+  max-width: calc(33.33% - 20px);
+  margin-right: 20px;
+  text-align: center;
+}
+
+.layer0-card:last-child {
+  margin-right: 0;
+}
+
+.layer0-card:hover {
+  background-color: #f0f0f0;
+}
+
+.level-name {
+  font-weight: bold;
+}
+
+.level-content {
+  margin-top: 10px;
+}

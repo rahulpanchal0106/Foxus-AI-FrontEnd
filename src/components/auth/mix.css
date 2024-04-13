@@ -31,18 +31,15 @@ section .form_data{
     font-size: 15px;
     margin-top:9px;
 }
-#email{
-    width: 525px;
+
+#username{
+    width: 430px;
 }
 
 #fname{
-    width: 525px;
+    width: 430px;
 }
 
-.for-email{
-
-    /* margin-right: 500px; */
-}
 
 .form_data form{
     margin-top: 45px;
@@ -51,8 +48,8 @@ section .form_data{
 }
 
 .form_data form .form_input input{
-    width: 100%;
-    /* width: 525px; */
+    /* width: 100%; */
+    width: 525px;
     padding: 11px;
     border: 1px solid #d4d0d0;
     border-radius: 5px;

@@ -98,6 +98,7 @@ export const Register = () => {
           <form>
             <div className='form_input'>
               <label htmlFor='fname'>Name</label>
+
               <input type="text" onChange={setVal} value={inpval.fname} name="fname" id='fname' placeholder='Enter Your Name'></input>
             </div>
 

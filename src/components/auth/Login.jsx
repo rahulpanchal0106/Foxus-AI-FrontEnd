@@ -68,7 +68,7 @@ const Login = () => {
                 
                 console.log("Login successful!", data); 
                 const token = data.token;
-                Cookies.setItem('token',token,{expires:'5h'});
+                Cookies.setItem('token',token,{expires:'24h'});
                 // navigate("/"); // If using useNavigate
 
                 // alert("Login successfull !");

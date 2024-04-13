@@ -1,8 +1,13 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/utilities';
+@import 'tailwindcss/components';
+
 .container{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100px;
+    height: 80px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
 
 .social{
@@ -28,6 +33,9 @@
     font-size: 15px;
 }
 
+.icon {
+    border-radius: 50%;
+}
 
 
 .navLink{

@@ -1,31 +1,21 @@
 import { useState } from 'react'
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Layer0Card from '../../components/layer0Card/Layer0Card'
 import styles from './layer0.module.css'
 import Cookies from 'js-cookies'
+
 const Layer0 = () => {
   const [prompt, setPrompt] = useState('')
   const [result, setResult] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
-  // const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handlePromptChange = (event) => {
     setPrompt(event.target.value)
   }
 
-  // //handle click of layerCard
-  // const navigateToLayer1 = (data) => {
-  //   console.log("layer1");
-  //   navigate('http://localhost:3000/layer1', { state: data });
-  // };
-
-  // const handleClick = (levelName, levelContent, subject) => {
-  //   navigateToLayer1({ levelName, levelContent, subject });
-  // };
-
   const getLayer0Result = async () => {
-    // e.preventDefault();
     setLoading(true)
     if (prompt.trim() === '') {
       setError('Please enter a prompt.')
@@ -34,13 +24,12 @@ const Layer0 = () => {
     }
 
     try {
-      const token = Cookies.getItem('token') ;
-      console.log(token);
-      const response = await fetch("http://localhost:3000/layer0", {
-        method: "POST",
+      const token = Cookies.getItem('token')
+      const response = await fetch('http://localhost:3000/layer0', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}` // Include token in Authorization header
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
         },
         body: JSON.stringify({ prompt }),
       })
@@ -57,9 +46,19 @@ const Layer0 = () => {
       setError('Failed to fetch result from backend.')
       setResult(null)
     } finally {
-      setLoading(false) // Update loading state regardless of success or failure
+      setLoading(false)
     }
   }
+
+  const checkTokenAndNavigate = () => {
+    const token = Cookies.getItem('token')
+    if (!token) {
+      navigate('/login')
+    } else {
+      getLayer0Result()
+    }
+  }
+
   return (
     <div className={styles.container}>
       <h1>Layer 0 Component</h1>
@@ -71,25 +70,22 @@ const Layer0 = () => {
         className={styles.in}
       />
       <button
-        onClick={getLayer0Result}
+        onClick={checkTokenAndNavigate}
         disabled={loading}
         className={styles.btn}
       >
         {loading ? (
           <img src="/search.gif" alt="" className={styles.icon} />
         ) : (
-          
-            <img src="/search.png" alt="" className={styles.icon} />
-          
+          <img src="/search.png" alt="" className={styles.icon} />
         )}
       </button>
 
       {error && <p>{error}</p>}
       {result && (
         <div>
-          {Array.isArray(result) ? ( // Check if result is an array
+          {Array.isArray(result) ? (
             result.map((level, index) => (
-              //card for LAYER
               <Layer0Card
                 index={index}
                 levelName={level.levelName}
@@ -99,7 +95,7 @@ const Layer0 = () => {
               />
             ))
           ) : (
-            <p>{result.result}</p> // Display direct answer as a paragraph
+            <p>{result.result}</p>
           )}
         </div>
       )}

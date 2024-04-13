@@ -1,3 +1,7 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/utilities';
+@import 'tailwindcss/components';
+
 .container{
     display: flex;
     align-items: center;
@@ -28,6 +32,9 @@
     font-size: 15px;
 }
 
+.icon {
+    border-radius: 50%;
+}
 
 
 .navLink{

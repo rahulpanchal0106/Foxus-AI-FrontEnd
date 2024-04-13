@@ -4,6 +4,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { NavLink,useNavigate } from "react-router-dom";
 import "./mix.css"; // Replace with your actual CSS file
 import Cookies from 'js-cookies';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const [passShow, setPassShow] = useState(false);
@@ -13,6 +14,10 @@ const Login = () => {
         username: "",
         password: ""
     })
+
+
+   
+  
 
     const setVal = (e) => {
         const { name, value } = e.target;
@@ -25,7 +30,13 @@ const Login = () => {
     }
 
     const logInuser = async (e) => {
+       
         e.preventDefault();
+
+        
+
+        
+        
         const { username, password } = inpval;
 
         if (username === "") {
@@ -38,6 +49,8 @@ const Login = () => {
             alert("Password must be at least 6 characters");
             return;
         }
+
+        
 
         // Send login request to backend
         try {
@@ -52,10 +65,18 @@ const Login = () => {
                 const data = await response.json();
                 navigate('/')
                 // Handle successful login (e.g., store token, redirect)
+                
                 console.log("Login successful!", data); 
                 const token = data.token;
                 Cookies.setItem('token',token,{expires:'24h'});
                 // navigate("/"); // If using useNavigate
+
+                // alert("Login successfull !");
+                toast.success("Login Successful.", {
+                    position: "top-right"
+                });
+                                                                                                                         
+
             } else {
                 const errorText = await response.text();
                 alert(errorText || "Login failed. Please try again.");
@@ -64,6 +85,8 @@ const Login = () => {
             console.error("Login error:", error);
             alert("An error occurred during login. Please try again later.");
         }
+
+        
     }
 
     return (
@@ -88,12 +111,26 @@ const Login = () => {
                                 </div>
                             </div>
                         </div>
-                        <button className='btn' onClick={logInuser}>
+                        <button className='btn' onClick= {logInuser}>
                             Login
                         </button>
+
+                       
+                        
                         <p className='btn-signup'>Don't have an account? <NavLink to="/register">Sign Up</NavLink> </p>
+
+
+                       
+                       
                     </form>
+
+                    
+
+                    
                 </div>
+               
+                
+                
             </section>
         </>
     )

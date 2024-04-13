@@ -1,9 +1,8 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Layer0Card from "../../components/layer0Card/Layer0Card";
-import styles from "./layer0.module.css";
-import Cookies from "js-cookies";
-
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import Layer0Card from '../../components/layer0Card/Layer0Card'
+import styles from './layer0.module.css'
+import Cookies from 'js-cookies'
 const Layer0 = () => {
   const [prompt, setPrompt] = useState("");
   const [result, setResult] = useState(null);
@@ -100,6 +99,8 @@ const Layer0 = () => {
           )}
         </div>
       )}
+
+      
     </div>
   );
 };

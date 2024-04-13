@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import "./mix.css";
 import { AlternateEmail, Backspace, Visibility, VisibilityOff } from '@mui/icons-material';
 import { NavLink } from "react-router-dom";
-import axios from 'axios'
+import axios from 'axios';
+import { toast } from 'react-toastify';
+
 
 export const Register = () => {
 
@@ -33,6 +35,8 @@ export const Register = () => {
   const addUserdata = async (e) => {
     e.preventDefault();
 
+    
+
     const { fname, username, password, cpassword } = inpval;
 
     if (fname === "") {
@@ -61,16 +65,23 @@ export const Register = () => {
 
     }else{
       console.log("user registration done")
+
+      
       
       // Backend code 
       axios.post('http://localhost:3000/signup',{
         username:inpval.username,
         password:inpval.password,
+        
       }).then(res=>{
         console.log("/signup response: ",res.data);
+        
       }).catch(err=>{
         console.log(err);
       });
+
+      toast.success("Account created.");
+
     }
 
   }
@@ -87,6 +98,7 @@ export const Register = () => {
           <form>
             <div className='form_input'>
               <label htmlFor='fname'>Name</label>
+
               <input type="text" onChange={setVal} value={inpval.fname} name="fname" id='fname' placeholder='Enter Your Name'></input>
             </div>
 
@@ -122,6 +134,8 @@ export const Register = () => {
               Sign Up
             </button>
             <p>Already have an account? <NavLink to="/login">Log In</NavLink></p>
+
+            
           </form>
         </div>
       </section>

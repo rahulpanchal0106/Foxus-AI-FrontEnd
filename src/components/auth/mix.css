@@ -31,18 +31,15 @@ section .form_data{
     font-size: 15px;
     margin-top:9px;
 }
-#email{
-    width: 525px;
+
+#username{
+    width: 430px;
 }
 
 #fname{
-    width: 525px;
+    width: 430px;
 }
 
-.for-email{
-
-    /* margin-right: 500px; */
-}
 
 .form_data form{
     margin-top: 45px;

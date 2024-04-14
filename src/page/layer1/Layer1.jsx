@@ -1,6 +1,6 @@
 
 import { useLocation } from 'react-router-dom';
-
+import styles from "./layer1.module.css";
 import { useEffect, useState } from 'react';
 import Layer1Card from '../../components/layer1Card/Layer1Card';
 import Cookies from 'js-cookies'
@@ -20,7 +20,7 @@ const Layer1 = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization":`Bearer ${token}`
+            "Authorization": `Bearer ${token}`
           },
           body: JSON.stringify({
             prompt: {
@@ -31,7 +31,7 @@ const Layer1 = () => {
           }),
         });
 
-        
+
         const resultData = await response.json();
         if (!response.ok) {
           throw new Error(resultData.message || "Failed to get result from backend.");
@@ -50,23 +50,26 @@ const Layer1 = () => {
     fetchData();
   }, [location]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className={styles.loadingContainer}><div className={styles.loading}></div></div>;
   if (error) return <div>Error: {error}</div>;
   if (!data) return null;
 
   return (
-    <div>
-      <h1>level 1 data</h1>
+    <div className={styles.layer1Container}>
+      <h1 className={styles.title}>level 1 data</h1>
+
+      <div className={styles.levelInfo}>
       <p><strong>Level Name:</strong> {data.level}</p>
       <p><strong>Level Content:</strong> {data.levelContent}</p>
       <p><strong>Subject:</strong> {data.subject}</p>
-      <h2>Chapters:</h2>
-      <ul>
-      <div className="chapter-list">
-        {data.chapters.map((chapter, index) => (
-          <Layer1Card key={index} index={index} chapter={chapter} level={data.level} subject={data.subject}/>
-        ))}
+      <h2 className={styles.chapterHeader}>Chapters:</h2>
       </div>
+      <ul className={styles.chapterList}>
+        <div className="chapter-list">
+          {data.chapters.map((chapter, index) => (
+            <Layer1Card  key={index} index={index} chapter={chapter} level={data.level} subject={data.subject} />
+          ))}
+        </div>
       </ul>
     </div>
   );

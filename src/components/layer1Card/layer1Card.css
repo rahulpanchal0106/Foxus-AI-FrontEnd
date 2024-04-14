@@ -1,19 +1,34 @@
-/* Layer0Card.jsx */
+/* layer1Card.css */
 .layer1-card {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    cursor: pointer; /* Indicate that it's clickable */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  border: 1px solid var(--softTextColor); 
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer; 
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.layer1-card:hover {
+  background-color: #f0f0f0; /* Light hover color */
+  color: #000; /* Ensure text color contrasts with hover background */
+  animation-name: hoverAnimation;
+  animation-duration: 0.5s;
+}
+
+.layer1-card strong {
+  font-weight: bold;
+  display: block; 
+  margin-bottom: 5px;
+}
+
+@keyframes hoverAnimation {
+  0% {
+    transform: scale(1);
   }
-  
-  .layer1-card:hover {
-    background-color: #f0f0f0;
+  50% {
+    transform: scale(1.05);
   }
-  
-  .layer1-card strong {
-    font-weight: bold;
-    display: block; /* Ensure levelName is on its own line */
-    margin-bottom: 5px;
+  100% {
+    transform: scale(1);
   }
+}

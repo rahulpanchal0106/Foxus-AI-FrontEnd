@@ -1,13 +1,15 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Layer0Card from '../../components/layer0Card/Layer0Card'
-import styles from './layer0.module.css'
-import Cookies from 'js-cookies'
+import Layer0Card from '../../components/layer0Card/Layer0Card';
+import styles from './layer0.module.css';
+import Cookies from 'js-cookies';
+
 const Layer0 = () => {
-  const [prompt, setPrompt] = useState("");
+  const [prompt, setPrompt] = useState('');
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [apiCalled, setApiCalled] = useState(false); // Introduce a flag
   const navigate = useNavigate();
 
   const handlePromptChange = (event) => {
@@ -16,46 +18,48 @@ const Layer0 = () => {
 
   const getLayer0Result = async () => {
     setLoading(true);
-    if (prompt.trim() === "") {
-      setError("Please enter a prompt.");
+    if (prompt.trim() === '') {
+      setError('Please enter a prompt.');
       setLoading(false);
       return;
     }
 
     try {
-      const token = Cookies.getItem("token");
-      const response = await fetch("http://localhost:3000/layer0", {
-        method: "POST",
+      const token = Cookies.getItem('token');
+      const response = await fetch('http://localhost:3000/layer0', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ prompt }),
       });
 
-      
-      const resultData = await response.json()
-      console.log("⚠️⚠️⚠️",resultData)
+      const resultData = await response.json();
+      console.log('⚠️⚠️⚠️', resultData);
       if (!response.ok) {
-        throw new Error(resultData.message || 'Failed to get result from backend.')
+        throw new Error(resultData.message || 'Failed to get result from backend.');
       }
-      setResult(resultData)
-      setError(null)
+      setResult(resultData);
+      setError(null);
     } catch (error) {
-      console.error('⭕Error:', error.message)
-      setError(error.message)
-      setResult(null)
+      console.error('⭕Error:', error.message);
+      setError(error.message);
+      setResult(null);
     } finally {
       setLoading(false);
+      setApiCalled(true); // Set the flag to true after API call
     }
   };
 
   const checkTokenAndNavigate = () => {
-    const token = Cookies.getItem("token");
+    const token = Cookies.getItem('token');
     if (!token) {
-      navigate("/login");
+      navigate('/login');
     } else {
-      getLayer0Result();
+      if (!apiCalled) { // Check if API call has already been made
+        getLayer0Result();
+      }
     }
   };
 
@@ -99,8 +103,6 @@ const Layer0 = () => {
           )}
         </div>
       )}
-
-      
     </div>
   );
 };

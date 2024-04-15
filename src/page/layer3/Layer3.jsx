@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./layer3.css"; // Import your CSS file for styling
 import Cookies from 'js-cookies'
 
@@ -9,6 +9,7 @@ const Layer3 = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const prevLocationRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +20,7 @@ const Layer3 = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization":`Bearer ${token}`
+            "Authorization": `Bearer ${token}`
           },
           body: JSON.stringify({
             prompt: {
@@ -32,10 +33,12 @@ const Layer3 = () => {
           }),
         });
 
-        
         const resultData = await response.json();
-        if (!response.ok) {
-          throw new Error(resultData.message||"Failed to get result from backend.");
+        if(response.status === 501){
+          setData(resultData.error)
+          setError(resultData.error)
+        } else if (!response.ok) {
+          throw new Error(resultData.message || "Failed to get result from backend.");
         }
         setData(resultData.result);
         setError(null);
@@ -48,8 +51,12 @@ const Layer3 = () => {
       }
     };
 
-    fetchData();
-  }, [location]);
+    // Check if location has changed
+    if (prevLocationRef.current !== location.pathname) {
+      fetchData();
+      prevLocationRef.current = location.pathname;
+    }
+  }, [location.pathname]);
 
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">Error: {error}</div>;
@@ -57,7 +64,7 @@ const Layer3 = () => {
 
   // Split data into paragraphs
   const cleanedParagraphs = data.split("\n").map((paragraph) => {
-    // Use regular expression to replace asterisks and numbers with empty string
+    // Use regular expression to replace asterisks and numbers with an empty string
     const cleanedText = paragraph.replace(/[*0-9]/g, "");
     return <p key={Math.random()}>{cleanedText}</p>;
   });

@@ -1,57 +1,66 @@
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Layer2Card from "../../components/layer2Card/Layer2Card";
 import Cookies from 'js-cookies'
+import { toast } from 'react-toastify';
 
 const Layer2 = () => {
   const location = useLocation();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [apiCalled, setApiCalled] = useState(false); // Introduce a flag
+  const prevLocationRef = useRef(null);
+
+  const fetchData = async () => {
+    setLoading(true);
+    const token = Cookies.getItem('token');
+    try {
+      const response = await fetch("http://localhost:3000/layer2", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          prompt: {
+            chapter: location.state.chapter,
+            subject: location.state.subject,
+            levelName: location.state.level,
+          },
+        }),
+      });
+      
+      console.log(location.state.subject);
+      
+      const resultData = await response.json();
+      console.log("ResultData: ",resultData)
+      if (resultData == null || resultData==[]) {
+        setData("No response from PaLM2");
+        setError("No response from PaLM2");
+        toast.error("No response from PaLM2", {
+          position: "top-right"
+        });
+      } else if (!response.ok) {
+        throw new Error(resultData.message || resultData.error || "Failed to get result from backend.");
+      }
+      setData(resultData);
+      setError(null);
+    } catch (error) {
+      console.error("Error:", error.message);
+      setError(error.message);
+      setData(null);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    if (!apiCalled) { // Check if API call has already been made
-      const fetchData = async () => {
-        setLoading(true);
-        const token = Cookies.getItem('token');
-        try {
-          const response = await fetch("http://localhost:3000/layer2", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization":`Bearer ${token}`
-            },
-            body: JSON.stringify({
-              prompt: {
-                chapter: location.state.chapter,
-                subject: location.state.subject,
-                levelName: location.state.level,
-              },
-            }),
-          });
-          
-          console.log(location.state.subject);
-          
-          const resultData = await response.json();
-          if (!response.ok) {
-            throw new Error(resultData.message || "Failed to get result from backend.");
-          }
-          setData(resultData);
-          setError(null);
-        } catch (error) {
-          console.error("Error:", error.message);
-          setError(error.message);
-          setData(null);
-        } finally {
-          setLoading(false);
-          setApiCalled(true); // Set the flag to true after API call
-        }
-      };
-
+    // Check if location has changed
+    if (prevLocationRef.current !== location.pathname) {
       fetchData();
+      prevLocationRef.current = location.pathname;
     }
-  }, [location, apiCalled]); // Include apiCalled in the dependencies array
+  }, [location.pathname]); // Trigger only on location.pathname change
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;

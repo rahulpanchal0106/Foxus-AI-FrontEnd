@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Layer0Card from '../../components/layer0Card/Layer0Card'
 import styles from './layer0.module.css'
 import Cookies from 'js-cookies'
+import { toast } from 'react-toastify';
 const Layer0 = () => {
   const [prompt, setPrompt] = useState("");
   const [result, setResult] = useState(null);
@@ -36,13 +37,26 @@ const Layer0 = () => {
       
       const resultData = await response.json()
       console.log("⚠️⚠️⚠️",resultData)
-      if (!response.ok) {
+      if(resultData.length==0){
+        console.log("🪲🪲🪲🪲🪲🪲🪲🪲🪲🪲🪲🪲🪲")
+        setResult("No response from PaLM2")
+        setError("No response from PaLM2")
+        toast.error("No response from PaLM2", {
+          position: "top-right"
+        });
+      }else if (!response.ok) {
+        toast.error(error.message, {
+          position: "top-right"
+        });
         throw new Error(resultData.message || 'Failed to get result from backend.')
       }
       setResult(resultData)
       setError(null)
     } catch (error) {
       console.error('⭕Error:', error.message)
+      toast.error(error.message, {
+        position: "top-right"
+      });
       setError(error.message)
       setResult(null)
     } finally {

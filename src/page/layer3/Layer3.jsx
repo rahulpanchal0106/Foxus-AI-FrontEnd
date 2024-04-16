@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import "./layer3.css"; // Import your CSS file for styling
 import Cookies from "js-cookies";
 import HashLoader from "react-spinners/HashLoader";
+import Doubt from "../../components/doubts/Doubt";
 
 const Layer3 = () => {
   const location = useLocation();
@@ -14,6 +15,7 @@ const Layer3 = () => {
   const prevLocationRef = useRef(null);
 
   useEffect(() => {
+    //fetching layer3 data
     const fetchData = async () => {
       setLoading(true);
       const token = Cookies.getItem("token");
@@ -63,6 +65,7 @@ const Layer3 = () => {
     }
   }, [location.pathname]);
 
+  // generating quiz from above explained topic
   const generateQuiz = async () => {
     setIsGeneratingQuiz(true); // Set loading state to true when generating quiz
     const token = Cookies.getItem("token");
@@ -104,7 +107,7 @@ const Layer3 = () => {
     <div className="layer3-container">
       <h1>Level 3 Data</h1>
       <h2>{location.state.lessonName}</h2>
-      <div className="data">{cleanedParagraphs}</div>
+      {/* <div className="data">{cleanedParagraphs}</div> */}
       <div className="button-container">
         <button onClick={generateQuiz} disabled={isGeneratingQuiz}>
           {isGeneratingQuiz ? (
@@ -121,6 +124,9 @@ const Layer3 = () => {
           ))}
         </div>
       )}
+      <div>
+        <Doubt />
+      </div>
     </div>
   );
 };

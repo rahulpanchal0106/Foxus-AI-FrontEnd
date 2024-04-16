@@ -73,7 +73,7 @@ const Layer3 = () => {
     <div className="layer3-container">
       <h1>Level 3 Data</h1>
       <h2>{location.state.lessonName}</h2>
-      <div className="data">{cleanedParagraphs}</div>
+      <div className="data" dangerouslySetInnerHTML={{ __html: data }} />
     </div>
   );
 };

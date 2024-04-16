@@ -11,7 +11,7 @@ const Layer1 = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const prevLocationRef = useRef(null);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);

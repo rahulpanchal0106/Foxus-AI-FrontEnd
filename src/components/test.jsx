@@ -1,6 +1,7 @@
 import React from "react";
 // import Image from "next/image";
 import { Tabs } from "./ui/tabs";
+import Layer0 from "../page/layer0/layer0";
 
 export default function TabsDemo() {
   const tabs = [
@@ -9,8 +10,9 @@ export default function TabsDemo() {
       value: "product",
       content: (
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
-          <p>Product Tab</p>
-          <DummyContent />
+          <p>Levels of Learning</p>
+          {/* <DummyContent /> */}
+          <Layer0/>
         </div>
       ),
     },
@@ -19,7 +21,7 @@ export default function TabsDemo() {
       value: "services",
       content: (
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
-          <p>Services tab</p>
+          <p>Chapters</p>
           <DummyContent />
         </div>
       ),
@@ -29,7 +31,7 @@ export default function TabsDemo() {
       value: "playground",
       content: (
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
-          <p>Playground tab</p>
+          <p>Lessons</p>
           <DummyContent />
         </div>
       ),
@@ -39,21 +41,11 @@ export default function TabsDemo() {
       value: "content",
       content: (
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
-          <p>Content tab</p>
+          <p>Lesson explaination</p>
           <DummyContent />
         </div>
       ),
-    },
-    {
-      title: "Random",
-      value: "random",
-      content: (
-        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
-          <p>Random tab</p>
-          <DummyContent />
-        </div>
-      ),
-    },
+    }
   ];
 
   return (

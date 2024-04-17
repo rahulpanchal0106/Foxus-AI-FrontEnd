@@ -37,7 +37,6 @@ const Layer3 = () => {
           }),
         });
 
-        
         const resultData = await response.json();
         if (response.status === 501) {
           setData(resultData.error);
@@ -92,7 +91,12 @@ const Layer3 = () => {
     }
   };
 
-  if (loading) return <div className="loadingContainer"><HashLoader color="#616A6B" /></div>;
+  if (loading)
+    return (
+      <div className="loadingContainer">
+        <HashLoader color="#616A6B" />
+      </div>
+    );
   if (error) return <div className="error">Error: {error}</div>;
   if (!data) return null;
 
@@ -107,7 +111,7 @@ const Layer3 = () => {
     <div className="layer3-container">
       <h1>Level 3 Data</h1>
       <h2>{location.state.lessonName}</h2>
-      {/* <div className="data">{cleanedParagraphs}</div> */}
+      <div className="data">{cleanedParagraphs}</div>
       <div className="button-container">
         <button onClick={generateQuiz} disabled={isGeneratingQuiz}>
           {isGeneratingQuiz ? (
@@ -117,14 +121,17 @@ const Layer3 = () => {
           )}
         </button>
       </div>
+      <br />
       {quizData && (
         <div>
           {quizData.result.split("\n").map((line, index) => (
-            <p key={index}>{line}</p> // Render each line as a paragraph
+            <p key={index}>{line}</p> 
           ))}
         </div>
       )}
-      <div>
+      <br />
+      <br />
+      <div className="doubt-container">
         <Doubt />
       </div>
     </div>

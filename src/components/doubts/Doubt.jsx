@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./doubt.css"; // Import your CSS file
 
 const Doubt = () => {
   const [loading, setLoading] = useState(false);
@@ -20,10 +21,7 @@ const Doubt = () => {
         },
         body: JSON.stringify({ prompt }),
       });
-      console.log(prompt);
       const resultData = await response.json();
-      console.log("jejeje");
-      console.log(resultData);
       if (response.status === 501) {
         setError(resultData.error);
       } else if (!response.ok) {
@@ -48,19 +46,25 @@ const Doubt = () => {
   }, [data]); // Run this effect whenever data state changes
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Still have some doubts !!"
-        onChange={handlePromptChange}
-        value={prompt}
-      />
-      <button onClick={fetchData} disabled={loading}>
-        Click
-      </button>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
-      {data && <p>Data: {data}</p>} {/* Display data if available */}
+    <div className="container">
+      <div className="input-container">
+        <input
+          className="input-field"
+          type="text"
+          placeholder="Still have some doubts !!"
+          onChange={handlePromptChange}
+          value={prompt}
+        />
+        <button className="button" onClick={fetchData} disabled={loading}>
+        {loading ? (
+            <div className="spinner" />
+          ) : (
+            "Ask"
+          )}
+        </button>
+      </div>
+      {error && <p className="error">Error: {error}</p>}
+      {data && <p className="message">{data}</p>}
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import "./layer3.css"; // Import your CSS file for styling
 import Cookies from "js-cookies";
 import HashLoader from "react-spinners/HashLoader";
+import Doubt from "../../components/doubts/Doubt";
 
 const Layer3 = () => {
   const location = useLocation();
@@ -14,6 +15,7 @@ const Layer3 = () => {
   const prevLocationRef = useRef(null);
 
   useEffect(() => {
+    //fetching layer3 data
     const fetchData = async () => {
       setLoading(true);
       const token = Cookies.getItem("token");
@@ -35,7 +37,6 @@ const Layer3 = () => {
           }),
         });
 
-        
         const resultData = await response.json();
         if (response.status === 501) {
           setData(resultData.error);
@@ -63,6 +64,7 @@ const Layer3 = () => {
     }
   }, [location.pathname]);
 
+  // generating quiz from above explained topic
   const generateQuiz = async () => {
     setIsGeneratingQuiz(true); // Set loading state to true when generating quiz
     const token = Cookies.getItem("token");
@@ -89,7 +91,12 @@ const Layer3 = () => {
     }
   };
 
-  if (loading) return <div className="loadingContainer"><HashLoader color="#616A6B" /></div>;
+  if (loading)
+    return (
+      <div className="loadingContainer">
+        <HashLoader color="#616A6B" />
+      </div>
+    );
   if (error) return <div className="error">Error: {error}</div>;
   if (!data) return null;
 
@@ -114,13 +121,19 @@ const Layer3 = () => {
           )}
         </button>
       </div>
+      <br />
       {quizData && (
         <div>
           {quizData.result.split("\n").map((line, index) => (
-            <p key={index}>{line}</p> // Render each line as a paragraph
+            <p key={index}>{line}</p> 
           ))}
         </div>
       )}
+      <br />
+      <br />
+      <div className="doubt-container">
+        <Doubt />
+      </div>
     </div>
   );
 };

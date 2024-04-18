@@ -3,6 +3,8 @@ import { useEffect, useState, useRef } from "react";
 import Layer2Card from "../../components/layer2Card/Layer2Card";
 import Cookies from 'js-cookies'
 import { toast } from 'react-toastify';
+import HashLoader from "react-spinners/HashLoader";
+import styles from "./layer2.module.css";
 
 const Layer2 = () => {
   const location = useLocation();
@@ -62,7 +64,7 @@ const Layer2 = () => {
     }
   }, [location.pathname]); // Trigger only on location.pathname change
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className={styles.loadingContainer}><HashLoader color="#616A6B" /></div>;
   if (error) return <div>Error: {error}</div>;
   if (!data) return null;
 

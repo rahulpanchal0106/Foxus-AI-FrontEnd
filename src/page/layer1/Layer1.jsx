@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import Layer1Card from '../../components/layer1Card/Layer1Card';
 import Cookies from 'js-cookies'
 import { toast } from 'react-toastify';
+import HashLoader from "react-spinners/HashLoader";
 
 const Layer1 = () => {
   const location = useLocation();
@@ -60,7 +61,7 @@ const Layer1 = () => {
     }
   }, [location.pathname]);
 
-  if (loading) return <div className={styles.loadingContainer}><div className={styles.loading}></div></div>;
+  if (loading) return <div className={styles.loadingContainer}><HashLoader color="#616A6B" /></div>;
   if (error) return <div>Error: {error}</div>;
   if (!data) return null;
 
@@ -72,8 +73,8 @@ const Layer1 = () => {
       <p><strong>Level Name:</strong> {data.level}</p>
       <p><strong>Level Content:</strong> {data.levelContent}</p>
       <p><strong>Subject:</strong> {data.subject}</p>
-      <h2 className={styles.chapterHeader}>Chapters:</h2>
       </div>
+      <h2 className={styles.chapterHeader}>Chapters:</h2>
       <ul className={styles.chapterList}>
         <div className="chapter-list">
           {data.chapters.map((chapter, index) => (

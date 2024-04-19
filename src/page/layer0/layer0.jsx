@@ -1,14 +1,22 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import Layer0Card from '../../components/layer0Card/Layer0Card'
 import styles from './layer0.module.css'
 import Cookies from 'js-cookies'
 import { toast } from 'react-toastify';
+=======
+import Layer0Card from '../../components/layer0Card/Layer0Card';
+import styles from './layer0.module.css';
+import Cookies from 'js-cookies';
+
+>>>>>>> 50a5cb21ef8229bc2444e1845c8b8e9769c5c51b
 const Layer0 = () => {
-  const [prompt, setPrompt] = useState("");
+  const [prompt, setPrompt] = useState('');
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [apiCalled, setApiCalled] = useState(false); // Introduce a flag
   const navigate = useNavigate();
 
   const handlePromptChange = (event) => {
@@ -17,23 +25,24 @@ const Layer0 = () => {
 
   const getLayer0Result = async () => {
     setLoading(true);
-    if (prompt.trim() === "") {
-      setError("Please enter a prompt.");
+    if (prompt.trim() === '') {
+      setError('Please enter a prompt.');
       setLoading(false);
       return;
     }
 
     try {
-      const token = Cookies.getItem("token");
-      const response = await fetch("http://localhost:3000/layer0", {
-        method: "POST",
+      const token = Cookies.getItem('token');
+      const response = await fetch('http://localhost:3000/layer0', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ prompt }),
       });
 
+<<<<<<< HEAD
       
       const resultData = await response.json()
       console.log("⚠️⚠️⚠️",resultData)
@@ -49,27 +58,42 @@ const Layer0 = () => {
           position: "top-right"
         });
         throw new Error(resultData.message || 'Failed to get result from backend.')
+=======
+      const resultData = await response.json();
+      console.log('⚠️⚠️⚠️', resultData);
+      if (!response.ok) {
+        throw new Error(resultData.message || 'Failed to get result from backend.');
+>>>>>>> 50a5cb21ef8229bc2444e1845c8b8e9769c5c51b
       }
-      setResult(resultData)
-      setError(null)
+      setResult(resultData);
+      setError(null);
     } catch (error) {
+<<<<<<< HEAD
       console.error('⭕Error:', error.message)
       toast.error(error.message, {
         position: "top-right"
       });
       setError(error.message)
       setResult(null)
+=======
+      console.error('⭕Error:', error.message);
+      setError(error.message);
+      setResult(null);
+>>>>>>> 50a5cb21ef8229bc2444e1845c8b8e9769c5c51b
     } finally {
       setLoading(false);
+      setApiCalled(true); // Set the flag to true after API call
     }
   };
 
   const checkTokenAndNavigate = () => {
-    const token = Cookies.getItem("token");
+    const token = Cookies.getItem('token');
     if (!token) {
-      navigate("/login");
+      navigate('/login');
     } else {
-      getLayer0Result();
+      if (!apiCalled) { // Check if API call has already been made
+        getLayer0Result();
+      }
     }
   };
 
@@ -113,8 +137,6 @@ const Layer0 = () => {
           )}
         </div>
       )}
-
-      
     </div>
   );
 };

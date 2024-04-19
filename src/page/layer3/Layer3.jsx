@@ -132,7 +132,12 @@ const Layer3 = () => {
       <br />
       <br />
       <div className="doubt-container">
-        <Doubt />
+        <Doubt 
+          lessonName={location.state.lessonName}
+          chapter= {location.state.chapter}
+          subject= {location.state.subject}
+          lessonExplaination = {data}
+        />
       </div>
     </div>
   );

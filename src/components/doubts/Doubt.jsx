@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./doubt.css"; // Import your CSS file
 
-const Doubt = () => {
+const Doubt = ({lessonName,chapter,subject,lessonExplaination}) => {
   const [loading, setLoading] = useState(false);
   const [prompt, setPrompt] = useState("");
   const [data, setData] = useState(null);
@@ -19,7 +19,13 @@ const Doubt = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ prompt }),
+        body: JSON.stringify({ 
+          prompt,
+          lessonName: lessonName,
+          chapter: chapter,
+          subject: subject,
+          lessonExplaination: lessonExplaination
+        }),
       });
       const resultData = await response.json();
       if (response.status === 501) {

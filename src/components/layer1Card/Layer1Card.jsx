@@ -13,10 +13,15 @@ const Layer1Card = ({ index, chapter,level,subject }) => {
     navigateToLayer2({ chapter, level, subject }); 
     console.log("Clicked on chapter:", chapter);
   };
+  
+  const cleanChapterName = (chapter) => {
+    // Remove asterisks from chapter name
+    return chapter.replace(/[*]/g, "");
+  };
 
   return (
     <div key={index} className="layer1-card" onClick={() => handleClick(chapter,level,subject)}>
-      {chapter}
+       {cleanChapterName(chapter)}
     </div>
   );
 };

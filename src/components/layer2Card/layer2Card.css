@@ -1,12 +1,23 @@
+.layer-container {
+  display: flex;
+}
+
 .layer2-card {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-  }
-  
-  .layer2-card h3 {
-    margin-top: 0;
-  }
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  width: 50%;
+  height: fit-content; /* Set height to fit content */
+  overflow: hidden; /* Hide overflow content */
+}
+
+.layer3-content {
+  width: 50%;
+}
+
+.layer2-card h3 {
+  margin-top: 0;
+}

@@ -10,6 +10,7 @@
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   width: 50%;
+  flex: 1;
   transition: all 0.3s ease;
 }
 
@@ -29,8 +30,29 @@
   border-radius: 0 0 5px 5px;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  z-index: 1;
 }
 
 .layer2-card h3 {
   margin-top: 0;
+}
+
+.layer2-card:hover {
+  background-color: var(--light-bg-hover);
+}
+.layer2-card.active {
+  background-color: #cec9c9;
+}
+
+.dark .layer2-card:hover {
+  background-color: var(--dark-bg-hover);
+  color: #000;
+}
+.dark .layer2-card.active {
+  background-color: #f3b3b3;
+  color: #000;
+}
+.dark .layer3-content {
+  background-color: #f3b3b3;
+  color: #000;
 }

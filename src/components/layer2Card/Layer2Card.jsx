@@ -8,12 +8,10 @@ const Layer2Card = ({
   chapter,
   level,
   subject,
-  setActiveCardIndex,
-  activeCardIndex,
   index,
 }) => {
   const [showLayer3, setShowLayer3] = useState(false);
-
+  const [activeCardIndex,setActiveCardIndex] = useState(null)
   const handleClick = () => {
     setShowLayer3(!showLayer3);
     setActiveCardIndex(index);

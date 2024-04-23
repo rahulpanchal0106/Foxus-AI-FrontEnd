@@ -84,7 +84,7 @@ const Layer0 = () => {
         type="text"
         value={prompt}
         onChange={handlePromptChange}
-        placeholder="Enter your prompt"
+        placeholder="Enter your subject or topic here"
         className={styles.in}
       />
       <button

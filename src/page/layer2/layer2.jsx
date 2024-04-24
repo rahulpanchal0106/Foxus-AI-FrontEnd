@@ -91,6 +91,7 @@ const Layer2 = () => {
               chapter={lesson.chapter}
               level={lesson.level}
               subject={lesson.subject}
+              index = {index}
             />
           ))}
         </div>

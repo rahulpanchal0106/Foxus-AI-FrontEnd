@@ -8,12 +8,6 @@
   transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
-.layer1-card:hover {
-  background-color: #f0f0f0; /* Light hover color */
-  color: #000; /* Ensure text color contrasts with hover background */
-  animation-name: hoverAnimation;
-  animation-duration: 0.5s;
-}
 
 .layer1-card strong {
   font-weight: bold;
@@ -32,3 +26,17 @@
     transform: scale(1);
   }
 }
+
+.layer1-card:hover {
+  /* from app.css root */
+   background-color: var(--light-bg-hover);
+   animation-name: hoverAnimation;
+  animation-duration: 0.5s;
+}
+
+ .dark .layer1-card:hover {
+  background-color: var(--dark-bg-hover);
+  animation-name: hoverAnimation;
+  animation-duration: 0.5s;
+  color: #000;
+} 

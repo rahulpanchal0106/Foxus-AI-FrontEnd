@@ -21,9 +21,9 @@
   margin-right: 0;
 }
 
-.layer0-card:hover {
-  background-color: #f0f0f0;
-}
+/* .layer0-card:hover {
+  background-color: #aaaaaa;
+} */
 
 .level-name {
   font-weight: bold;
@@ -31,4 +31,15 @@
 
 .level-content {
   margin-top: 10px;
+}
+
+.layer0-card:hover {
+  /* from app.css root */
+  background-color: var(--light-bg-hover);
+}
+
+
+.dark .layer0-card:hover {
+  background-color: var(--dark-bg-hover);
+  color: #000;
 }

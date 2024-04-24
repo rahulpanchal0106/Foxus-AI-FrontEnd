@@ -113,7 +113,7 @@ const Layer3 = () => {
       <h2>{location.state.lessonName}</h2>
       <div className="data">{cleanedParagraphs}</div>
       <div className="button-container">
-        <button onClick={generateQuiz} disabled={isGeneratingQuiz}>
+        <button onClick={generateQuiz} disabled={isGeneratingQuiz} className="bi">
           {isGeneratingQuiz ? (
             <div className="spinner" /> // Show spinner while generating quiz
           ) : (

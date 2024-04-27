@@ -68,14 +68,19 @@ const Layer2 = () => {
   if (error) return <div>Error: {error}</div>;
   if (!data) return null;
 
+  const cleanName = (chapter) => {
+    // Remove asterisks from chapter name
+    return chapter.replace(/[*]/g, "");
+  };
+
   return (
     <div>
-      <h1>level 2 data</h1>
-      <p>
-        <strong>Chapter:</strong> {location.state.chapter}
+      {/* <h1>level 2 data</h1> */}
+      <p className={styles.chapter}>
+        <strong>Chapter:</strong> {cleanName(location.state.chapter)}
       </p>
       <p>
-        <strong>Level:</strong> {location.state.level}
+        <strong>Level:</strong> {cleanName(location.state.level)}
       </p>
       <p>
         <strong>Subject:</strong> {location.state.subject}

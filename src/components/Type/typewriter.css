@@ -1,0 +1,32 @@
+@import url('non.geist');
+@import url('https://fonts.googleapis.com/css2?family=Forum&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caudex&display=swap');
+.dark .v {
+    color: white;
+    font-family: 'Geist Variable';
+}
+
+.vt{
+    font-size: 18px;
+    font-family: 'Geist Variable';
+}
+
+.dark .vt {
+    color: white;
+    font-size: 18px;
+    font-family: 'Geist Variable';
+}
+.light .v {
+    font-family: "Geist Variable";
+    color:black;
+}
+.v {
+    font-family: "Geist Variable";
+}
+.something
+{
+    /* font-family: "Forum", serif; */
+    /* font-family: "Barlow", sans-serif; */
+    font-family: "Caudex", serif;
+}

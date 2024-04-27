@@ -5,3 +5,7 @@
     height: 100vh; /* Adjust as necessary */
   }
   
+  .chapter
+  {
+    margin: 10px;
+  }

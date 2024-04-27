@@ -11,6 +11,10 @@
   --dark-bg-hover: #f0f0f0; /* Hover background color for light mode */
   --light-bg-hover: #aaaaaa; /* Hover background color for dark mode */
 }
+/* Hide the scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
 
 *{
   padding: 0;
@@ -133,3 +137,4 @@
   opacity: 0.4;
   filter: invert(1);
 }
+

@@ -1,10 +1,15 @@
 /* layer1Card.css */
+@import url('https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 .layer1-card {
   border: 1px solid var(--softTextColor); 
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 5px;
   cursor: pointer; 
+  font-family: "Caudex", serif;
+  font-weight: 700;
+  font-style: italic;
   transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 

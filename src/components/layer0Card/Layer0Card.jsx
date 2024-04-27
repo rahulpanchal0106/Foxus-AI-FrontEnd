@@ -18,7 +18,7 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
         className="layer0-card"
         onClick={() => handleClick(levelName, levelContent, subject)}
       >
-        <strong className="level-name">{levelName}</strong>
+        <p className="level-name">{levelName}</p>
         <p className="level-content">{levelContent}</p>
       </div>
     </div>

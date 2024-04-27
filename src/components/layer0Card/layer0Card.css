@@ -1,7 +1,9 @@
+@import url('non.geist');
 .layer0-card-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  font-family: 'Geist Variable';
 }
 
 .layer0-card {
@@ -26,7 +28,9 @@
 } */
 
 .level-name {
-  font-weight: bold;
+  /* font-weight: bold; */
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .level-content {

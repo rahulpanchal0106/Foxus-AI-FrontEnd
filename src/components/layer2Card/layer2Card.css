@@ -1,7 +1,19 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Caudex&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
 .layer-container {
   position: relative;
 }
 
+.lesson{
+  font-size: 18px;
+  font-family: "Caudex", serif;
+}
+
+.lessonContent
+{
+  font-family: "Barlow", sans-serif;
+}
 .layer2-card {
   border: 1px solid #ccc;
   padding: 15px;

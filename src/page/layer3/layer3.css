@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Caudex&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
+
 .layer3-container {
   margin: 20px;
   padding: 20px;
@@ -19,6 +22,7 @@
 
 .data {
   margin-top: 20px;
+  font-family: "Barlow", sans-serif;
 }
 
 .data p {
@@ -26,14 +30,19 @@
   line-height: 1.5;
 }
 
+.lessonName
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-family: "Caudex", serif;
+}
+
 /* CSS for button */
 .button-container {
   margin-top: 20px;
   text-align: center;
-  cursor: pointer;
-}
-.bi{
-  cursor: pointer;
 }
 
 .button-container button {

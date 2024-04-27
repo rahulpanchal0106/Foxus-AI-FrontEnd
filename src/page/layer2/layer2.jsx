@@ -17,7 +17,7 @@ const Layer2 = () => {
     setLoading(true);
     const token = Cookies.getItem('token');
     try {
-      const response = await fetch("https://ailearner.onrender.com/layer2", {
+      const response = await fetch("https://ai-tutor-be.onrender.com/layer2", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

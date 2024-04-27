@@ -1,3 +1,5 @@
+
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layer0Card from "../../components/layer0Card/Layer0Card";
@@ -85,7 +87,12 @@ const Layer0 = () => {
       }
     }
   };
-
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      checkTokenAndNavigate();
+    }
+  };
+  
   return (
     <div className={styles.container}>
       <TypewriterEffectDemo />
@@ -93,6 +100,7 @@ const Layer0 = () => {
         type="text"
         value={prompt}
         onChange={handlePromptChange}
+        onKeyPress={handleKeyPress} // Add key press event listener
         placeholder="Enter your subject or topic here"
         className={styles.in}
       />
@@ -107,7 +115,7 @@ const Layer0 = () => {
           <img src="/search.png" alt="" className={styles.icon} />
         )}
       </button>
-
+  
       {error && <p>{error}</p>}
       {result && (
         <div className="card">
@@ -122,14 +130,7 @@ const Layer0 = () => {
               />
             ))
           ) : (
-            <ul>
-              {result.result.split("\n\n").map((item, index) => (
-                <li key={index} style={{ marginLeft: "20px" }}>
-                <span style={{ marginRight: "5px" }}>•</span> {/* Bullet point with left margin */}
-                {item}
-              </li>
-              ))}
-            </ul>
+            <p>{result.result}</p>
           )}
         </div>
       )}

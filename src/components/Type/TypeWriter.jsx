@@ -9,7 +9,7 @@ export default function TypewriterEffectDemo() {
     },
     {
       text: "whatever",
-      className: "text-orange-500 dark:text-blue-500",
+      className: "text-orange-500 dark:text-orange-500",
     },
     {
       text: "you",
@@ -21,7 +21,7 @@ export default function TypewriterEffectDemo() {
     },
     {
       text: "whenever",
-      className: "text-orange-500 dark:text-blue-500",
+      className: "text-orange-500 dark:text-ornage-500",
     },
     {
       text: "you",
@@ -34,7 +34,7 @@ export default function TypewriterEffectDemo() {
   ];
   return (
     <div className="flex flex-col items-center justify-center h-[20rem] ">
-      <p className="  mb-10 vt">
+      <p className="mb-10 vt">
         The journey to mastery begins here
       </p>
       <TypewriterEffectSmooth words={words} className="something" />

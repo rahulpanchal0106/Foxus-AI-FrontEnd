@@ -1,7 +1,6 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/utilities';
 @import 'tailwindcss/components';
-
 .container{
     min-width: 100%;
     display: flex;
@@ -15,29 +14,34 @@
     display: flex;
     gap: 10px;
     flex: 1;
+    position: relative;
+    left: 30px;
 }
 
 .logo{
     flex: 1;
     text-align: center;
+    justify-content: center;
     font-size: 36px;
     font-weight: bold;
     text-decoration: none;
     color: var(--textColor);
+    margin-left: 20px; /* Adjust margin as needed */
 }
 
 .links{
     display: flex;
-    align-items:end;
+    align-items: end;
     gap: 10px;
     flex: 1;
     font-size: 15px;
+    justify-content: flex-end; /* Align links to the right */
+    margin-right: 40px; /* Adjust margin as needed */
 }
 
 .icon {
     border-radius: 50%;
 }
-
 
 .navLink{
     display: inline-block;
@@ -50,8 +54,28 @@
     text-decoration: none;
 }
 
-
-  .navLink:hover {
+.navLink:hover {
     background-color: #da6060; /* Darker blue color on hover */
-  }
-  
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0 50px; /* Adjust padding as needed */
+height: 150px;
+    }
+
+    .logo {
+        flex-basis: 100%;
+        text-align: center;
+        margin-left: 0;
+    }
+
+    .links {
+        flex-basis: 100%;
+        justify-content: center;
+        margin-right: 0;
+        margin-top: 10px; /* Adjust margin as needed */
+    }
+}

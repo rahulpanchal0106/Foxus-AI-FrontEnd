@@ -122,7 +122,14 @@ const Layer0 = () => {
               />
             ))
           ) : (
-            <p>{result.result}</p>
+            <ul>
+              {result.result.split("\n\n").map((item, index) => (
+                <li key={index} style={{ marginLeft: "20px" }}>
+                <span style={{ marginRight: "5px" }}>•</span> {/* Bullet point with left margin */}
+                {item}
+              </li>
+              ))}
+            </ul>
           )}
         </div>
       )}

@@ -18,7 +18,6 @@ const Layer1Card = ({ index, chapter,level,subject }) => {
     // Remove asterisks from chapter name
     return chapter.replace(/[*]/g, "");
   };
-
   return (
     <div key={index} className="layer1-card" onClick={() => handleClick(chapter,level,subject)}>
        {cleanChapterName(chapter)}

@@ -1,7 +1,9 @@
+@import url('non.geist');
 .layer0-card-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  font-family: 'Geist Variable';
 }
 
 .layer0-card {
@@ -21,14 +23,45 @@
   margin-right: 0;
 }
 
-.layer0-card:hover {
-  background-color: #f0f0f0;
-}
+/* .layer0-card:hover {
+  background-color: #aaaaaa;
+} */
 
 .level-name {
-  font-weight: bold;
+  /* font-weight: bold; */
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .level-content {
   margin-top: 10px;
+}
+
+.layer0-card:hover {
+  /* from app.css root */
+  background-color: var(--light-bg-hover);
+}
+
+
+.dark .layer0-card:hover {
+  background-color: var(--dark-bg-hover);
+  color: #000;
+}
+
+
+/* media Query  */
+
+@media only screen and (max-width: 767px) {
+  .layer0-card {
+    flex: 0 0 calc(60% - 20px);
+    max-width: calc(60% - 20px);
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .layer0-card {
+    flex: 0 0 calc(100% - 20px);
+    max-width: calc(100% - 20px);
+  }
+
 }

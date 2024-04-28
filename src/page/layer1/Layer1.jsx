@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import Layer1Card from '../../components/layer1Card/Layer1Card';
 import Cookies from 'js-cookies'
 import { toast } from 'react-toastify';
+import HashLoader from 'react-spinners/HashLoader';
 
 const Layer1 = () => {
   const location = useLocation();
@@ -13,7 +14,7 @@ const Layer1 = () => {
   const prevLocationRef = useRef(null);
 
   useEffect(() => {
-    
+
     const fetchData = async () => {
       setLoading(true);
       const token = Cookies.getItem('token');
@@ -34,7 +35,7 @@ const Layer1 = () => {
         });
 
         const resultData = await response.json();
-        if(resultData.length === 0){
+        if (resultData.length === 0) {
           setData("No response from PaLM2")
           setError("No response from PaLM2")
           toast.error("No response from PaLM2", {
@@ -58,29 +59,35 @@ const Layer1 = () => {
     fetchData();
   }, [location]);
 
-  if (loading) return <div className={styles.loadingContainer}><div className={styles.loading}></div></div>;
+  if (loading) return <div className={styles.loadingContainer}><HashLoader color="#616A6B" /></div>;
   if (error) return <div>Error: {error}</div>;
   if (!data) return null;
 
   return (
     <div className={styles.layer1Container}>
-      <h1 className={styles.title}>level 1 data</h1>
-
       <div className={styles.levelInfo}>
-        <p><strong>Level Name:</strong> {data.level}</p>
-        <p><strong>Level Content:</strong> {data.levelContent}</p>
-        <p><strong>Subject:</strong> {data.subject}</p>
-        <h2 className={styles.chapterHeader}>Chapters:</h2>
-      </div>
-      <ul className={styles.chapterList}>
-        <div className="chapter-list">
-          {data.chapters.map((chapter, index) => (
-            <Layer1Card key={index} index={index} chapter={chapter} level={data.level} subject={data.subject} />
-          ))}
+        <div>
+          <p><strong>Level Name:</strong> {data.level}</p>
+          <p><strong>Level Content:</strong> {data.levelContent}</p>
+          <p><strong>Subject:</strong> {data.subject}</p>
         </div>
+        <h2 className={styles.chapterHeader}> 
+         <strong>Chapters:</strong> 
+        </h2>
+      </div>
+      <ul className={`${styles.chapterList} responsive-chapter-list`}>
+        {data.chapters.map((chapter, index) => (
+          <li key={index}>
+            <Layer1Card
+              index={index}
+              chapter={chapter}
+              level={data.level}
+              subject={data.subject}
+            />
+          </li>
+        ))}
       </ul>
-    </div>
-  );
+    </div>);
 };
 
 export default Layer1;

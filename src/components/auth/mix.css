@@ -1,10 +1,10 @@
-section{
+section {
     width: 100%;
     padding: 10px;
-    min-height:calc(100vh - 80px);
+    min-height: calc(100vh - 80px);
 }
 
-section .form_data{
+section .form_data {
     max-width: 550px;
     margin: 25px auto;
     padding: 35px 10px;
@@ -15,39 +15,39 @@ section .form_data{
     align-items: center;
 }
 
-.form_heading{
+.form_heading {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.form_data h1{
+.form_data h1 {
     font-size: 34px;
     /* color: #2af927; */
 }
 
-.form_data p{
+.form_data p {
     color: #718096;
     font-size: 15px;
-    margin-top:9px;
+    margin-top: 9px;
 }
 
-#username{
+#username {
     width: 430px;
 }
 
-#fname{
+#fname {
     width: 430px;
 }
 
 
-.form_data form{
+.form_data form {
     margin-top: 45px;
     width: 100%;
     padding: 10px 50px;
 }
 
-.form_data form .form_input input{
+.form_data form .form_input input {
     /* width: 100%; */
     width: 525px;
     padding: 11px;
@@ -57,35 +57,35 @@ section .form_data{
     margin-bottom: 14px;
     margin-top: 9px;
     font-size: 14px;
-    
+
 }
 
-.form_data form .form_input label{
+.form_data form .form_input label {
     font-weight: 600;
     font-size: 15px;
 }
 
-.form_input .two{
+.form_input .two {
     display: flex;
     align-items: center;
     position: relative;
 }
 
-.form_data form .form_input input:focus{
-    border:2px solid rgba(66, 153, 225,0.6);
+.form_data form .form_input input:focus {
+    border: 2px solid rgba(66, 153, 225, 0.6);
 }
 
 
-.form_data form .form_input input::placeholder{
+.form_data form .form_input input::placeholder {
     color: #8694a8;
     letter-spacing: .5px;
     font-size: 14px;
 }
 
-.form_input .showpass{
+.form_input .showpass {
     position: absolute;
     right: 0;
-    top:1px;
+    top: 1px;
     padding: 7px 10px;
     margin-right: 5px;
     margin-top: 12px;
@@ -97,14 +97,14 @@ section .form_data{
     cursor: pointer;
 }
 
-form .btn{
-    display:block;
+form .btn {
+    display: block;
     width: 100%;
     padding: 15px;
     border: none;
     outline: none;
     border-radius: 5px;
-    background-color:#1a365d;
+    background-color: #1a365d;
     color: #fff;
     font-weight: 600;
     font-size: 18px;
@@ -114,18 +114,95 @@ form .btn{
 }
 
 
-form .btn:hover{
+form .btn:hover {
     background-color: #97a1b1;
 }
 
-.form_data form p{
+.form_data form p {
     text-align: center;
     margin-top: 20px;
 }
 
-.form_data form a{
+.form_data form a {
     text-decoration: none;
-    color:#718096 ;
+    color: #718096;
     border-bottom: 2px solid #8694a8;
 }
 
+
+
+/* Responsive Styles */
+@media screen and (max-width: 600px) {
+
+  
+    .form_data {
+        max-width: 90%;
+    }
+
+    #username{
+        width: 220px;
+    }
+
+    #fname {
+        width: 220px;
+    }
+       
+    .form_heading h1 {
+        font-size: 1.5rem;
+    }
+
+    .form_heading p {
+        font-size: 0.9rem;
+    }
+
+   
+    input[type="text"],
+    input[type="password"] {
+        font-size: 0.9rem;
+    }
+
+    
+    .btn {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+}
+
+
+
+/* Responsive Styles for 350px */
+@media screen and (max-width: 350px) {
+   
+    .form_data {
+        max-width: 90%;
+    }
+
+    #username{
+        width: 181px;
+    }
+
+    #fname {
+        width: 181px;
+    }
+
+    
+    .form_heading h1 {
+        font-size: 1.3rem;
+    }
+
+    .form_heading p {
+        font-size: 0.8rem;
+    }
+
+    
+    input[type="text"],
+    input[type="password"] {
+        font-size: 0.8rem;
+    }
+
+    
+    .btn {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+}

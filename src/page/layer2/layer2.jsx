@@ -68,22 +68,28 @@ const Layer2 = () => {
   if (error) return <div>Error: {error}</div>;
   if (!data) return null;
 
+  const cleanName = (chapter) => {
+    // Remove asterisks from chapter name
+    return chapter.replace(/[*]/g, "");
+  };
+
   return (
-    <div>
-      <h1>level 2 data</h1>
+    <div className={styles.container}>
+      {/* <h1>level 2 data</h1> */}
       <p>
-        <strong>Chapter:</strong> {location.state.chapter}
+        <strong>Chapter:</strong> {cleanName(location.state.chapter)}
       </p>
       <p>
-        <strong>Level:</strong> {location.state.level}
+        <strong>Level:</strong> {cleanName(location.state.level)}
       </p>
       <p>
         <strong>Subject:</strong> {location.state.subject}
       </p>
       <h2>Lessons:</h2>
-      <ul>
-        <div className="lesson-list">
+      <ul className={styles.lessonList}>
+        
           {data.map((lesson, index) => (
+            <li key={index} className={styles.lessonListItem}>
             <Layer2Card
               key={index}
               lessonName={lesson.lessonName}
@@ -91,9 +97,12 @@ const Layer2 = () => {
               chapter={lesson.chapter}
               level={lesson.level}
               subject={lesson.subject}
+              index = {index}
             />
+            </li>
+
           ))}
-        </div>
+       
       </ul>
     </div>
   );

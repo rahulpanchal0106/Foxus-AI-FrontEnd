@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Caudex&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
+
 .layer3-container {
   margin: 20px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  text-align: justify; /* Align text to justify */
+  text-align: justify;
 }
 
 .loading,
@@ -19,11 +22,21 @@
 
 .data {
   margin-top: 20px;
+  font-family: "Barlow", sans-serif;
 }
 
 .data p {
   margin-bottom: 10px;
   line-height: 1.5;
+}
+
+.lessonName
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-family: "Caudex", serif;
 }
 
 /* CSS for button */
@@ -70,3 +83,35 @@
 .doubt-container {
   margin-top: 20px; /* Adjust this margin as needed */
 }
+
+
+
+
+/* Responsive styles  */
+@media (max-width: 768px) {
+  .layer3-container {
+   
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .lessonName {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lessonName {
+    font-size: 15px;
+  }
+
+  .data p {
+    font-size: 10px;
+  }
+
+  .button-container button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+

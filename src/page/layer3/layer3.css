@@ -6,7 +6,7 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  text-align: justify; /* Align text to justify */
+  text-align: justify;
 }
 
 .loading,
@@ -83,3 +83,35 @@
 .doubt-container {
   margin-top: 20px; /* Adjust this margin as needed */
 }
+
+
+
+
+/* Responsive styles  */
+@media (max-width: 768px) {
+  .layer3-container {
+   
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .lessonName {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lessonName {
+    font-size: 15px;
+  }
+
+  .data p {
+    font-size: 10px;
+  }
+
+  .button-container button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+

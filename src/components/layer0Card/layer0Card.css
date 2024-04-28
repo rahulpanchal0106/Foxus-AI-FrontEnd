@@ -47,3 +47,21 @@
   background-color: var(--dark-bg-hover);
   color: #000;
 }
+
+
+/* media Query  */
+
+@media only screen and (max-width: 767px) {
+  .layer0-card {
+    flex: 0 0 calc(60% - 20px);
+    max-width: calc(60% - 20px);
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .layer0-card {
+    flex: 0 0 calc(100% - 20px);
+    max-width: calc(100% - 20px);
+  }
+
+}

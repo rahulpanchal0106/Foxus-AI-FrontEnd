@@ -29,4 +29,26 @@
     /* font-family: "Forum", serif; */
     /* font-family: "Barlow", sans-serif; */
     font-family: "Caudex", serif;
+   
+
 }
+
+
+@media only screen and (max-width: 480px) {
+    .vt {
+      font-size: 18px; 
+    }
+
+    .dark .vt{
+        font-size:18px;
+    }
+
+    
+  }
+
+
+
+
+
+
+  

@@ -17,7 +17,7 @@ const Layer2 = () => {
     setLoading(true);
     const token = Cookies.getItem('token');
     try {
-      const response = await fetch("http://localhost:3000/layer2", {
+      const response = await fetch("https://ai-tutor-be.onrender.com/layer2", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,9 +74,9 @@ const Layer2 = () => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       {/* <h1>level 2 data</h1> */}
-      <p className={styles.chapter}>
+      <p>
         <strong>Chapter:</strong> {cleanName(location.state.chapter)}
       </p>
       <p>
@@ -86,9 +86,10 @@ const Layer2 = () => {
         <strong>Subject:</strong> {location.state.subject}
       </p>
       <h2>Lessons:</h2>
-      <ul>
-        <div className="lesson-list">
+      <ul className={styles.lessonList}>
+        
           {data.map((lesson, index) => (
+            <li key={index} className={styles.lessonListItem}>
             <Layer2Card
               key={index}
               lessonName={lesson.lessonName}
@@ -98,8 +99,10 @@ const Layer2 = () => {
               subject={lesson.subject}
               index = {index}
             />
+            </li>
+
           ))}
-        </div>
+       
       </ul>
     </div>
   );

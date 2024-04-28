@@ -14,11 +14,12 @@ const Layer1 = () => {
   const prevLocationRef = useRef(null);
 
   useEffect(() => {
+
     const fetchData = async () => {
       setLoading(true);
       const token = Cookies.getItem('token');
       try {
-        const response = await fetch("http://localhost:3000/layer1", {
+        const response = await fetch("https://ai-tutor-be.onrender.com/layer1", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -34,7 +35,7 @@ const Layer1 = () => {
         });
 
         const resultData = await response.json();
-        if(resultData.length === 0){
+        if (resultData.length === 0) {
           setData("No response from PaLM2")
           setError("No response from PaLM2")
           toast.error("No response from PaLM2", {
@@ -54,12 +55,9 @@ const Layer1 = () => {
       }
     };
 
-    // Check if location has changed
-    if (prevLocationRef.current !== location.pathname) {
-      fetchData();
-      prevLocationRef.current = location.pathname;
-    }
-  }, [location.pathname]);
+
+    fetchData();
+  }, [location]);
 
   if (loading) return <div className={styles.loadingContainer}><HashLoader color="#616A6B" /></div>;
   if (error) return <div>Error: {error}</div>;
@@ -67,22 +65,29 @@ const Layer1 = () => {
 
   return (
     <div className={styles.layer1Container}>
-      {/* <h1 className={styles.title}>level 1 data</h1> */}
-
       <div className={styles.levelInfo}>
-      <p><strong>Level Name:</strong> {data.level}</p>
-      <p><strong>Level Content:</strong> {data.levelContent}</p>
-      <p><strong>Subject:</strong> {data.subject}</p>
-      </div>
-      <ul className={styles.chapterList}>
-        <div className="chapter-list">
-          {data.chapters.map((chapter, index) => (
-            <Layer1Card  key={index} index={index} chapter={chapter} level={data.level} subject={data.subject} />
-          ))}
+        <div>
+          <p><strong>Level Name:</strong> {data.level}</p>
+          <p><strong>Level Content:</strong> {data.levelContent}</p>
+          <p><strong>Subject:</strong> {data.subject}</p>
         </div>
+        <h2 className={styles.chapterHeader}> 
+         <strong>Chapters:</strong> 
+        </h2>
+      </div>
+      <ul className={`${styles.chapterList} responsive-chapter-list`}>
+        {data.chapters.map((chapter, index) => (
+          <li key={index}>
+            <Layer1Card
+              index={index}
+              chapter={chapter}
+              level={data.level}
+              subject={data.subject}
+            />
+          </li>
+        ))}
       </ul>
-    </div>
-  );
+    </div>);
 };
 
 export default Layer1;

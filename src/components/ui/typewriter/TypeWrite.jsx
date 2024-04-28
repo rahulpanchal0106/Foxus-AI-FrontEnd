@@ -1,6 +1,8 @@
 import { cn } from "../../../../utils/cn";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect } from "react";
+import "./TypeWrite.css";
+
 
 export const TypewriterEffect = ({
   words,

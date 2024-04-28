@@ -179,7 +179,7 @@ const Layer3 = ({ lessonName, lessonContent, chapter, level, subject }) => {
       setLoading(true);
       const token = Cookies.getItem("token");
       try {
-        const response = await fetch("http://localhost:3000/layer3", {
+        const response = await fetch("https://ai-tutor-be.onrender.com/layer3", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -228,7 +228,7 @@ const Layer3 = ({ lessonName, lessonContent, chapter, level, subject }) => {
     setIsGeneratingQuiz(true); // Set loading state to true when generating quiz
     const token = Cookies.getItem("token");
     try {
-      const response = await fetch("http://localhost:3000/quiz", {
+      const response = await fetch("https://ai-tutor-be.onrender.com/quiz", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

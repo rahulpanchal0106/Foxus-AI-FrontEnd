@@ -14,7 +14,7 @@ const Doubt = ({lessonName,chapter,subject,lessonExplaination}) => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:3000/doubt", {
+      const response = await fetch("https://ai-tutor-be.onrender.com/doubt", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -69,7 +69,7 @@ export const Register = () => {
       
       
       // Backend code 
-      axios.post('http://localhost:3000/signup',{
+      axios.post('https://ai-tutor-be.onrender.com/signup',{
         username:inpval.username,
         password:inpval.password,
         

@@ -1,3 +1,4 @@
+
 section{
     width: 100%;
     padding: 10px;
@@ -27,7 +28,6 @@ section .form_data{
 }
 
 .form_data p{
-    color: #718096;
     font-size: 15px;
     margin-top:9px;
 }
@@ -129,3 +129,18 @@ form .btn:hover{
     border-bottom: 2px solid #8694a8;
 }
 
+.dark .form_input{
+    color: black;
+}
+.dark .lab{
+    color: whitesmoke;
+}
+
+.dark .form_heading{
+    color: var(--textColor);
+}
+
+.dark .form_data{
+    box-shadow: rgba(0, 0, 0, 0.25) 2px 14px 28px, rgba(81, 194, 228, 0.22) 0px 10px 10px;
+
+}

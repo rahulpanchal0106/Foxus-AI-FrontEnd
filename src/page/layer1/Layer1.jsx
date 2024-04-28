@@ -1,15 +1,16 @@
-
 import { useLocation } from 'react-router-dom';
 import styles from "./layer1.module.css";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Layer1Card from '../../components/layer1Card/Layer1Card';
 import Cookies from 'js-cookies'
+import { toast } from 'react-toastify';
 
 const Layer1 = () => {
   const location = useLocation();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const prevLocationRef = useRef(null);
 
   useEffect(() => {
     
@@ -32,9 +33,14 @@ const Layer1 = () => {
           }),
         });
 
-
         const resultData = await response.json();
-        if (!response.ok) {
+        if(resultData.length === 0){
+          setData("No response from PaLM2")
+          setError("No response from PaLM2")
+          toast.error("No response from PaLM2", {
+            position: "top-right"
+          });
+        } else if (!response.ok) {
           throw new Error(resultData.message || "Failed to get result from backend.");
         }
         setData(resultData);
@@ -50,7 +56,6 @@ const Layer1 = () => {
 
 
     fetchData();
-    
   }, [location]);
 
   if (loading) return <div className={styles.loadingContainer}><div className={styles.loading}></div></div>;

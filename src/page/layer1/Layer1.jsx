@@ -12,52 +12,53 @@ const Layer1 = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const prevLocationRef = useRef(null);
+  const fetchData = async () => {
+    setLoading(true);
+    const token = Cookies.getItem('token');
+    try {
+      const response = await fetch("http://localhost:3000/layer1", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          prompt: {
+            levelName: location.state.levelName,
+            levelContent: location.state.levelContent,
+            subject: location.state.subject
+          }
+        }),
+      });
+
+      const resultData = await response.json();
+      if (resultData.length === 0) {
+        setData("No response from PaLM2")
+        setError("No response from PaLM2")
+        toast.error("No response from PaLM2", {
+          position: "top-right"
+        });
+      } else if (!response.ok) {
+        throw new Error(resultData.message || "Failed to get result from backend.");
+      }
+      setData(resultData);
+      setError(null);
+    } catch (error) {
+      console.error("Error:", error.message);
+      setError(error.message);
+      setData(null);
+    } finally {
+      setLoading(false); // Update loading state regardless of success or failure
+    }
+  };
 
   useEffect(() => {
-
-    const fetchData = async () => {
-      setLoading(true);
-      const token = Cookies.getItem('token');
-      try {
-        const response = await fetch("http://localhost:3000/layer1", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-          },
-          body: JSON.stringify({
-            prompt: {
-              levelName: location.state.levelName,
-              levelContent: location.state.levelContent,
-              subject: location.state.subject
-            }
-          }),
-        });
-
-        const resultData = await response.json();
-        if (resultData.length === 0) {
-          setData("No response from PaLM2")
-          setError("No response from PaLM2")
-          toast.error("No response from PaLM2", {
-            position: "top-right"
-          });
-        } else if (!response.ok) {
-          throw new Error(resultData.message || "Failed to get result from backend.");
-        }
-        setData(resultData);
-        setError(null);
-      } catch (error) {
-        console.error("Error:", error.message);
-        setError(error.message);
-        setData(null);
-      } finally {
-        setLoading(false); // Update loading state regardless of success or failure
-      }
-    };
-
-
-    fetchData();
-  }, [location]);
+    // Check if location has changed
+    if (prevLocationRef.current !== location.pathname) {
+      fetchData();
+      prevLocationRef.current = location.pathname;
+    }
+  }, [location.pathname]);
 
   if (loading) return <div className={styles.loadingContainer}><HashLoader color="#616A6B" /></div>;
   if (error) return <div>Error: {error}</div>;

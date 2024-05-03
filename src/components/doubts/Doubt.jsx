@@ -6,7 +6,7 @@ const Doubt = ({lessonName,chapter,subject,lessonExplaination}) => {
   const [prompt, setPrompt] = useState("");
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-
+  
   const handlePromptChange = (event) => {
     setPrompt(event.target.value);
   };
@@ -14,7 +14,7 @@ const Doubt = ({lessonName,chapter,subject,lessonExplaination}) => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await fetch("https://ai-tutor-be.onrender.com/doubt", {
+      const response = await fetch("http://localhost:3000/doubt", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

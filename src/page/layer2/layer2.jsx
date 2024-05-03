@@ -31,7 +31,7 @@ const Layer2 = () => {
           },
         }),
       });
-      console.log("🐵🐵🐵 ", location.state.lessonName, location.state.chapter)
+      
       console.log(location.state.subject);
       
       const resultData = await response.json();

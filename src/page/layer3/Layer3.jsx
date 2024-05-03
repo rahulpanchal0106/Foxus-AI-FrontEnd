@@ -172,7 +172,6 @@ const Layer3 = ({ lessonName, lessonContent, chapter, level, subject }) => {
   const [quizData, setQuizData] = useState(null);
   const [isGeneratingQuiz, setIsGeneratingQuiz] = useState(false); // State to track quiz generation loading
   const prevLocationRef = useRef(null);
-  console.log("🐸🐸🐸 ", lessonName, chapter, level, subject)
   useEffect(() => {
     //fetching layer3 data
     const fetchData = async () => {
@@ -228,7 +227,7 @@ const Layer3 = ({ lessonName, lessonContent, chapter, level, subject }) => {
     setIsGeneratingQuiz(true); // Set loading state to true when generating quiz
     const token = Cookies.getItem("token");
     try {
-      const response = await fetch("http::/localhost:3000/quiz", {
+      const response = await fetch("http://localhost:3000/quiz", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -305,7 +304,7 @@ const Layer3 = ({ lessonName, lessonContent, chapter, level, subject }) => {
       return <p key={index}>{cleanedText}</p>;
     })
     .filter((paragraph) => paragraph !== null); // Filter out any null values
-
+    console.log(">>>>>> location state: ", location.state)
   return (
     <div className="layer3-container">
       {/* <h1>Level 3 Data</h1> */}
@@ -337,8 +336,8 @@ const Layer3 = ({ lessonName, lessonContent, chapter, level, subject }) => {
       <br />
       <div className="doubt-container">
         <Doubt
-          lessonName={location.state.lessonName}
-          chapter={location.state.chapter}
+          lessonName={lessonName}
+          chapter={chapter}
           subject={location.state.subject}
           lessonExplaination={data}
         />

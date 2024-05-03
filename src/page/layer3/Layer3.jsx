@@ -172,7 +172,7 @@ const Layer3 = ({ lessonName, lessonContent, chapter, level, subject }) => {
   const [quizData, setQuizData] = useState(null);
   const [isGeneratingQuiz, setIsGeneratingQuiz] = useState(false); // State to track quiz generation loading
   const prevLocationRef = useRef(null);
-
+  console.log("🐸🐸🐸 ", lessonName, chapter, level, subject)
   useEffect(() => {
     //fetching layer3 data
     const fetchData = async () => {

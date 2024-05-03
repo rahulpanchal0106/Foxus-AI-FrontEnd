@@ -12,7 +12,7 @@ const Layer2 = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const prevLocationRef = useRef(null);
-
+  
   const fetchData = async () => {
     setLoading(true);
     const token = Cookies.getItem('token');
@@ -31,7 +31,7 @@ const Layer2 = () => {
           },
         }),
       });
-      
+      console.log("🐵🐵🐵 ", location.state.lessonName, location.state.chapter)
       console.log(location.state.subject);
       
       const resultData = await response.json();
@@ -94,9 +94,9 @@ const Layer2 = () => {
               key={index}
               lessonName={lesson.lessonName}
               lessonContent={lesson.lessonContent}
-              chapter={lesson.chapter}
-              level={lesson.level}
-              subject={lesson.subject}
+              chapter={location.state.chapter}
+              level={location.state.level}
+              subject={location.state.subject}
               index = {index}
             />
             </li>

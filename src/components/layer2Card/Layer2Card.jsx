@@ -17,6 +17,8 @@ const Layer2Card = ({
     setActiveCardIndex(index);
   };
 
+  console.log("🐵🐵🐵 ", lessonName, chapter)
+
   return (
     <div className="layer-container">
       <div className={`layer2-card ${showLayer3 && "active"}`} onClick={handleClick}>

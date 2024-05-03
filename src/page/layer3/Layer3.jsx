@@ -157,6 +157,7 @@
 
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
 import "./layer3.css"; // Import your CSS file for styling
 import Cookies from "js-cookies";
 import HashLoader from "react-spinners/HashLoader";
@@ -216,7 +217,8 @@ const Layer3 = ({
       {error && <div className="error">Error: {error}</div>}
       {data && (
         <div>
-          <div className="data">{data}</div>
+          {/* <div className="data">{data}</div>*/}
+          <ReactMarkdown className="data">{data}</ReactMarkdown>
           <div className="button-container">
             <button
               onClick={fetchData}

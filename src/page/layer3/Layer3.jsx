@@ -154,23 +154,35 @@
 // export default Layer3;
 
 /// don't erase commented code
-
 import { useLocation } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
+import ReactMarkdown from "react-markdown";
+import Latex from "react-latex";
 import "./layer3.css"; // Import your CSS file for styling
 import Cookies from "js-cookies";
 import HashLoader from "react-spinners/HashLoader";
 import Doubt from "../../components/doubts/Doubt";
 import hljs from "highlight.js";
 import "highlight.js/styles/night-owl.css";
+import Highlight from 'react-highlight';
 
-const Layer3 = ({ lessonName, lessonContent, chapter, level, subject }) => {
+const Layer3 = ({
+  lessonName,
+  lessonContent,
+  chapter,
+  level,
+  subject,
+  data,
+  fetchData,
+  loading,
+}) => {
   const location = useLocation();
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [quizData, setQuizData] = useState(null);
   const [isGeneratingQuiz, setIsGeneratingQuiz] = useState(false); // State to track quiz generation loading
+
+  const [fullScreen, setFullScreen] = useState(false);
+
   const prevLocationRef = useRef(null);
   useEffect(() => {
     //fetching layer3 data
@@ -215,14 +227,7 @@ const Layer3 = ({ lessonName, lessonContent, chapter, level, subject }) => {
       }
     };
 
-    // Check if location has changed
-    if (prevLocationRef.current !== location.pathname) {
-      fetchData();
-      prevLocationRef.current = location.pathname;
-    }
-  }, [location.pathname]);
 
-  // generating quiz from above explained topic
   const generateQuiz = async () => {
     setIsGeneratingQuiz(true); // Set loading state to true when generating quiz
     const token = Cookies.getItem("token");
@@ -248,99 +253,133 @@ const Layer3 = ({ lessonName, lessonContent, chapter, level, subject }) => {
       setIsGeneratingQuiz(false); // Set loading state to false when quiz generation is done
     }
   };
-  // useEffect(() => {
-  //   // Highlight code blocks
-  //   if (data) {
-  //     const codeBlocks = data.match(/```([\s\S]*?)```/g);
-  //     if (codeBlocks) {
-  //       codeBlocks.forEach((block) => {
-  //         const code = block.substring(3, block.length - 3);
-  //         const highlightedCode = hljs.highlightAuto(code).value;
-  //         const formattedBlock = `<pre><code class="hljs">${highlightedCode}</code></pre>`;
-  //         setData((prevData) => prevData.replace(block, formattedBlock));
-  //       });
-  //     }
-  //   }
-  // }, [data]);
-  if (loading)
-    return (
-      <div className="loadingContainer">
-        <HashLoader color="#616A6B" />
-      </div>
-    );
-  if (error) return <div className="error">Error: {error}</div>;
-  if (!data) return null;
 
-  const cleanedParagraphs = data
-    .split("\n\n")
-    .map((paragraph, index) => {
-      // Use regular expression to replace asterisks and numbers with an empty string
-      const cleanedText = paragraph.replace(/[*0-9]/g, "");
+  const components = {
+    code: ({ node, inline, className, children, ...props }) => {
+      const match = /language-(\w+)/.exec(className || '');
+      return !inline && match ? (
+        <>
+          <div className="cb-top">
+            <p className="lang">{className}</p>
+            <div className="actions">
+              <button>Copy</button>
+            </div>
+          </div>
+          <Highlight className={match[1]} {...props}>
+            {children}
+          </Highlight>
+        </>
+      ) : (
+        <>
+          <code className={className} {...props}>
+            {children}
+          </code>
+        </>
+      );
+    },
+  };
 
-      if (cleanedText.trim() === "") {
-        // If the paragraph is empty after cleaning, return null
-        return null;
-      }
+  function handleFullScreenMode() {
+    setFullScreen(!fullScreen);
+  }
 
-      // If the paragraph contains "\n", split it into lines and render as a bulleted list
-      if (cleanedText.includes("\n")) {
-        const lines = cleanedText
-          .split("\n")
-          .filter((line) => line.trim() !== "");
-        return (
-          <ul key={index}>
-            {lines.map((line, idx) => (
-              <li key={idx} style={{ marginLeft: "20px" }}>
-              <span style={{ marginRight: "5px" }}>•</span> {/* Bullet point with left margin */}
-              {line}
-            </li>
-            ))}
-            <br />
-          </ul>
-        );
-      }
+  const renderLatexExpressions = (text) => {
+    const latexRegex = /\$(.*?)\$/g;
+    const parts = text.split(latexRegex);
+    
+    return parts.map((part, index) => {
+        if (index % 2 === 0) {
+            return part;
+        } else {
+          console.log(part)
+            const latex_resp= <Latex key={index}>{part}</Latex>;
+            //console.log("]]]]]]]]]]]] ", latex_resp)
+            return latex_resp.props.children
+        }
+    }).join('');
+  };
 
-      // Otherwise, render as a regular paragraph
-      return <p key={index}>{cleanedText}</p>;
-    })
-    .filter((paragraph) => paragraph !== null); // Filter out any null values
-    console.log(">>>>>> location state: ", location.state)
+
+  
+  
+  
+  
+
   return (
     <div className="layer3-container">
-      {/* <h1>Level 3 Data</h1> */}
-      <h2 className="lessonName">{lessonName}</h2>
-      {/* <div className="data" dangerouslySetInnerHTML={{ __html: data }} /> */}
-      <div className="data">{cleanedParagraphs}</div>
-      <div className="button-container">
-        <button
-          onClick={generateQuiz}
-          disabled={isGeneratingQuiz}
-          className="bi"
-        >
-          {isGeneratingQuiz ? (
-            <div className="spinner" /> // Show spinner while generating quiz
-          ) : (
-            "Generate Quiz"
-          )}
-        </button>
-      </div>
-      <br />
-      {quizData && (
-        <div>
-          {quizData.result.split("\n").map((line, index) => (
-            <p key={index}>{line}</p>
-          ))}
+      <div className={`layer3-resp ${fullScreen ? 'fullscreen' : ''}`} style={fullScreen ? { 
+        top: '0px',
+        zIndex: '50',
+        position: 'fixed',
+        width: '100%',
+        height: '100vh',
+        padding: 'inherit',
+        background: 'rgb(223, 223, 223)',
+        left: '0px',
+        overflow: 'auto'
+      } : {}}>
+        <div className="layer3info">
+          <h2 className="lessonName">{lessonName}</h2>
+          <div className="actions">
+            <button onClick={handleFullScreenMode} >Full screen</button>
+          </div>
         </div>
-      )}
-      <br />
-      <br />
-      <div className="doubt-container">
-        <Doubt
-          lessonName={lessonName}
-          chapter={chapter}
-          subject={location.state.subject}
-          lessonExplaination={data}
-        />
+        {loading ?
+          <div className="loadingContainer">
+            <HashLoader color="#616A6B" />
+            {/* Uncomment below comment to render the Latex maths signs with loader. This rendering is to be done by identifying each latex on $data, I had issues with markdown and Latex rendering at the same time.*/}   
+            {/*<Latex>{`$$\\int cos(x) dx = sin(x) + C$$`}</Latex>*/}
+          </div>
+          : ''
+        }
+        {data && (
+          <div>
+            
+            <ReactMarkdown
+              components={components}
+              children={renderLatexExpressions(data)} // Convert data to string
+            />
+            <div className="button-container">
+              <button
+                onClick={fetchData}
+                disabled={loading}
+                className="bi"
+              >
+                {loading ? (
+                  <div className="spinner" />
+                ) : (
+                  "Regenerate Lesson"
+                )}
+              </button>
+              <button
+                onClick={generateQuiz}
+                disabled={isGeneratingQuiz}
+                className="bi"
+              >
+                {isGeneratingQuiz ? (
+                  <div className="spinner" /> // Show spinner while generating quiz
+                ) : (
+                  "Generate Quiz"
+                )}
+              </button>
+            </div>
+            {quizData && (
+              <div>
+                {quizData.result.split("\n").map((line, index) => (
+                  <p key={index}>{line}</p>
+                ))}
+              </div>
+            )}
+            <div className="doubt-container">
+              <Doubt
+                lessonName={lessonName}
+                chapter={chapter}
+                subject={location.state.subject}
+                lessonExplaination={data}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

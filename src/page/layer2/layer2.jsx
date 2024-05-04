@@ -76,6 +76,7 @@ const Layer2 = () => {
   return (
     <div className={styles.container}>
       {/* <h1>level 2 data</h1> */}
+      
       <p>
         <strong>Chapter:</strong> {cleanName(location.state.chapter)}
       </p>

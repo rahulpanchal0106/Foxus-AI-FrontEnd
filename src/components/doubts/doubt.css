@@ -1,12 +1,12 @@
-.container {
+.doubt-container .container {
     margin: 0 auto;
     padding: 20px;
     display: flex;
     flex-direction: column;
     height: min-content;
+    border-radius: 5px;
     min-height: min-content;
   }
-  
   .input-container {
     display: flex;
     justify-content: space-between;
@@ -17,6 +17,7 @@
     flex: 1;
     padding: 10px;
     margin: 10px;
+    color: #0b0b0c;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;

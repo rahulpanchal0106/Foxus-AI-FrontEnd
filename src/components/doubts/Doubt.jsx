@@ -57,7 +57,7 @@ const Doubt = ({lessonName,chapter,subject,lessonExplaination}) => {
         <input
           className="input-field"
           type="text"
-          placeholder="Still have some doubts !!"
+          placeholder="Have any doubt?"
           onChange={handlePromptChange}
           value={prompt}
         />

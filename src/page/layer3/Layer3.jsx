@@ -157,13 +157,14 @@
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
+import Latex from "react-latex";
 import "./layer3.css"; // Import your CSS file for styling
 import Cookies from "js-cookies";
 import HashLoader from "react-spinners/HashLoader";
 import Doubt from "../../components/doubts/Doubt";
 import hljs from "highlight.js";
 import "highlight.js/styles/night-owl.css";
-import Highlight from 'react-highlight'
+import Highlight from 'react-highlight';
 
 const Layer3 = ({
   lessonName,
@@ -210,7 +211,7 @@ const Layer3 = ({
   const components = {
     code: ({ node, inline, className, children, ...props }) => {
       const match = /language-(\w+)/.exec(className || '');
-      return !inline && match? (
+      return !inline && match ? (
         <>
           <div className="cb-top">
             <p className="lang">{className}</p>
@@ -222,10 +223,8 @@ const Layer3 = ({
             {children}
           </Highlight>
         </>
-        
       ) : (
         <>
-          
           <code className={className} {...props}>
             {children}
           </code>
@@ -234,12 +233,33 @@ const Layer3 = ({
     },
   };
 
-  function handleFullScreenMode(){
-    setFullScreen(!fullScreen)
+  function handleFullScreenMode() {
+    setFullScreen(!fullScreen);
   }
-  
-  return (
 
+  const renderLatexExpressions = (text) => {
+    const latexRegex = /\$(.*?)\$/g;
+    const parts = text.split(latexRegex);
+    
+    return parts.map((part, index) => {
+        if (index % 2 === 0) {
+            return part;
+        } else {
+          console.log(part)
+            const latex_resp= <Latex key={index}>{part}</Latex>;
+            //console.log("]]]]]]]]]]]] ", latex_resp)
+            return latex_resp.props.children
+        }
+    }).join('');
+  };
+
+
+  
+  
+  
+  
+
+  return (
     <div className="layer3-container">
       <div className={`layer3-resp ${fullScreen ? 'fullscreen' : ''}`} style={fullScreen ? { 
         top: '0px',
@@ -252,69 +272,68 @@ const Layer3 = ({
         left: '0px',
         overflow: 'auto'
       } : {}}>
-      <div className="layer3info">
-        <h2 className="lessonName">{lessonName}</h2>
-        <div className="actions">
-          <button onClick={handleFullScreenMode} >Full screen</button>
-        </div>
-      </div>
-      {
-        loading?
-        
-           <div className="loadingContainer">
-             <HashLoader color="#616A6B" />
-           </div>
-         :
-         ''
-
-      }
-      
-      {data && (
-        <div>
-          <ReactMarkdown components={components} children={data} />
-          <div className="button-container">
-            <button
-              onClick={fetchData}
-              disabled={loading}
-              className="bi"
-            >
-              {loading ? (
-                <div className="spinner" />
-              ) : (
-                "Regenerate Lesson"
-              )}
-            </button>
-            <button
-              onClick={generateQuiz}
-              disabled={isGeneratingQuiz}
-              className="bi"
-            >
-              {isGeneratingQuiz ? (
-                <div className="spinner" /> // Show spinner while generating quiz
-              ) : (
-                "Generate Quiz"
-              )}
-            </button>
+        <div className="layer3info">
+          <h2 className="lessonName">{lessonName}</h2>
+          <div className="actions">
+            <button onClick={handleFullScreenMode} >Full screen</button>
           </div>
-          
-          {quizData && (
-            <div>
-              {quizData.result.split("\n").map((line, index) => (
-                <p key={index}>{line}</p>
-              ))}
-            </div>
-          )}
-          
-          <div className="doubt-container">
-            <Doubt
-              lessonName={lessonName}
-              chapter={chapter}
-              subject={location.state.subject}
-              lessonExplaination={data}
+        </div>
+        {loading ?
+          <div className="loadingContainer">
+            <HashLoader color="#616A6B" />
+            {/* Uncomment below comment to render the Latex maths signs with loader. This rendering is to be done by identifying each latex on $data, I had issues with markdown and Latex rendering at the same time.*/}   
+            {/*<Latex>{`$$\\int cos(x) dx = sin(x) + C$$`}</Latex>*/}
+          </div>
+          : ''
+        }
+        {data && (
+          <div>
+            
+            <ReactMarkdown
+              components={components}
+              children={renderLatexExpressions(data)} // Convert data to string
             />
+            <div className="button-container">
+              <button
+                onClick={fetchData}
+                disabled={loading}
+                className="bi"
+              >
+                {loading ? (
+                  <div className="spinner" />
+                ) : (
+                  "Regenerate Lesson"
+                )}
+              </button>
+              <button
+                onClick={generateQuiz}
+                disabled={isGeneratingQuiz}
+                className="bi"
+              >
+                {isGeneratingQuiz ? (
+                  <div className="spinner" /> // Show spinner while generating quiz
+                ) : (
+                  "Generate Quiz"
+                )}
+              </button>
+            </div>
+            {quizData && (
+              <div>
+                {quizData.result.split("\n").map((line, index) => (
+                  <p key={index}>{line}</p>
+                ))}
+              </div>
+            )}
+            <div className="doubt-container">
+              <Doubt
+                lessonName={lessonName}
+                chapter={chapter}
+                subject={location.state.subject}
+                lessonExplaination={data}
+              />
+            </div>
           </div>
-        </div>
-      )}
+        )}
       </div>
     </div>
   );

@@ -154,7 +154,6 @@
 // export default Layer3;
 
 /// don't erase commented code
-
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
@@ -164,6 +163,7 @@ import HashLoader from "react-spinners/HashLoader";
 import Doubt from "../../components/doubts/Doubt";
 import hljs from "highlight.js";
 import "highlight.js/styles/night-owl.css";
+import Highlight from 'react-highlight'
 
 const Layer3 = ({
   lessonName,
@@ -179,6 +179,7 @@ const Layer3 = ({
   const [error, setError] = useState(null);
   const [quizData, setQuizData] = useState(null);
   const [isGeneratingQuiz, setIsGeneratingQuiz] = useState(false); // State to track quiz generation loading
+  const [fullScreen, setFullScreen] = useState(false);
 
   const generateQuiz = async () => {
     setIsGeneratingQuiz(true); // Set loading state to true when generating quiz
@@ -206,19 +207,71 @@ const Layer3 = ({
     }
   };
 
+  const components = {
+    code: ({ node, inline, className, children, ...props }) => {
+      const match = /language-(\w+)/.exec(className || '');
+      return !inline && match? (
+        <>
+          <div className="cb-top">
+            <p className="lang">{className}</p>
+            <div className="actions">
+              <button>Copy</button>
+            </div>
+          </div>
+          <Highlight className={match[1]} {...props}>
+            {children}
+          </Highlight>
+        </>
+        
+      ) : (
+        <>
+          
+          <code className={className} {...props}>
+            {children}
+          </code>
+        </>
+      );
+    },
+  };
+
+  function handleFullScreenMode(){
+    setFullScreen(!fullScreen)
+  }
+  
   return (
+
     <div className="layer3-container">
-      <h2 className="lessonName">{lessonName}</h2>
-      {loading && (
-        <div className="loadingContainer">
-          <HashLoader color="#616A6B" />
+      <div className={`layer3-resp ${fullScreen ? 'fullscreen' : ''}`} style={fullScreen ? { 
+        top: '0px',
+        zIndex: '50',
+        position: 'fixed',
+        width: '100%',
+        height: '100vh',
+        padding: 'inherit',
+        background: 'rgb(223, 223, 223)',
+        left: '0px',
+        overflow: 'auto'
+      } : {}}>
+      <div className="layer3info">
+        <h2 className="lessonName">{lessonName}</h2>
+        <div className="actions">
+          <button onClick={handleFullScreenMode} >Full screen</button>
         </div>
-      )}
-      {error && <div className="error">Error: {error}</div>}
+      </div>
+      {
+        loading?
+        
+           <div className="loadingContainer">
+             <HashLoader color="#616A6B" />
+           </div>
+         :
+         ''
+
+      }
+      
       {data && (
         <div>
-          {/* <div className="data">{data}</div>*/}
-          <ReactMarkdown className="data">{data}</ReactMarkdown>
+          <ReactMarkdown components={components} children={data} />
           <div className="button-container">
             <button
               onClick={fetchData}
@@ -226,7 +279,7 @@ const Layer3 = ({
               className="bi"
             >
               {loading ? (
-                <div className="spinner" /> // Show spinner while loading data
+                <div className="spinner" />
               ) : (
                 "Regenerate Lesson"
               )}
@@ -252,7 +305,6 @@ const Layer3 = ({
             </div>
           )}
           
-          
           <div className="doubt-container">
             <Doubt
               lessonName={lessonName}
@@ -263,9 +315,9 @@ const Layer3 = ({
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 };
 
 export default Layer3;
-

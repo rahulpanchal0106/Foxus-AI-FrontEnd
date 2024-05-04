@@ -7,8 +7,9 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   text-align: justify;
+  max-height: 50vh;
+  overflow: auto;
 }
-
 .loading,
 .error {
   margin: 20px;

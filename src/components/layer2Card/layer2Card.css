@@ -36,7 +36,7 @@
   align-items: center;
   border: 1px solid #ccc;
   padding: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
@@ -96,8 +96,47 @@
 .dark .accordion-button{
   color: rgb(255, 255, 255);
 }
+pre,.layer3-content,.data{
+  max-width: 100%;
+  overflow-wrap: break-word;
+  text-wrap:wrap;
+}
+pre{
+  width: fit-content;
+}
+pre code.hljs{
+ padding: 1em; 
+}
+code{
+  border-radius: 0px 0px 10px 10px;
+  margin-bottom: 10px;
+}
+.cb-top{
+  width: 100%;
+  display: flex;
+  margin-top: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  padding: 10px;
+  background: gray;
+  border: 1px gray solid;
+  border-radius: 10px 10px 0px 0px;
+}
 
 .lessonContent{
   text-align: left;
   text-justify:inter-cluster;
+}
+.light .actions button{
+  background-color: #dfdfdf;
+  color: rgb(0, 0, 0);
+  padding: 5px;
+  border-radius: 3px;
+}
+.dark .actions button{
+  background-color: #353535;
+  color: rgb(255, 255, 255);
+  padding: 5px;
+  border-radius: 3px;
 }

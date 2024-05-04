@@ -15,12 +15,7 @@ const Layer2Card = ({
   const [data, setData] = useState(null); // State to store fetched data
   const [loading, setLoading] = useState(false); // State to manage loading
 
-  const handleClick = () => {
-    setShowLayer3(!showLayer3);
-    if (!data && !showLayer3) {
-      fetchData(); // Fetch data only if not already fetched
-    }
-  };
+  
 
   const fetchData = async () => {
     setLoading(true); // Set loading to true
@@ -61,6 +56,13 @@ const Layer2Card = ({
     }
   };
 
+  const handleClick = () => {
+    setShowLayer3(!showLayer3);
+    if (!data && !showLayer3 && !loading) {
+      fetchData(); // Fetch data only if not already fetched
+    }
+  };
+ 
   return (
     <div className="layer-container">
       <div
@@ -78,6 +80,7 @@ const Layer2Card = ({
         </button>
       </div>
       <div style={{ display: showLayer3 ? "block" : "none" }}>
+
         <Layer3
           lessonName={lessonName}
           lessonContent={lessonContent}

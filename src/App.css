@@ -1,6 +1,8 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/utilities';
 @import 'tailwindcss/components';
+@import url('https://fonts.googleapis.com/css2?family=Caudex&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
 
 :root{
   --bg:white;
@@ -19,6 +21,7 @@
 *{
   padding: 0;
   margin: 0;
+  font-family: "Caudex", serif;
 }
 
 .dark{

@@ -180,13 +180,59 @@ const Layer3 = ({
   const [error, setError] = useState(null);
   const [quizData, setQuizData] = useState(null);
   const [isGeneratingQuiz, setIsGeneratingQuiz] = useState(false); // State to track quiz generation loading
+
   const [fullScreen, setFullScreen] = useState(false);
+
+  const prevLocationRef = useRef(null);
+  useEffect(() => {
+    //fetching layer3 data
+    const fetchData = async () => {
+      setLoading(true);
+      const token = Cookies.getItem("token");
+      try {
+        const response = await fetch("https://ai-tutor-be.onrender.com/layer3", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            prompt: {
+              lessonName: lessonName,
+              lessonContent: lessonContent,
+              chapter: chapter,
+              levelName: level,
+              subject: subject,
+            },
+          }),
+        });
+
+        const resultData = await response.json();
+        if (response.status === 501) {
+          setData(resultData.error);
+          setError(resultData.error);
+        } else if (!response.ok) {
+          throw new Error(
+            resultData.message || "Failed to get result from backend."
+          );
+        }
+        setData(resultData.result);
+        setError(null);
+      } catch (error) {
+        console.error("Error:", error.message);
+        setError(error.message);
+        setData(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
 
   const generateQuiz = async () => {
     setIsGeneratingQuiz(true); // Set loading state to true when generating quiz
     const token = Cookies.getItem("token");
     try {
-      const response = await fetch("http://localhost:3000/quiz", {
+      const response = await fetch("https://ai-tutor-be.onrender.com/quiz", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

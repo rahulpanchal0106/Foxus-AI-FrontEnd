@@ -1,16 +1,13 @@
-
 import { useNavigate } from 'react-router-dom';
 import "./layer1Card.css"
 
 
-const Layer1Card = ({ index, chapter,level,subject }) => {
+const Layer1Card = ({ index, chapter, level, subject, fetchData }) => {
   const navigate = useNavigate();
-  const navigateToLayer2 = (data) => {
-    navigate('/layer2', { state: data }); 
-  };
-  const handleClick = (chapter,level,subject) => {
+  const handleClick = () => {
     // Handle click event
-    navigateToLayer2({ chapter, level, subject }); 
+    navigate('/layer2', { state: { chapter, level, subject } }); // Pass state to Layer2
+    fetchData(); // Fetch data for Layer2
     console.log("Clicked on chapter:", chapter);
   };
   
@@ -18,11 +15,13 @@ const Layer1Card = ({ index, chapter,level,subject }) => {
     // Remove asterisks from chapter name
     return chapter.replace(/[*]/g, "");
   };
+  
   return (
-    <div key={index} className="layer1-card" onClick={() => handleClick(chapter,level,subject)}>
+    <div key={index} className="layer1-card" onClick={handleClick}>
        {cleanChapterName(chapter)}
     </div>
   );
 };
+
 
 export default Layer1Card;

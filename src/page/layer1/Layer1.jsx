@@ -12,6 +12,7 @@ const Layer1 = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const prevLocationRef = useRef(null);
+  
   const fetchData = async () => {
     setLoading(true);
     const token = Cookies.getItem('token');
@@ -84,6 +85,7 @@ const Layer1 = () => {
               chapter={chapter}
               level={data.level}
               subject={data.subject}
+              fetchData={fetchData} // Pass fetchData function to Layer1Card
             />
           </li>
         ))}

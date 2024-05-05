@@ -253,12 +253,6 @@ const Layer3 = ({
     }).join('');
   };
 
-
-  
-  
-  
-  
-
   return (
     <div className="layer3-container">
       <div className={`layer3-resp ${fullScreen ? 'fullscreen' : ''}`} style={fullScreen ? { 

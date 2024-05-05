@@ -212,26 +212,29 @@ const Layer3 = ({
   const components = {
     code: ({ node, inline, className, children, ...props }) => {
       const match = /language-(\w+)/.exec(className || '');
+      const language = match ? match[1] : '';
+      
       return !inline && match ? (
         <>
           <div className="cb-top">
-            <p className="lang">{className}</p>
+            <p className="lang">{language}</p>
             <div className="actions">
               <button>Copy</button>
             </div>
           </div>
-          <Highlight className={match[1]} {...props}>
+          <Highlight className={language} {...props}>
             {children}
           </Highlight>
         </>
       ) : (
         <>
-          <code className={className} {...props}>
+          <Highlight className={language} {...props}>
             {children}
-          </code>
+          </Highlight>
         </>
       );
     },
+    
   };
 
   function handleFullScreenMode() {

@@ -103,7 +103,7 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
           <Navbar></Navbar>
           <div className="close">
           <button className="accordion-button-in" onClick={handleClick}>
-            {showLayer2 ? 'x' : '+'}
+            {showLayer2 ? 'Go Back' : '+'}
           </button>
           </div>
           

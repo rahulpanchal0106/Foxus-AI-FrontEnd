@@ -206,10 +206,10 @@ p{
   transform: rotate(180deg);
   width: 20px;
   
-  text-align: center;
-  font-size: 5rem; /* Adjust the font size */
-  line-height:2; /* Adjust line-height to control vertical spacing */
-  
+  text-align:center;
+  font-size: 1.5rem; /* Adjust the font size */
+  line-height:1; /* Adjust line-height to control vertical spacing */
+  color: rgb(231, 66, 66);
   
   
 

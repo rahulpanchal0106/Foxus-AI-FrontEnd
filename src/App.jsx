@@ -35,7 +35,8 @@ const App = () => {
 
 
   async function getActivity(){
-    toggleActivities(!activityVisible);
+    try{
+      toggleActivities(!activityVisible);
     const token = Cookies.getItem("token")
     
     const response = await fetch('http://localhost:3000/activity',{
@@ -51,12 +52,19 @@ const App = () => {
     const activity = await response.json();
     setData(activity)
     console.log(activity)
+    }catch(err){
+      console.error(err);
+      window.alert("Maybe you have an old account, in that case sign up again")
+    }
+    
   }
 
   
   useEffect(()=>{
-    Cookies.getItem("token")?setLogIn(true):setLogIn(false)
-  })
+    const checkCookie=()=> Cookies.getItem("token")?setLogIn(true):setLogIn(false)
+    checkCookie()
+  },[data])
+  
   function getLayer1(){
     toggleLayer1v(!layer1v);
     
@@ -85,6 +93,7 @@ const App = () => {
             <Navbar />
             <div id="sidebar-container" style={{
               padding:activityVisible?'15px':'2px',
+              
             }}>
               <button id="sb-button" onClick={()=>getActivity()}>{activityVisible?"❌":"👉"}</button> {/* a hover triggered animated icon icons */}
               <div id="sb-content" style={{
@@ -95,7 +104,7 @@ const App = () => {
               }}>
                 {
                   //reuse the layercard components to browse the whole history
-                  data&&activityVisible?data.map((chunk,i)=>{
+                  data&&activityVisible&&isLoggedIn?data.map((chunk,i)=>{
                     
                     if(chunk.layer0){
                       
@@ -121,7 +130,7 @@ const App = () => {
                       }
                       return ""
                     }
-                  }):""+{/*<div className="vertical-text">History</div>*/}
+                  }):<div className="vertical-text">Need to login :(</div>
                     
                   
                 }

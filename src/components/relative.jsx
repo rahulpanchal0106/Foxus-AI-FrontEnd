@@ -3,7 +3,8 @@ import React from 'react';
 import { formatDistanceToNow, parseISO } from 'date-fns';
 
 const RelativeDate = ({ date }) => {
-  //const parsedDate = parseISO(date);
+  try{
+    //const parsedDate = parseISO(date);
   const relativeTime = formatDistanceToNow(date, { addSuffix: true, includeSeconds: true});
 
   return (
@@ -11,6 +12,10 @@ const RelativeDate = ({ date }) => {
       {relativeTime}
     </div>
   );
+  }catch(e){
+    console.log("Error at relative.jsx \n",e)
+  }
+  
 };
 
 export default RelativeDate;

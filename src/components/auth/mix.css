@@ -206,3 +206,7 @@ form .btn:hover {
         font-size: 0.8rem;
     }
 }
+
+input{
+    color: black
+}

@@ -139,3 +139,8 @@
 pre pre{
   width: 100%;
 }
+
+p pre code{
+  border-radius: 7px;
+  
+}

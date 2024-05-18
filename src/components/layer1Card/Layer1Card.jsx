@@ -88,7 +88,7 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
         <div className='' style={
           showLayer2 ? { 
             top: '0px',
-            zIndex: '50',
+            zIndex: '40',
             position: 'fixed',
             width: '100%',
             height: '100vh',

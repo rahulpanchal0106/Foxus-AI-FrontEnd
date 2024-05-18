@@ -144,3 +144,78 @@ p{
   filter: invert(1);
 }
 
+
+#sidebar-container{
+  position: fixed;
+  left: 0px;
+  top: 100px;
+  padding: 10px;
+  bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  z-index: 40;
+  transition: all 0.7s;
+  
+}
+.dark #sb-content{
+  background-color: #141f38;
+}
+
+.light #sb-content{
+  background-color: #eeeeee;
+  border: 1px black solid;
+}
+#sb-content{
+  height: 90%;
+  padding: 15px;
+  overflow: auto;
+  border-radius: 5px;
+  border: 1px whitesmoke solid;
+}
+#sb-button{
+  position: relative;
+  top: 45%;
+  right: -50%;
+  background-color: #0f172a;
+  padding: 10px;
+  border: 1px white solid;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+
+  
+}
+#activity-layer0{
+  padding: 5px;
+  
+}
+
+#activity-login{
+  padding: 5px 15px;
+  font-weight: 600;
+  border-bottom: 1px gray solid;
+  border-top: 1px rgba(128, 128, 128, 0.151) solid;
+  border-radius: 1.5em;
+  margin: 5px 10px;
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  width: 20px;
+  
+  text-align: center;
+  font-size: 5rem; /* Adjust the font size */
+  line-height:2; /* Adjust line-height to control vertical spacing */
+  
+  
+  
+
+  margin: auto;
+  transform-origin: center; 
+  font-style: oblique;
+    
+  
+}

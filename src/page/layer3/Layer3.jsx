@@ -234,7 +234,7 @@ const Layer3 = ({
       return !inline && match ? (
         <>
           <div className="cb-top">
-            <p className="lang">{className}</p>
+            <p className="lang">{language}</p>
             <div className="actions">
             <button
                 ref={buttonRef}
@@ -245,18 +245,19 @@ const Layer3 = ({
               </button>
             </div>
           </div>
-          <Highlight className={match[1]} {...props}>
+          <Highlight className={language} {...props}>
             {children}
           </Highlight>
         </>
       ) : (
         <>
-          <code className={className} {...props}>
+          <Highlight className={language} {...props}>
             {children}
-          </code>
+          </Highlight>
         </>
       );
     },
+    
   };
 
   function handleFullScreenMode() {

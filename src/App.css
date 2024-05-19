@@ -17,6 +17,9 @@
 ::-webkit-scrollbar {
   display: none;
 }
+p{
+  padding: 10px;
+}
 
 *{
   padding: 0;
@@ -141,3 +144,19 @@
   filter: invert(1);
 }
 
+footer{
+  
+  bottom: 0px;
+  width: 100%;
+  
+
+  
+}
+.light footer{
+  background-color:#1f273a;
+  color: white;
+}
+.dark footer{
+  background-color: #d6d3d3;
+  color: #1f273a;
+}

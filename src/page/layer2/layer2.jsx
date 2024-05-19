@@ -1,70 +1,36 @@
 import { useLocation } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import Layer2Card from "../../components/layer2Card/Layer2Card";
 import Cookies from 'js-cookies'
 import { toast } from 'react-toastify';
 import HashLoader from "react-spinners/HashLoader";
 import styles from "./layer2.module.css";
+import Navbar from "../../components/navbar/Navbar";
 
-const Layer2 = () => {
+
+
+const Layer2 = ({
+  chapter,
+  level,
+  subject,
+  data,
+  fetchData,
+  loading,
+}) => {
   const location = useLocation();
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  //const [data, setData] = useState(null);
+  //const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const prevLocationRef = useRef(null);
+
   
-  const fetchData = async () => {
-    setLoading(true);
-    const token = Cookies.getItem('token');
-    try {
-      const response = await fetch("https://ai-tutor-be.onrender.com/layer2", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          prompt: {
-            chapter: location.state.chapter,
-            subject: location.state.subject,
-            levelName: location.state.level,
-          },
-        }),
-      });
-      
-      console.log(location.state.subject);
-      
-      const resultData = await response.json();
-      console.log("ResultData: ",resultData)
-      if (resultData == null || resultData==[]) {
-        setData("No response from PaLM2");
-        setError("No response from PaLM2");
-        toast.error("No response from PaLM2", {
-          position: "top-right"
-        });
-      } else if (!response.ok) {
-        throw new Error(resultData.message || resultData.error || "Failed to get result from backend.");
-      }
-      setData(resultData);
-      setError(null);
-    } catch (error) {
-      console.error("Error:", error.message);
-      setError(error.message);
-      setData(null);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    // Check if location has changed
-    if (prevLocationRef.current !== location.pathname) {
-      fetchData();
-      prevLocationRef.current = location.pathname;
-    }
-  }, [location.pathname]); // Trigger only on location.pathname change
-
-  if (loading) return <div className={styles.loadingContainer}><HashLoader color="#616A6B" /></div>;
+  if (loading) {
+    return (
+      <div className={styles.loadingContainer} style={{width:"100%"}}>
+        <HashLoader color="#616A6B" />
+      </div>
+    );
+  }
   if (error) return <div>Error: {error}</div>;
   if (!data) return null;
 
@@ -74,36 +40,34 @@ const Layer2 = () => {
   };
 
   return (
-    <div className={styles.container}>
-      {/* <h1>level 2 data</h1> */}
+    
+
+    <div className={styles.container} style={{width: '100%'}}>
       
       <p>
-        <strong>Chapter:</strong> {cleanName(location.state.chapter)}
+        <strong>Chapter:</strong> {cleanName(chapter)}
       </p>
       <p>
-        <strong>Level:</strong> {cleanName(location.state.level)}
+        <strong>Level:</strong> {cleanName(level)}
       </p>
       <p>
-        <strong>Subject:</strong> {location.state.subject}
+        <strong>Subject:</strong> {subject}
       </p>
       <h2>Lessons:</h2>
       <ul className={styles.lessonList}>
-        
-          {data.map((lesson, index) => (
-            <li key={index} className={styles.lessonListItem}>
+        {data.map((lesson, index) => (
+          <li key={index} className={styles.lessonListItem}>
             <Layer2Card
               key={index}
               lessonName={lesson.lessonName}
               lessonContent={lesson.lessonContent}
-              chapter={location.state.chapter}
-              level={location.state.level}
-              subject={location.state.subject}
-              index = {index}
+              chapter={chapter}
+              level={level}
+              subject={subject}
+              index={index}
             />
-            </li>
-
-          ))}
-       
+          </li>
+        ))}
       </ul>
     </div>
   );

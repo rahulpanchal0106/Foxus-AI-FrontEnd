@@ -18,7 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 //acterenity testa
-import Test from './components/test'
+//import Test from './components/test'
 
 
 const App = () => {
@@ -47,6 +47,8 @@ const App = () => {
             <Route path="/register" element={<Register />} />{" "}
 
             </Routes>
+            
+
             {/* <Test/> */}
           </div>
         </ThemeProvider>

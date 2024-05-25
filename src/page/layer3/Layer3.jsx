@@ -231,6 +231,7 @@ const Layer3 = ({
     code: ({ node, inline, className, children, ...props }) => {
       const match = /language-(\w+)/.exec(className || '');
       const buttonRef = useRef(null); 
+      const language = match ? match[1] : '';
       return !inline && match ? (
         <>
           <div className="cb-top">

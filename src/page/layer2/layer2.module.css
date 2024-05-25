@@ -12,5 +12,11 @@
    
   }
 
+.container{
+  font-family: "Caudex", serif;
+  
+}
 
-
+  :root {
+    --transition-duration: 1s;
+}

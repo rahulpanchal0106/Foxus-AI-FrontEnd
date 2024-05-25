@@ -155,7 +155,7 @@
 
 /// don't erase commented code
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import Latex from "react-latex";
 import "./layer3.css"; // Import your CSS file for styling
@@ -163,8 +163,9 @@ import Cookies from "js-cookies";
 import HashLoader from "react-spinners/HashLoader";
 import Doubt from "../../components/doubts/Doubt";
 import hljs from "highlight.js";
-import "highlight.js/styles/night-owl.css";
+import "highlight.js/styles/monokai.css";
 import Highlight from 'react-highlight';
+import { ThemeContext } from "../../context/ThemeContext";
 
 const Layer3 = ({
   lessonName,
@@ -181,7 +182,7 @@ const Layer3 = ({
   const [quizData, setQuizData] = useState(null);
   const [isGeneratingQuiz, setIsGeneratingQuiz] = useState(false); // State to track quiz generation loading
   const [fullScreen, setFullScreen] = useState(false);
-
+  const { theme } = useContext(ThemeContext);
   const generateQuiz = async () => {
     setIsGeneratingQuiz(true); // Set loading state to true when generating quiz
     const token = Cookies.getItem("token");
@@ -208,29 +209,55 @@ const Layer3 = ({
     }
   };
 
+  //copy to clipboard
+  const copyCodeToClipboard = (code, buttonRef) => {
+    navigator.clipboard.writeText(code)
+      .then(() => {
+        console.log('Code copied to clipboard');
+        // Change button text to "Copied"
+        buttonRef.current.textContent = "Copied";
+        //  reset button text after a delay
+        setTimeout(() => {
+          buttonRef.current.textContent = "Copy";
+        }, 10000); // Reset after 2 seconds (2000 milliseconds)
+      })
+      .catch((error) => {
+        console.error('Failed to copy code: ', error);
+      });
+  };
+
+
   const components = {
     code: ({ node, inline, className, children, ...props }) => {
       const match = /language-(\w+)/.exec(className || '');
+      const buttonRef = useRef(null); 
       return !inline && match ? (
         <>
           <div className="cb-top">
-            <p className="lang">{className}</p>
+            <p className="lang">{language}</p>
             <div className="actions">
-              <button>Copy</button>
+            <button
+                ref={buttonRef}
+                onClick={() => copyCodeToClipboard(children, buttonRef)}
+                className="copy-button"
+              >
+                Copy
+              </button>
             </div>
           </div>
-          <Highlight className={match[1]} {...props}>
+          <Highlight className={language} {...props}>
             {children}
           </Highlight>
         </>
       ) : (
         <>
-          <code className={className} {...props}>
+          <Highlight className={language} {...props}>
             {children}
-          </code>
+          </Highlight>
         </>
       );
     },
+    
   };
 
   function handleFullScreenMode() {
@@ -262,9 +289,9 @@ const Layer3 = ({
         width: '100%',
         height: '100vh',
         padding: 'inherit',
-        background: 'rgb(223, 223, 223)',
         left: '0px',
-        overflow: 'auto'
+        overflow: 'auto',
+        background: theme === 'light'?'white' : '#10172a',
       } : {}}>
         <div className="layer3info">
           <h2 className="lessonName">{lessonName}</h2>

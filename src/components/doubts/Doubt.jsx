@@ -1,12 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "./doubt.css"; // Import your CSS file
+import ReactMarkdown from "react-markdown";
+import Latex from "react-latex";
+import { ThemeContext } from "../../context/ThemeContext";
+import "highlight.js/styles/night-owl.css";
+import Highlight from 'react-highlight';
 
-const Doubt = ({lessonName,chapter,subject,lessonExplaination}) => {
+const Doubt = ({ lessonName, chapter, subject, lessonExplaination }) => {
   const [loading, setLoading] = useState(false);
   const [prompt, setPrompt] = useState("");
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  
+  const { theme } = useContext(ThemeContext);
+
   const handlePromptChange = (event) => {
     setPrompt(event.target.value);
   };
@@ -14,23 +20,21 @@ const Doubt = ({lessonName,chapter,subject,lessonExplaination}) => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:3000/doubt", {
+      const response = await fetch("https://ai-tutor-be.onrender.com/doubt", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           prompt,
-          lessonName: lessonName,
-          chapter: chapter,
-          subject: subject,
-          lessonExplaination: lessonExplaination
+          lessonName,
+          chapter,
+          subject,
+          lessonExplaination,
         }),
       });
       const resultData = await response.json();
-      if (response.status === 501) {
-        setError(resultData.error);
-      } else if (!response.ok) {
+      if (!response.ok) {
         throw new Error(
           resultData.message || "Failed to get result from backend."
         );
@@ -47,12 +51,49 @@ const Doubt = ({lessonName,chapter,subject,lessonExplaination}) => {
   };
 
   useEffect(() => {
-    // Log data state for debugging
     console.log("Data:", data);
-  }, [data]); // Run this effect whenever data state changes
+  }, [data]);
 
+  const renderLatexExpressions = (text) => {
+    if (!text) return null;
+    const latexRegex = /\$(.*?)\$/g;
+    const parts = text.split(latexRegex);
+
+    return parts.map((part, index) => {
+      if (index % 2 === 0) {
+        return part;
+      } else {
+        return <Latex key={index}>{part}</Latex>;
+      }
+    });
+  };
+  const components = {
+    code: ({ node, inline, className, children, ...props }) => {
+      const match = /language-(\w+)/.exec(className || '');
+      return !inline && match ? (
+        <>
+          <div className="cb-top">
+            <p className="lang">{className}</p>
+            <div className="actions">
+              <button>Copy</button>
+            </div>
+          </div>
+          <Highlight className={match[1]} {...props}>
+            {children}
+          </Highlight>
+        </>
+      ) : (
+        <>
+          <code className={className} {...props}>
+            {children}
+          </code>
+        </>
+      );
+    },
+  };
   return (
-    <div className="container">
+    <div className="container" style={{ background: theme === 'light' ? 'white' : '#10172a' }}>
+      
       <div className="input-container">
         <input
           className="input-field"
@@ -62,7 +103,7 @@ const Doubt = ({lessonName,chapter,subject,lessonExplaination}) => {
           value={prompt}
         />
         <button className="button" onClick={fetchData} disabled={loading}>
-        {loading ? (
+          {loading ? (
             <div className="spinner" />
           ) : (
             "Ask"
@@ -70,7 +111,11 @@ const Doubt = ({lessonName,chapter,subject,lessonExplaination}) => {
         </button>
       </div>
       {error && <p className="error">Error: {error}</p>}
-      {data && <p className="message">{data}</p>}
+      {data && <p className="message">
+        <ReactMarkdown components={components}>
+          {data}
+        </ReactMarkdown>
+      </p>}
     </div>
   );
 };

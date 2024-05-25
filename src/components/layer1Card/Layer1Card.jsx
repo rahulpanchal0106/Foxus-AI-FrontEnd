@@ -100,6 +100,9 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
             flexDirection : 'column'
           } : {display: 'none'}
         }>
+                <div className='main'>
+            <div className='gradient' />
+          </div>
           <Navbar></Navbar>
           <div className="close">
           <button className="accordion-button-in" onClick={handleClick}>

@@ -24,7 +24,7 @@
 
 #chapters-container{
   position: fixed;
-  background-color:rgb(37, 93, 170);
+  background-color:rgb(255, 255, 255);
   top: 0px;
   flex-direction: column;
   overflow: auto;

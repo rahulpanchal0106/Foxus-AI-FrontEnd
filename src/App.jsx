@@ -36,22 +36,27 @@ const App = () => {
 
   async function getActivity(){
     try{
-      toggleActivities(!activityVisible);
-    const token = Cookies.getItem("token")
-    
-    const response = await fetch('http://localhost:3000/activity',{
-      method:'GET',
-      headers:{
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      }
-    }).catch((err)=>{
-      console.error(err);
-    })
+      if(!activityVisible){
+        toggleActivities(!activityVisible);
+        const token = Cookies.getItem("token")
+        
+        const response = await fetch('http://localhost:3000/activity',{
+          method:'GET',
+          headers:{
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+          }
+        }).catch((err)=>{
+          console.error(err);
+        })
 
-    const activity = await response.json();
-    setData(activity)
-    console.log(activity)
+        const activity = await response.json();
+        setData(activity)
+        console.log(activity)
+      }else{
+        toggleActivities(!activityVisible);
+      }
+      
     }catch(err){
       console.error(err);
       window.alert("Maybe you have an old account, in that case sign up again")
@@ -95,7 +100,9 @@ const App = () => {
               padding:activityVisible?'15px':'2px',
               
             }}>
-              <button id="sb-button" onClick={()=>getActivity()}>{activityVisible?"❌":"👉"}</button> {/* a hover triggered animated icon icons */}
+              <button id="sb-button" style={{
+                right: activityVisible?"-50%":"0px"
+              }} onClick={()=>getActivity()}>{activityVisible?"❌":"👉"}</button> {/* a hover triggered animated icon icons */}
               <div id="sb-content" style={{
                 borderWidth:activityVisible?'1px':'1px',
                 padding:activityVisible?'15px':'0px',

@@ -72,7 +72,9 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
           return;
         }}
       >
+        <p>{data?" 🔥":" ⭕"}</p>
         {cleanChapterName(chapter)}
+        
         {/*<div className={`layer1-card ${showLayer2 ? 'active' : ''}`} onClick={handleClick}>
           
           

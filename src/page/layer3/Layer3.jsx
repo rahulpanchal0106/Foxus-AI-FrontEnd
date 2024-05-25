@@ -350,7 +350,7 @@ const Layer3 = ({
               <Doubt
                 lessonName={lessonName}
                 chapter={chapter}
-                subject={location.state.subject}
+                subject={subject}
                 lessonExplaination={data}
               />
             </div>

@@ -80,6 +80,9 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
       <div id="chapters-container" style={{
         display: showLayer1?"flex":"none"
       }}>
+          <div className='main'>
+            <div className='gradient' />
+          </div>
         <Navbar></Navbar>
         <button id="close-chapters" style={{
           textAlign:"end",

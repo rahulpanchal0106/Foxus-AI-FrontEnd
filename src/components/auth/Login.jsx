@@ -99,11 +99,11 @@ const Login = () => {
                     </div>
                     <form>
                         <div className='form_input'>
-                            <label className='for-username' htmlFor='username'>Username</label>
+                            <label className='for-username lab' htmlFor='username'>Username</label>
                             <input type="text" value={inpval.username} onChange={setVal} name="username" id='username' placeholder='Enter Your Username'/>
                         </div>
                         <div className='form_input'>
-                            <label htmlFor='password'>Password</label>
+                            <label htmlFor='password' className='lab'>Password</label>
                             <div className='two'>
                                 <input type={!passShow ? "password" : "text"} value={inpval.password} onChange={setVal} name="password" id='password' placeholder='Enter Your Password'/>
                                 <div className='showpass' onClick={() => setPassShow(!passShow)}>

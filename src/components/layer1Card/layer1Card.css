@@ -2,21 +2,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 .layer1-card {
-  border: 1px solid var(--softTextColor); 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:center;
+  border: 1px solid var(--softTextColor);
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 5px;
-  cursor: pointer; 
+  cursor: pointer;
   font-family: "Caudex", serif;
   font-weight: 700;
   font-style: italic;
   transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
-
 .layer1-card strong {
   font-weight: bold;
-  display: block; 
+  display: block;
   margin-bottom: 5px;
 }
 
@@ -34,14 +37,41 @@
 
 .layer1-card:hover {
   /* from app.css root */
-   background-color: var(--light-bg-hover);
-   animation-name: hoverAnimation;
+  background-color: var(--light-bg-hover);
+  animation-name: hoverAnimation;
   animation-duration: 0.5s;
 }
 
- .dark .layer1-card:hover {
+.dark .layer1-card:hover {
   background-color: var(--dark-bg-hover);
   animation-name: hoverAnimation;
   animation-duration: 0.5s;
   color: #000;
-} 
+}
+
+.close{
+  width: 100%;
+  text-align: end;
+  padding: 10px;
+}
+
+.light .accordion-button-in{
+  border: 1px rgb(133, 0, 0) solid;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: rgb(221, 93, 93);
+  color: rgb(255, 255, 255);
+}
+
+.dark .accordion-button-in{
+  border: 1px rgb(255, 0, 0) solid;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: rgb(248, 82, 82);
+  color: rgb(0, 0, 0);
+}
+
+li{
+  
+  list-style:none;
+}

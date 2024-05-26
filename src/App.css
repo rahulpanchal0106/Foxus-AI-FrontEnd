@@ -1,6 +1,8 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/utilities';
 @import 'tailwindcss/components';
+@import url('https://fonts.googleapis.com/css2?family=Caudex&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
 
 :root{
   --bg:white;
@@ -15,15 +17,19 @@
 ::-webkit-scrollbar {
   display: none;
 }
+p{
+  padding: 10px;
+}
 
 *{
   padding: 0;
   margin: 0;
+  font-family: "Caudex", serif;
 }
 
 .dark{
   --bg:#0f172a;
-  --textColor:#ddd;
+  --textColor:#f7f5f5;
   --softBg:#1f273a;
   --softTextColor:#a6a6a6;
 }

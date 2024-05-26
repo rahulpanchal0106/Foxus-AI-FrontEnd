@@ -1,11 +1,19 @@
+
 .loadingContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Adjust as necessary */
+    height: 100vh; 
   }
   
   .chapter
   {
     margin: 10px;
+   
   }
+
+
+
+  :root {
+    --transition-duration: 1s;
+}

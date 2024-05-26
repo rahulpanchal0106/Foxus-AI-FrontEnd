@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./mix.css";
 import { AlternateEmail, Backspace, Visibility, VisibilityOff } from '@mui/icons-material';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -11,7 +11,7 @@ export const Register = () => {
 
   const [passShow, setPassShow] = useState(false);
   const [cpassShow, setcPassShow] = useState(false);
-
+  const navigate = useNavigate(); 
   const [inpval, setInpval] = useState({
     fname: "",
     username: "",
@@ -50,14 +50,8 @@ export const Register = () => {
     if (password === "") {
       alert("enter your password")
     }
-    if (password.length < 6) {
-      alert("password must be 6 char")
-    }
     if (cpassword === "") {
       alert("enter your confirm password")
-    }
-    if (cpassword.length < 6) {
-      alert("password must be 6 char")
     }
     
     if (password !== cpassword) {
@@ -80,6 +74,9 @@ export const Register = () => {
         console.log(err);
       });
 
+      //navigate after successful registration
+
+      navigate('/login')
       toast.success("Account created.");
 
     }
@@ -97,18 +94,18 @@ export const Register = () => {
 
           <form>
             <div className='form_input'>
-              <label htmlFor='fname'>Name</label>
+              <label htmlFor='fname' className='lab'>Name</label>
 
               <input type="text" onChange={setVal} value={inpval.fname} name="fname" id='fname' placeholder='Enter Your Name'></input>
             </div>
 
             <div className='form_input'>
-              <label htmlFor='username'>Username</label>
+              <label htmlFor='username' className='lab'>Username</label>
               <input type="text" onChange={setVal} value={inpval.username} name="username" id='username' placeholder='Enter Your username'></input>
             </div>
 
             <div className='form_input'>
-              <label htmlFor='password'>Password</label>
+              <label htmlFor='password' className='lab'>Password</label>
               <div className='two' >
                 <input type={!passShow ? "password" : "text"} onChange={setVal} value={inpval.password} name="password" id='password' placeholder='Enter Your Password'></input>
 
@@ -120,7 +117,7 @@ export const Register = () => {
             </div>
 
             <div className='form_input'>
-              <label htmlFor='password'>Confirm Password</label>
+              <label htmlFor='password' className='lab'>Confirm Password</label>
               <div className='two' >
                 <input type={!cpassShow ? "password" : "text"} onChange={setVal} value={inpval.cpassword} name="cpassword" id='cpassword' placeholder='Confirm Password'></input>
 

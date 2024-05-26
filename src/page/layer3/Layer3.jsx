@@ -219,7 +219,7 @@ const Layer3 = ({
         //  reset button text after a delay
         setTimeout(() => {
           buttonRef.current.textContent = "Copy";
-        }, 10000); // Reset after 2 seconds (2000 milliseconds)
+        }, 2000); // Reset after 2 seconds (2000 milliseconds)
       })
       .catch((error) => {
         console.error('Failed to copy code: ', error);
@@ -280,12 +280,6 @@ const Layer3 = ({
         }
     }).join('');
   };
-
-
-  
-  
-  
-  
 
   return (
     <div className="layer3-container">
@@ -356,7 +350,7 @@ const Layer3 = ({
               <Doubt
                 lessonName={lessonName}
                 chapter={chapter}
-                subject={location.state.subject}
+                subject={subject}
                 lessonExplaination={data}
               />
             </div>

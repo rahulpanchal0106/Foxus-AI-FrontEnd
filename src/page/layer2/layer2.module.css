@@ -14,6 +14,7 @@
 
 .container{
   font-family: "Caudex", serif;
+  z-index: 100;
   
 }
 

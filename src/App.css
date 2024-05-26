@@ -177,7 +177,7 @@ p{
 #sb-button{
   position: relative;
   top: 45%;
-  right: -50%;
+  right: 0px;
   background-color: #0f172a;
   padding: 10px;
   border: 1px white solid;

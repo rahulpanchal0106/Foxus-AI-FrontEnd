@@ -9,6 +9,7 @@
   text-align: justify;
   max-height: 50vh;
   overflow: auto;
+  font-family: "Caudex", serif;
 }
 .loading,
 .error {
@@ -74,6 +75,14 @@
   animation: spin 1s linear infinite;
 }
 
+.copy-button{
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.light .cb-top{
+  color: whitesmoke;
+}
 @keyframes spin {
   to {
     transform: rotate(360deg);

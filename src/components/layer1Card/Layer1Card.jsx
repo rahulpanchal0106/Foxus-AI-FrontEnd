@@ -72,7 +72,9 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
           return;
         }}
       >
+        <p>{data?" 🔥":" ⭕"}</p>
         {cleanChapterName(chapter)}
+        
         {/*<div className={`layer1-card ${showLayer2 ? 'active' : ''}`} onClick={handleClick}>
           
           
@@ -88,7 +90,7 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
         <div className='' style={
           showLayer2 ? { 
             top: '0px',
-            zIndex: '50',
+            zIndex: '40',
             position: 'fixed',
             width: '100%',
             height: '100vh',
@@ -100,10 +102,13 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
             flexDirection : 'column'
           } : {display: 'none'}
         }>
+                <div className='main'>
+            <div className='gradient' />
+          </div>
           <Navbar></Navbar>
           <div className="close">
           <button className="accordion-button-in" onClick={handleClick}>
-            {showLayer2 ? 'x' : '+'}
+            {showLayer2 ? 'Go Back' : '+'}
           </button>
           </div>
           
@@ -120,5 +125,6 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
     </div>
   );
 };
+
 
 export default Layer1Card;

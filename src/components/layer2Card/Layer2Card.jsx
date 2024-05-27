@@ -70,8 +70,10 @@ const Layer2Card = ({
         onClick={handleClick}
       >
         <div className={`layer2-card-in ${showLayer3 ? "active" : ""}`}>
+          <p style={{position: "absolute"}}>{data?" 🔥":" ⭕"}</p>
           <h3>
-            <strong className="lesson">{lessonName}</strong>
+          
+            <strong className="lesson">{lessonName} </strong>
           </h3>
           <p className="lessonContent">{lessonContent}</p>
         </div>

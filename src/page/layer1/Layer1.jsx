@@ -1,65 +1,30 @@
-import { useLocation } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
-import Cookies from 'js-cookies';
+
+import { useState } from 'react';
+
 import HashLoader from 'react-spinners/HashLoader';
 import Layer1Card from '../../components/layer1Card/Layer1Card';
 import styles from "./layer1.module.css";
 
-const Layer1 = () => {
-  const location = useLocation();
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+const Layer1 = ({
+  levelName, 
+  levelContent, 
+  subject,
+  data,
+  loading
+}) => {
   const [error, setError] = useState(null);
-  const prevLocationRef = useRef(null); // Ref to keep track of previous location pathname
-
-  useEffect(() => {
-    // Check if location pathname has changed
-    if (prevLocationRef.current !== location.pathname) {
-      fetchData();
-      prevLocationRef.current = location.pathname;
-    }
-  }, [location.pathname]);
-
-  const fetchData = async () => {
-    setLoading(true);
-    const token = Cookies.getItem('token');
-    try {
-      const response = await fetch('https://ai-tutor-be.onrender.com/layer1', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          prompt: {
-            levelName: location.state?.levelName,
-            levelContent: location.state?.levelContent,
-            subject: location.state?.subject,
-          },
-        }),
-      });
-
-      const resultData = await response.json();
-      if (!response.ok) {
-        throw new Error(
-          resultData.message ||
-            resultData.error ||
-            'Failed to get result from backend.'
-        );
-      }
-      setData(resultData);
-      setError(null);
-    } catch (error) {
-      console.error('Error:', error.message);
-      setError(error.message);
-      setData(null);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   
-  
+
+  if (loading) {
+    return (
+      <div className={styles.loadingContainer} style={{width:"100%"}}>
+        <HashLoader color="#616A6B" />
+      </div>
+    );
+  }
+  if (error) return <div>Error: {error}</div>;
+  if (!data) return null;
+
   return (
     <div>
       {loading ? (
@@ -69,16 +34,16 @@ const Layer1 = () => {
       ) : error ? (
         <div>Error: {error}</div>
       ) : !data ? null : (
-        <div className="layer1Container">
+        <div className="layer1Container" style={{padding: "5px 17px"}}>
           <div className="levelInfo">
             <p>
-              <strong>Level Name:</strong> {data.level}
+              <strong>Level Name:</strong> {levelName}
             </p>
             <p>
-              <strong>Level Content:</strong> {data.levelContent}
+              <strong>Level Content:</strong> {levelContent}
             </p>
             <p>
-              <strong>Subject:</strong> {data.subject}
+              <strong>Subject:</strong> {subject}
             </p>
             <h2 className="chapterHeader">
               <strong>Chapters:</strong>
@@ -90,8 +55,8 @@ const Layer1 = () => {
                 <Layer1Card
                   index={index}
                   chapter={chapter}
-                  level={data.level}
-                  subject={data.subject}
+                  level={levelName}
+                  subject={subject}
                 />
               </li>
             ))}

@@ -96,7 +96,10 @@ const App = () => {
 
     return `${dd}-${mm}-${yy} ${hh}:${min}:${ss}`
   }
-  
+  function revScrollTop(){
+    const historyContainer = document.querySelector("#sb-content");
+    historyContainer.scrollTop = -historyContainer.scrollHeight;
+  }
   return (
     <Router>
       <ThemeContextProvider>
@@ -119,10 +122,13 @@ const App = () => {
                 width:activityVisible?'auto':'2px',
                 
               }}>
-                {
+                <div id="sb-content-in">
+                {revScrollTop()}
+                
+                { 
                   //reuse the layercard components to browse the whole history
                   data&&activityVisible&&isLoggedIn?data.map((chunk,i)=>{
-                    
+
                     if(chunk.layer0){
                       
                       return (
@@ -194,7 +200,7 @@ const App = () => {
                         return(
                           <>
                             <div id="activity-login" >
-                              {
+                                Today {
                                 <RelativeDate date={prevDate}/>
                               }
                             </div> 
@@ -207,6 +213,10 @@ const App = () => {
                     
                   
                 }
+                {revScrollTop()}
+                </div>
+                
+                
               </div>
             </div>
             

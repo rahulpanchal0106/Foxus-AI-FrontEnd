@@ -33,6 +33,7 @@ const App = () => {
   const [showLayer0, setShowLayer0] = useState(false);
   const [layer1v,toggleLayer1v] = useState(false);
   const [layer0v,toggleLayer0v] = useState(true);
+  const [lastDate, setLastDate] = useState("");
   var prevDateIdx = 0;
 
 
@@ -120,12 +121,10 @@ const App = () => {
                 
               }}>
                 <div id="sb-content-in">
-                
-                
                 { 
                   //reuse the layercard components to browse the whole history
                   data&&activityVisible&&isLoggedIn?data.map((chunk,i)=>{
-
+                    
                     if(chunk.layer0){
                       
                       return (
@@ -184,33 +183,28 @@ const App = () => {
                       // console.log(dateDiff)
                       // chunk=data[dateDiff]
                       if((dateDiff<=-1 && i!=0)){
+                        
                         return (
                           <>
                             <div id="activity-login" >
                               {
                                 <RelativeDate date={prevDate}/>
                               }
-                            </div> 
-                          </>
-                        )
-                      }else if(i==data.length-1){
-                        return(
-                          <>
-                            <div id="activity-login" >
-                                Today {
-                                <RelativeDate date={prevDate}/>
-                              }
-                            </div> 
+                            </div>
                           </>
                         )
                       }
-                      return ""
+                      
                     }
-                  }):<div className="vertical-text">Need to login :(</div>
-                    
-                  
+                  }):<div className="vertical-text">Need to login :(</div> 
                 }
-                
+                {
+                  isLoggedIn?
+                  <div id="activity-login" >
+                    Today
+                  </div>:
+                  ""
+                }
                 </div>
                 
                 

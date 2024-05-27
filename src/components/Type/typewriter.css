@@ -23,35 +23,17 @@
 }
 .v {
     font-family: "Geist Variable";
-    font-size: 1.2em;
 }
-.imp-txt{
-    font-size:2em;
-}
-.something div 
+.something
 {
     /* font-family: "Forum", serif; */
     /* font-family: "Barlow", sans-serif; */
     font-family: "Caudex", serif;
-    display: flex;
-    word-wrap: break-word;
-    width: 100vw;
-    justify-content: center;
-    align-items: baseline;  
-    flex-wrap: wrap;
-}
-.something .rounded-sm{
-    height: 100%;
-}
-.something .inline-block{
-    width: fit-content;
-}
-.something{
-    width: 100%;
+   
+
 }
 
-
-
+/* 
 @media only screen and (max-width: 480px) {
     .vt {
       font-size: 18px; 
@@ -62,7 +44,7 @@
     }
 
     
-  }
+  } */
 
 
 

@@ -96,10 +96,7 @@ const App = () => {
 
     return `${dd}-${mm}-${yy} ${hh}:${min}:${ss}`
   }
-  function revScrollTop(){
-    const historyContainer = document.querySelector("#sb-content");
-    historyContainer.scrollTop = -historyContainer.scrollHeight;
-  }
+  
   return (
     <Router>
       <ThemeContextProvider>
@@ -123,7 +120,7 @@ const App = () => {
                 
               }}>
                 <div id="sb-content-in">
-                {revScrollTop()}
+                
                 
                 { 
                   //reuse the layercard components to browse the whole history
@@ -213,7 +210,7 @@ const App = () => {
                     
                   
                 }
-                {revScrollTop()}
+                
                 </div>
                 
                 

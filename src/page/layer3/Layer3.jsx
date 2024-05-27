@@ -283,6 +283,8 @@ const Layer3 = ({
 
   return (
     <div className="layer3-container">
+
+      
       <div className={`layer3-resp ${fullScreen ? 'fullscreen' : ''}`} style={fullScreen ? { 
         top: '0px',
         zIndex: '50',
@@ -310,7 +312,7 @@ const Layer3 = ({
         }
         {data && (
           <div>
-            
+            {/* <imageGeneration/> */}
             <ReactMarkdown
               components={components}
               children={renderLatexExpressions(data)} // Convert data to string

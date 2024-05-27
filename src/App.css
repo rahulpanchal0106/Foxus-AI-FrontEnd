@@ -171,6 +171,8 @@ p{
   height: 90%;
   padding: 15px;
   overflow: auto;
+  display: flex;
+  flex-direction: column-reverse;
   border-radius: 5px;
   border: 1px whitesmoke solid;
 }

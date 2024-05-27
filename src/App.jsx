@@ -53,8 +53,14 @@ const App = () => {
         })
 
         const activity = await response.json();
+        // activity.reverse();
+        // activity.map((chunk,i)=>{
+        //   if(chunk.loginTime){
+        //     chunk=activity[i-1]
+        //   }
+        // })
         setData(activity)
-        console.log(activity)
+        console.log("### ",activity)
       }else{
         toggleActivities(!activityVisible);
       }
@@ -167,16 +173,29 @@ const App = () => {
                         </>
                       )
                     }else{
+                      // console.log("⌚⌚⌚ ",chunk.loginTime)
                       const date = new Date(chunk.loginTime)
                       const prevDate = data[prevDateIdx].loginTime
                       const dateDiff = differenceInCalendarDays(prevDate,date)
                       prevDateIdx=i;
-                      if(dateDiff<=-1 || i==0){
+                      // console.log(dateDiff)
+                      // chunk=data[dateDiff]
+                      if((dateDiff<=-1 && i!=0)){
                         return (
                           <>
                             <div id="activity-login" >
                               {
-                                <RelativeDate date={date}/>
+                                <RelativeDate date={prevDate}/>
+                              }
+                            </div> 
+                          </>
+                        )
+                      }else if(i==data.length-1){
+                        return(
+                          <>
+                            <div id="activity-login" >
+                              {
+                                <RelativeDate date={prevDate}/>
                               }
                             </div> 
                           </>

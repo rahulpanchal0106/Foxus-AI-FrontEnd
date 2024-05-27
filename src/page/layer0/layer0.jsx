@@ -8,7 +8,7 @@ import Cookies from "js-cookies";
 import { toast } from "react-toastify";
 import TypewriterEffectDemo from "../../components/Type/TypeWriter";
 
-const Layer0 = () => {
+const Layer0 = (data) => {
   const [prompt, setPrompt] = useState("");
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
@@ -20,6 +20,14 @@ const Layer0 = () => {
   useEffect(() => {
     setApiCalled(false);
   }, [prompt]);
+
+  
+  useEffect(()=>{
+    if(data){
+      console.log("LLLLLLLLLLLLLLLLLL ",data)
+      setPrompt(data.data);
+    }
+  },[])
 
   const handlePromptChange = (event) => {
     setPrompt(event.target.value);

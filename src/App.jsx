@@ -18,6 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from "react";
 import {differenceInCalendarDays} from 'date-fns'
 import RelativeDate from "./components/relative";
+import Layer0Card from "./components/layer0Card/Layer0Card";
 
 //acterenity testa
 //import Test from './components/test'
@@ -29,8 +30,9 @@ const App = () => {
   const [data,setData]=useState(null);
   const [isLoggedIn, setLogIn] = useState(false);
   const [activityVisible,toggleActivities] = useState(false);
-  
+  const [showLayer0, setShowLayer0] = useState(false);
   const [layer1v,toggleLayer1v] = useState(false);
+  const [layer0v,toggleLayer0v] = useState(true);
   var prevDateIdx = 0;
 
 
@@ -72,8 +74,10 @@ const App = () => {
   
   function getLayer1(){
     toggleLayer1v(!layer1v);
-    
-
+  }
+  function getLayer0(){
+    setShowLayer0(!showLayer0);
+    toggleLayer0v(!layer0v);
   }
   function getCurrentDateString(){
     const date = new Date();
@@ -115,25 +119,68 @@ const App = () => {
                     
                     if(chunk.layer0){
                       
-                      return <div id="activity-layer0" >{chunk.layer0.prompt} {
-                        chunk.layer0.layer1[0]?
-                        
-                        <button onClick={()=>getLayer1()}> 👉</button> // need icons
-                        :
-                        ""
-                        
-                      }</div>
+                      return (
+                        <>
+                          <div id="activity-layer0" >
+                            {chunk.layer0.prompt} 
+                            {chunk.layer0.layer1[0]?
+                            <button onClick={()=>getLayer0()}> 👉</button>:
+                            ""
+                            }
+                          </div>
+                          {
+                            <div id="chapters-container" style={{
+                              display: showLayer0&&chunk.layer0.layer1[0]?"flex":"none"
+                            }}>
+                              <Navbar></Navbar>
+                              <button id="close-chapters" style={{
+                                textAlign:"end",
+                                padding: "0px 15px",
+                                fontSize:'1.3em'}} onClick={()=>setShowLayer0(!showLayer0)}>
+                                ↩
+                              </button>
+                              <div id="browse_l0"style={{
+                                display:showLayer0?"block":"none"
+                              }}>
+                                <Layer0 
+                                  data={chunk.layer0.prompt}
+                                  // levelName = {levelName}
+                                  // levelContent={levelContent}
+                                  // subject={subject}
+                                  // data={data}
+                                  // fetchData={fetchData} 
+                                  // loading={loading}
+                                />
+                              </div>
+                            </div>
+                          // chunk.layer0.layer1[0] && layer0v?
+                          // <Layer0
+                          //   data={data}
+                          //   // index={data.index}
+                          //   // levelName={data.level?data.level.levelName:"⚠️"}
+                          //   // levelContent={data.level?data.level.levelContent:"⚠️"}
+                          //   // subject={data.level?data.level.subject:"⚠️"}
+                          //   // key={data.level?data.index:"⚠️"}
+                          // />:
+                          // "$$$$$$$$$$$$$$$$$"
+                          }
+                        </>
+                      )
                     }else{
                       const date = new Date(chunk.loginTime)
                       const prevDate = data[prevDateIdx].loginTime
                       const dateDiff = differenceInCalendarDays(prevDate,date)
                       prevDateIdx=i;
                       if(dateDiff<=-1 || i==0){
-                        return <div id="activity-login" >
-                          {
-                            <RelativeDate date={date}/>
-                          }
-                        </div> 
+                        return (
+                          <>
+                            <div id="activity-login" >
+                              {
+                                <RelativeDate date={date}/>
+                              }
+                            </div> 
+                          </>
+                        )
                       }
                       return ""
                     }
@@ -143,6 +190,7 @@ const App = () => {
                 }
               </div>
             </div>
+            
             <Routes>
               {/* <Route path="/" element={<Home />} /> */}
               <Route path="/" element={<Layer0 />} />

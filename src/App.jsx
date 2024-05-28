@@ -1,6 +1,6 @@
 // App.js
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 // import Home from "./page/home/Home";
 import Layer0 from "./page/layer0/layer0";
@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import {differenceInCalendarDays} from 'date-fns'
 import RelativeDate from "./components/relative";
 import Layer0Card from "./components/layer0Card/Layer0Card";
+import { MyContext } from "./context/MyContext";
 
 //acterenity testa
 //import Test from './components/test'
@@ -26,7 +27,7 @@ import Layer0Card from "./components/layer0Card/Layer0Card";
 
 
 const App = () => {
-  
+  const [selectedFromDB, setSelectedFromDB] = useState(null)
   const [data,setData]=useState(null);
   const [isLoggedIn, setLogIn] = useState(false);
   const [activityVisible,toggleActivities] = useState(false);
@@ -34,6 +35,7 @@ const App = () => {
   const [layer1v,toggleLayer1v] = useState(false);
   const [layer0v,toggleLayer0v] = useState(true);
   const [lastDate, setLastDate] = useState("");
+  
   var prevDateIdx = 0;
 
 
@@ -82,8 +84,11 @@ const App = () => {
   function getLayer1(){
     toggleLayer1v(!layer1v);
   }
-  function getLayer0(){
-    setShowLayer0(!showLayer0);
+  function getLayer0(sd){
+    // setShowLayer0(!showLayer0);
+    toggleActivities(!activityVisible)
+    console.log("sb ",sd)
+    setSelectedFromDB(sd)
     toggleLayer0v(!layer0v);
   }
   function getCurrentDateString(){
@@ -102,6 +107,7 @@ const App = () => {
     <Router>
       <ThemeContextProvider>
         <ThemeProvider>
+        <MyContext.Provider value={{ selectedFromDB, setSelectedFromDB }}>
           <div className='main'>
             <div className='gradient' />
           </div>
@@ -131,8 +137,8 @@ const App = () => {
                         <>
                           <div id="activity-layer0" >
                             {chunk.layer0.prompt} 
-                            {chunk.layer0.layer1[0]?
-                            <button onClick={()=>getLayer0()}> 👉</button>:
+                            {chunk.layer0?
+                            <button onClick={()=>getLayer0(chunk)}> 👉</button>:
                             ""
                             }
                           </div>
@@ -147,7 +153,7 @@ const App = () => {
                                 fontSize:'1.3em'}} onClick={()=>setShowLayer0(!showLayer0)}>
                                 ↩
                               </button>
-                              <div id="browse_l0"style={{
+                              {/* <div id="browse_l0"style={{
                                 display:showLayer0?"block":"none"
                               }}>
                                 <Layer0 
@@ -159,7 +165,7 @@ const App = () => {
                                   // fetchData={fetchData} 
                                   // loading={loading}
                                 />
-                              </div>
+                              </div> */}
                             </div>
                           // chunk.layer0.layer1[0] && layer0v?
                           // <Layer0
@@ -213,7 +219,7 @@ const App = () => {
             
             <Routes>
               {/* <Route path="/" element={<Home />} /> */}
-              <Route path="/" element={<Layer0 />} />
+              <Route path="/" element={<Layer0  />} />
               <Route path="/layer1" element={<Layer1 />} />{" "}
               {/* Add route for Layer1 */}
               <Route path="/layer2" element={<Layer2 />} />{" "}
@@ -229,7 +235,7 @@ const App = () => {
             </Routes>
             {/* <Test/> */}
           </div>
-          
+          </MyContext.Provider>
         </ThemeProvider>
       </ThemeContextProvider>
       <ToastContainer />

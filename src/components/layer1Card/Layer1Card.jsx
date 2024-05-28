@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Cookies from 'js-cookies';
 import HashLoader from 'react-spinners/HashLoader';
 import Layer2 from "../../page/layer2/layer2";
@@ -6,12 +6,28 @@ import { ThemeContext } from "../../context/ThemeContext";
 
 import "./layer1Card.css"
 import Navbar from '../navbar/Navbar';
+import { MyContext } from '../../context/MyContext';
 const Layer1Card = ({ index, chapter, level, subject }) => {
   const { theme } = useContext(ThemeContext);
   const [showLayer2, setShowLayer2] = useState(false);
+  const [DBl2, setDBl2] = useState(null);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const {DBl1} = useContext(MyContext);
+
+  useEffect(() => {
+    if (DBl1 && !data && DBl1.DBl1) {
+      //setData(selectedFromDB.layer0.layer1[index]?selectedFromDB.layer0.layer1[index].response:null);
+      // console.log("{{{{{{}}}}}} ",selectedFromDB.layer0.layer1[index]?selectedFromDB.layer0.layer1[index].response.chapters:"NO CHAPTERS")
+      // console.log(":::::::::::: ",selectedFromDB.layer0.layer1[index]?selectedFromDB.layer0.layer1[index].layer2:"NO LESSONS")
+      
+      // console.log("🟩🟩🟩 ",DBl1.DBl1.layer2 && DBl1.DBl1 && DBl1?DBl1.DBl1.layer2[index]:"")
+      if(DBl1.DBl1.layer2 && DBl1.DBl1 && DBl1) setDBl2(DBl1.DBl1.layer2[index])
+
+    }
+  }, [DBl1]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -50,11 +66,19 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
     }
   };
 
+  useEffect(()=>{
+    if(DBl1.DBl1 && DBl1.DBl1.layer2[index]){
+      
+      setData(DBl1.DBl1.layer2[index]?DBl1.DBl1.layer2[index].response:null);
+    }
+  },[DBl1])
+
   const handleClick = () => {
     setShowLayer2(!showLayer2);
     if (!data && !showLayer2 && !loading) {
       fetchData();
     }
+    
   };
 
   const cleanChapterName = (chapter) => {
@@ -62,6 +86,7 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
   };
 
   return (
+    <MyContext.Provider value={{DBl2}}>
     <div className="layer-container">
       <div
         key={index}
@@ -123,6 +148,7 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
         </div>
       </div>
     </div>
+    </MyContext.Provider>
   );
 };
 

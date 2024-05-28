@@ -1,33 +1,36 @@
-
-
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Layer0Card from "../../components/layer0Card/Layer0Card";
 import styles from "./layer0.module.css";
 import Cookies from "js-cookies";
 import { toast } from "react-toastify";
 import TypewriterEffectDemo from "../../components/Type/TypeWriter";
+import { MyContext } from "../../context/MyContext";
 
-const Layer0 = (data) => {
+const Layer0 = () => {
   const [prompt, setPrompt] = useState("");
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [apiCalled, setApiCalled] = useState(false); // Introduce a flag
+  const [apiCalled, setApiCalled] = useState(false);
   const navigate = useNavigate();
 
-  //reset Api called
+  const { selectedFromDB } = useContext(MyContext);
+
+  useEffect(() => {
+    if (selectedFromDB ) {
+      setPrompt(selectedFromDB.layer0.prompt);
+      setResult(selectedFromDB.layer0.response);
+
+      console.log("))*)*)*)* ",selectedFromDB)
+      
+
+    }
+  }, [selectedFromDB]);
+
   useEffect(() => {
     setApiCalled(false);
   }, [prompt]);
-
-  
-  useEffect(()=>{
-    if(data){
-      
-      setPrompt(data.data);
-    }
-  },[])
 
   const handlePromptChange = (event) => {
     setPrompt(event.target.value);
@@ -53,26 +56,21 @@ const Layer0 = (data) => {
       });
 
       const resultData = await response.json();
-      console.log("⚠️⚠️⚠️", resultData);
-      if (resultData.length == 0) {
-        console.log("🪲🪲🪲🪲🪲🪲🪲🪲🪲🪲🪲🪲🪲");
+      if (resultData.length === 0) {
         setResult("No response from PaLM2");
         setError("No response from PaLM2");
         toast.error("No response from PaLM2", {
           position: "top-right",
         });
       } else if (!response.ok) {
-        toast.error(error.message, {
+        toast.error(resultData.message, {
           position: "top-right",
         });
-        throw new Error(
-          resultData.message || "Failed to get result from backend."
-        );
+        throw new Error(resultData.message || "Failed to get result from backend.");
       }
       setResult(resultData);
       setError(null);
     } catch (error) {
-      console.error("⭕Error:", error.message);
       toast.error(error.message, {
         position: "top-right",
       });
@@ -80,7 +78,7 @@ const Layer0 = (data) => {
       setResult(null);
     } finally {
       setLoading(false);
-      setApiCalled(true); // Set the flag to true after API call
+      setApiCalled(true);
     }
   };
 
@@ -90,25 +88,26 @@ const Layer0 = (data) => {
       navigate("/login");
     } else {
       if (!apiCalled) {
-        // Check if API call has already been made
         getLayer0Result();
       }
     }
   };
+
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       checkTokenAndNavigate();
     }
   };
-  
+
   return (
+    <MyContext.Provider value={{ selectedFromDB }}>
     <div className={styles.container}>
       <TypewriterEffectDemo />
       <input
         type="text"
         value={prompt}
         onChange={handlePromptChange}
-        onKeyPress={handleKeyPress} // Add key press event listener
+        onKeyPress={handleKeyPress}
         placeholder="Enter your subject or topic here"
         className={styles.in}
       />
@@ -123,11 +122,10 @@ const Layer0 = (data) => {
           <img src="/search.png" alt="" className={styles.icon} />
         )}
       </button>
-  
       {error && <p>{error}</p>}
       {result && (
         <div className="card">
-          {Array.isArray(result) ? ( // Check if result is an array
+          {Array.isArray(result) ? (
             result.map((level, index) => (
               <Layer0Card
                 index={index}
@@ -138,18 +136,19 @@ const Layer0 = (data) => {
               />
             ))
           ) : (
-            <ul style={{textAlign:"left"}}>
+            <ul style={{ textAlign: "left" }}>
               {result.result.split("\n\n").map((item, index) => (
                 <li key={index} style={{ marginLeft: "20px" }}>
-                <span style={{ marginRight: "5px" }}>•</span> {/* Bullet point with left margin */}
-                {item}
-              </li>
+                  <span style={{ marginRight: "5px" }}>•</span>
+                  {item}
+                </li>
               ))}
             </ul>
           )}
         </div>
       )}
     </div>
+    </MyContext.Provider>
   );
 };
 

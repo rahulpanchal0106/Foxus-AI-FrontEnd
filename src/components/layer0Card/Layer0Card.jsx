@@ -1,19 +1,34 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Cookies from 'js-cookies';
 import Layer1 from "../../page/layer1/Layer1";
 import { ThemeContext } from "../../context/ThemeContext";
 import "./layer0Card.css";
 import Navbar from "../navbar/Navbar";
+import { MyContext } from "../../context/MyContext";
 
 const Layer0Card = ({ index, levelName, levelContent, subject }) => {
   const { theme } = useContext(ThemeContext);
   const [showLayer1, setShowLayer1] = useState(false);
   const [data, setData] = useState(null);
+  const [DBl1, setDBl1] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showChapters,setShowChapters] = useState(true);
   
+  const {selectedFromDB} = useContext(MyContext);
+
+  useEffect(() => {
+    if (selectedFromDB && !data) {
+      setData(selectedFromDB.layer0.layer1[index]?selectedFromDB.layer0.layer1[index].response:null);
+      // console.log("{{{{{{}}}}}} ",selectedFromDB.layer0.layer1[index]?selectedFromDB.layer0.layer1[index].response.chapters:"NO CHAPTERS")
+      // console.log(":::::::::::: ",selectedFromDB.layer0.layer1[index]?selectedFromDB.layer0.layer1[index].layer2:"NO LESSONS")
+      
+      
+      setDBl1(selectedFromDB.layer0.layer1[index])
+
+    }
+  }, [selectedFromDB]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -65,6 +80,7 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
     setShowChapters(!showChapters);
   }
   return (
+    <MyContext.Provider value={{DBl1}}>
     <div className="layer0-card-container">
       
       <div
@@ -100,6 +116,7 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
         />
       </div>
     </div>
+    </MyContext.Provider>
   );
 };
 

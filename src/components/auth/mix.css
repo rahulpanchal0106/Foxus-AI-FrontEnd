@@ -46,7 +46,6 @@ section .form_data {
     width: 100%;
     padding: 10px 50px;
 }
-
 .form_data form .form_input input {
     /* width: 100%; */
     width: 525px;

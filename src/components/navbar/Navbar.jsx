@@ -27,6 +27,11 @@ export const Navbar = () => {
         <div>AI Learner</div>
       </Link>
       <div className={styles.links}>
+      {/* <button onClick={handleLogout} className={styles.navLink}> */}
+      <NavLink to="/about" className={styles.navLink}>
+            AboutUS
+            </NavLink>
+          {/* </button> */}
         <ThemeToggle />
         {isLoggedIn ? (
           <button onClick={handleLogout} className={styles.navLink}>

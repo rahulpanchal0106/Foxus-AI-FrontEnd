@@ -1,11 +1,12 @@
 import { useLocation } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext, useEffect } from "react";
 import Layer2Card from "../../components/layer2Card/Layer2Card";
 import Cookies from 'js-cookies'
 import { toast } from 'react-toastify';
 import HashLoader from "react-spinners/HashLoader";
 import styles from "./layer2.module.css";
 import Navbar from "../../components/navbar/Navbar";
+import { MyContext } from "../../context/MyContext";
 
 
 
@@ -22,7 +23,15 @@ const Layer2 = ({
   //const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const prevLocationRef = useRef(null);
+  const [lessons_from_l2, setLFL2] = useState(data);
+  const DBl2 = useContext(MyContext)
 
+  useEffect(()=>{
+    if(DBl2){
+      // console.log("↩️↩️↩️↩️↩️↩️↩️↩️↩️↩️", DBl2)
+    }
+    setLFL2(DBl2);
+  },[DBl2])
   
   if (loading) {
     return (
@@ -41,7 +50,7 @@ const Layer2 = ({
 
   return (
     
-
+    <MyContext.Provider value={{DBl2}}>
     <div className={styles.container} style={{width: '100%'}}>
       
       <p>
@@ -70,6 +79,7 @@ const Layer2 = ({
         ))}
       </ul>
     </div>
+  </MyContext.Provider>
   );
 };
 

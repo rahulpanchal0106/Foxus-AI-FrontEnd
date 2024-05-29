@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./layer2Card.css";
 import Layer3 from "../../page/layer3/Layer3";
 import Cookies from 'js-cookie'; // Import Cookies
+import { MyContext } from "../../context/MyContext";
 
 const Layer2Card = ({
   lessonName,
@@ -15,7 +16,14 @@ const Layer2Card = ({
   const [data, setData] = useState(null); // State to store fetched data
   const [loading, setLoading] = useState(false); // State to manage loading
 
-  
+  const {DBl2} = useContext(MyContext)
+
+  useEffect(()=>{
+    if(DBl2 && !data && DBl2.DBl2){
+      // console.log("🤡🤡🤡🤡🤡 ",lessonName ,DBl2.DBl2&& DBl2?DBl2.DBl2.layer3[0]:"")
+      setData(DBl2.DBl2&&DBl2.DBl2.layer3[index]?DBl2.DBl2.layer3[index].response:null)
+    }
+  },[DBl2])
 
   const fetchData = async () => {
     setLoading(true); // Set loading to true

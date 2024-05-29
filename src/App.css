@@ -159,6 +159,7 @@ p{
   transition: all 0.7s;
   
 }
+
 .dark #sb-content{
   background-color: #141f38;
 }
@@ -171,9 +172,18 @@ p{
   height: 90%;
   padding: 15px;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
   border-radius: 5px;
   border: 1px whitesmoke solid;
+  scroll-behavior: smooth;
 }
+#sb-content-in{
+  display: flex;
+  flex-direction: column-reverse;
+  top: 0px;
+}
+
 #sb-button{
   position: relative;
   top: 45%;

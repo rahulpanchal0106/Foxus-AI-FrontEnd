@@ -144,3 +144,27 @@ p pre code{
   border-radius: 7px;
   
 }
+
+
+
+.fullscreen-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.actions button:hover .fullscreen-icon {
+  transform: rotate(180deg);
+}
+
+.actions button:active .fullscreen-icon {
+  transform: rotate(0deg);
+  animation: spin 0.5s linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

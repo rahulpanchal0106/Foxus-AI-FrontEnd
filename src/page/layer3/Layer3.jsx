@@ -166,6 +166,8 @@ import hljs from "highlight.js";
 import "highlight.js/styles/monokai.css";
 import Highlight from 'react-highlight';
 import { ThemeContext } from "../../context/ThemeContext";
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
+import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 
 const Layer3 = ({
   lessonName,
@@ -298,9 +300,11 @@ const Layer3 = ({
       } : {}}>
         <div className="layer3info">
           <h2 className="lessonName">{lessonName}</h2>
-          <div className="actions">
-            <button onClick={handleFullScreenMode} >Full screen</button>
-          </div>
+          {/* <div className="actions"> */}
+            <button onClick={handleFullScreenMode} >
+              <FullscreenIcon className="fullscreen-icon" fontSize="large" />
+            </button>
+          {/* </div> */}
         </div>
         {loading ?
           <div className="loadingContainer">

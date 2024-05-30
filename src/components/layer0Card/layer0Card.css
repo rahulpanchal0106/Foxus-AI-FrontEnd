@@ -138,3 +138,26 @@
   opacity: 0.4;
   filter: invert(1);
 }
+
+
+/* backward arrow animation  */
+
+.arrow-button {
+  animation: backward-bounce 1s infinite;
+}
+
+.arrow-icon {
+  transform: rotate(-45deg); 
+}
+
+@keyframes backward-bounce {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

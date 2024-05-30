@@ -46,7 +46,7 @@ const App = () => {
         toggleActivities(!activityVisible);
         const token = Cookies.getItem("token")
         
-        const response = await fetch('https://ai-tutor-be.onrender.com/activity',{
+        const response = await fetch('http://localhost:3000/activity',{
           method:'GET',
           headers:{
             "Content-Type": "application/json",

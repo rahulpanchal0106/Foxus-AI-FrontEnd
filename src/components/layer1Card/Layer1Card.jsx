@@ -3,6 +3,7 @@ import Cookies from 'js-cookies';
 import HashLoader from 'react-spinners/HashLoader';
 import Layer2 from "../../page/layer2/layer2";
 import { ThemeContext } from "../../context/ThemeContext";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import "./layer1Card.css"
 import Navbar from '../navbar/Navbar';
@@ -33,7 +34,7 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
     setLoading(true);
     const token = Cookies.getItem('token');
     try {
-      const response = await fetch('https://ai-tutor-be.onrender.com/layer2', {
+      const response = await fetch('http://localhost:3000/layer2', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -132,8 +133,9 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
           </div>
           <Navbar></Navbar>
           <div className="close">
-          <button className="accordion-button-in" onClick={handleClick}>
-            {showLayer2 ? 'Go Back' : '+'}
+          <button className='arrow-button' onClick={handleClick}>
+            {showLayer2 ? "" : '+'}
+            <ArrowBackIcon fontSize="large" />
           </button>
           </div>
           

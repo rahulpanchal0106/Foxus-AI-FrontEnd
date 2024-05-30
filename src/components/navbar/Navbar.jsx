@@ -28,11 +28,13 @@ export const Navbar = () => {
       </Link>
       <div className={styles.links}>
       {/* <button onClick={handleLogout} className={styles.navLink}> */}
+      <ThemeToggle />
       <NavLink to="/about" className={styles.navLink}>
             AboutUS
             </NavLink>
           {/* </button> */}
-        <ThemeToggle />
+        
+
         {isLoggedIn ? (
           <button onClick={handleLogout} className={styles.navLink}>
             Logout

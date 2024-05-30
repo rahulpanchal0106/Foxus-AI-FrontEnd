@@ -31,7 +31,7 @@ const App = () => {
   const [data,setData]=useState(null);
   const [isLoggedIn, setLogIn] = useState(false);
   const [activityVisible,toggleActivities] = useState(false);
-  
+  const [showLayer0, setShowLayer0] = useState(false);
   const [layer1v,toggleLayer1v] = useState(false);
   const [layer0v,toggleLayer0v] = useState(true);
   const [lastDate, setLastDate] = useState("");
@@ -56,8 +56,14 @@ const App = () => {
         })
 
         const activity = await response.json();
+        // activity.reverse();
+        // activity.map((chunk,i)=>{
+        //   if(chunk.loginTime){
+        //     chunk=activity[i-1]
+        //   }
+        // })
         setData(activity)
-        console.log(activity)
+        console.log("### ",activity)
       }else{
         toggleActivities(!activityVisible);
       }
@@ -120,7 +126,8 @@ const App = () => {
                 width:activityVisible?'auto':'2px',
                 
               }}>
-                {
+                <div id="sb-content-in">
+                { 
                   //reuse the layercard components to browse the whole history
                   data&&activityVisible&&isLoggedIn?data.map((chunk,i)=>{
                     
@@ -174,25 +181,42 @@ const App = () => {
                         </>
                       )
                     }else{
+                      // console.log("⌚⌚⌚ ",chunk.loginTime)
                       const date = new Date(chunk.loginTime)
                       const prevDate = data[prevDateIdx].loginTime
                       const dateDiff = differenceInCalendarDays(prevDate,date)
                       prevDateIdx=i;
-                      if(dateDiff<=-1 || i==0){
-                        return <div id="activity-login" >
-                          {
-                            <RelativeDate date={date}/>
-                          }
-                        </div> 
+                      // console.log(dateDiff)
+                      // chunk=data[dateDiff]
+                      if((dateDiff<=-1 && i!=0)){
+                        
+                        return (
+                          <>
+                            <div id="activity-login" >
+                              {
+                                <RelativeDate date={prevDate}/>
+                              }
+                            </div>
+                          </>
+                        )
                       }
-                      return ""
+                      
                     }
-                  }):<div className="vertical-text">Need to login :(</div>
-                    
-                  
+                  }):<div className="vertical-text">Need to login :(</div> 
                 }
+                {
+                  isLoggedIn?
+                  <div id="activity-login" >
+                    Today
+                  </div>:
+                  ""
+                }
+                </div>
+                
+                
               </div>
             </div>
+            
             <Routes>
               {/* <Route path="/" element={<Home />} /> */}
               <Route path="/" element={<Layer0  />} />
@@ -206,11 +230,10 @@ const App = () => {
               <Route path="/login" element={<Login />} />{" "}
 
               {/* add routh for signup */}
+              
               <Route path="/register" element={<Register />} />{" "}
 
             </Routes>
-            
-
             {/* <Test/> */}
           </div>
           </MyContext.Provider>

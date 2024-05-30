@@ -3,6 +3,8 @@ import "./layer2Card.css";
 import Layer3 from "../../page/layer3/Layer3";
 import Cookies from 'js-cookie'; // Import Cookies
 import { MyContext } from "../../context/MyContext";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 const Layer2Card = ({
   lessonName,
@@ -86,7 +88,8 @@ const Layer2Card = ({
           <p className="lessonContent">{lessonContent}</p>
         </div>
         <button className="accordion-button">
-          {showLayer3 ? "-" : "+"}
+        {showLayer3 ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+          
         </button>
       </div>
       <div style={{ display: showLayer3 ? "block" : "none" }}>

@@ -6,6 +6,7 @@ import { ThemeContext } from "../../context/ThemeContext";
 import "./layer0Card.css";
 import Navbar from "../navbar/Navbar";
 import { MyContext } from "../../context/MyContext";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Layer0Card = ({ index, levelName, levelContent, subject }) => {
   const { theme } = useContext(ThemeContext);
@@ -100,11 +101,11 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
             <div className='gradient' />
           </div>
         <Navbar></Navbar>
-        <button id="close-chapters" style={{
+        <button id="close-chapters" className="arrow-button" style={{
           textAlign:"end",
           padding: "0px 15px",
           fontSize:'1.3em'}} onClick={()=>setShowLayer1(!showLayer1)}>
-          ↩
+          <ArrowBackIcon fontSize="large" />
         </button>
         <Layer1
           levelName = {levelName}

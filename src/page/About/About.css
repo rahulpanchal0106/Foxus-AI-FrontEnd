@@ -1,0 +1,172 @@
+/* About.css */
+.about-container {
+    width: 100%;
+    padding: 10px;
+    min-height: calc(100vh - 80px);
+    /* font-family: Arial, sans-serif; */
+  }
+  
+  .about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 15px -10px #2d3748;
+  }
+  
+  .about-content h1, .about-content h2 {
+    color: #1a365d;
+    text-align: center;
+  }
+  
+  .about-content p, .about-content ul {
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .about-content ul {
+    padding-left: 20px;
+  }
+  
+  .feedback-form-container {
+    max-width: 550px;
+    margin: 25px auto;
+    padding: 35px 10px;
+    box-shadow: 0 0 15px -10px #2d3748;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+  }
+  
+  .feedback-title {
+    font-size: 34px;
+    margin-bottom: 16px;
+    text-align: center;
+    color: #1a365d;
+  }
+  
+  .feedback-form {
+    margin-top: 25px;
+    width: 100%;
+    padding: 10px 50px;
+  }
+  
+  .feedback-textarea {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #d4d0d0;
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 14px;
+    font-size: 14px;
+  }
+  
+  .feedback-textarea:focus {
+    border: 2px solid rgba(66, 153, 225, 0.6);
+  }
+  
+  .feedback-textarea::placeholder {
+    color: #8694a8;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+  }
+  
+  .feedback-submit-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: #1a365d;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .feedback-submit-button:hover {
+    background-color: #97a1b1;
+  }
+  
+  input {
+    color: black;
+  }
+  
+  /* Responsive Styles */
+  @media screen and (max-width: 600px) {
+    .feedback-form-container {
+      max-width: 90%;
+    }
+    
+    .feedback-title {
+      font-size: 1.5rem;
+    }
+    
+    .feedback-textarea {
+      font-size: 0.9rem;
+    }
+  
+    .feedback-submit-button {
+      padding: 0.6rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Responsive Styles for 350px */
+  @media screen and (max-width: 350px) {
+    .feedback-form-container {
+      max-width: 90%;
+    }
+  
+    .feedback-title {
+      font-size: 1.3rem;
+    }
+  
+    .feedback-textarea {
+      font-size: 0.8rem;
+    }
+  
+    .feedback-submit-button {
+      padding: 0.5rem;
+      font-size: 0.8rem;
+    }
+  }
+  
+  .team-section {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 15px -10px #2d3748;
+  }
+  
+  .team-section h2 {
+    color: #1a365d;
+    text-align: center;
+  }
+  
+  .team-member {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .team-member img {
+    border-radius: 50%;
+    margin-right: 15px;
+    width: 60px;
+    height: 60px;
+  }
+  
+  .team-member p {
+    margin: 0;
+    font-size: 16px;
+  }

@@ -166,6 +166,8 @@ import hljs from "highlight.js";
 import "highlight.js/styles/monokai.css";
 import Highlight from 'react-highlight';
 import { ThemeContext } from "../../context/ThemeContext";
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
+import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 
 const Layer3 = ({
   lessonName,
@@ -187,7 +189,7 @@ const Layer3 = ({
     setIsGeneratingQuiz(true); // Set loading state to true when generating quiz
     const token = Cookies.getItem("token");
     try {
-      const response = await fetch("http://localhost:3000/quiz", {
+      const response = await fetch("https://ai-tutor-be.onrender.com/quiz", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -283,6 +285,8 @@ const Layer3 = ({
 
   return (
     <div className="layer3-container">
+
+      
       <div className={`layer3-resp ${fullScreen ? 'fullscreen' : ''}`} style={fullScreen ? { 
         top: '0px',
         zIndex: '50',
@@ -296,9 +300,11 @@ const Layer3 = ({
       } : {}}>
         <div className="layer3info">
           <h2 className="lessonName">{lessonName}</h2>
-          <div className="actions">
-            <button onClick={handleFullScreenMode} >Full screen</button>
-          </div>
+          {/* <div className="actions"> */}
+            <button onClick={handleFullScreenMode} >
+              <FullscreenIcon className="fullscreen-icon" fontSize="large" />
+            </button>
+          {/* </div> */}
         </div>
         {loading ?
           <div className="loadingContainer">
@@ -310,7 +316,7 @@ const Layer3 = ({
         }
         {data && (
           <div>
-            
+            {/* <imageGeneration/> */}
             <ReactMarkdown
               components={components}
               children={renderLatexExpressions(data)} // Convert data to string

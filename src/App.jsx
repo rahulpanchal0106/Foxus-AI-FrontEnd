@@ -12,6 +12,7 @@ import { Register } from "./components/auth/Register";  //import the register co
 import Cookies from "js-cookies";
 import { ThemeContextProvider } from "./context/ThemeContext";
 import ThemeProvider from "./providers/ThemeProvider";
+import About from "../src/page/About/Aboutus"
 import "./App.css";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -232,6 +233,7 @@ const App = () => {
               {/* add routh for signup */}
               
               <Route path="/register" element={<Register />} />{" "}
+              <Route path="/about" element={<About />} />{" "}
 
             </Routes>
             {/* <Test/> */}

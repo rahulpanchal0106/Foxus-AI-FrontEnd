@@ -9,26 +9,31 @@ const people = [
     id: 1,
     name: "Rahul Panchal",
     image: "./2.jpeg",
+    github: "https://github.com/rahulpanchal0106"
   },
   {
     id: 2,
     name: "Jay Patel",
     image: "./1.jpeg",
+    github:"https://github.com/Jay100125"
   },
   {
     id: 3,
     name: "Akshay Sangani",
     image: "./3.jpeg",
+    github:"https://github.com/Akki-patel"
   },
   {
     id: 4,
     name: "Jeet Patel",
     image: "4.jpeg",
+    github:"https://github.com/Jeet9788"
   },
   {
     id: 5,
     name: "Om Makwana",
     image: "5.jpeg",
+    github:"https://github.com/makwanaom"
   },
 ];
 

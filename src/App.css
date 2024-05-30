@@ -209,6 +209,17 @@ p{
   border-top: 1px rgba(128, 128, 128, 0.151) solid;
   border-radius: 1.5em;
   margin: 5px 10px;
+  transition: all 0.7s;
+}
+#activity-buttons{
+  
+  border-radius: 1.5em;
+  padding: 5px 15px;
+  margin-bottom: 5px;
+  max-width: 300px;
+}
+#activity-buttons:hover{
+  border: 1px gray solid;
 }
 
 .vertical-text {

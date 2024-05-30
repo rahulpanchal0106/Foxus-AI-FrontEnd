@@ -21,6 +21,8 @@ import {differenceInCalendarDays} from 'date-fns'
 import RelativeDate from "./components/relative";
 import Layer0Card from "./components/layer0Card/Layer0Card";
 import { MyContext } from "./context/MyContext";
+import HashLoader from "react-spinners/HashLoader";
+import { ArrowCircleRight, ArrowCircleRightRounded, ArrowCircleRightTwoTone, ArrowRight, ArrowRightAlt, ArrowRightAltRounded, ArrowRightOutlined, JoinRightOutlined, RampRight, SwipeRight, TurnSlightRight } from "@mui/icons-material";
 
 //acterenity testa
 //import Test from './components/test'
@@ -36,6 +38,7 @@ const App = () => {
   const [layer1v,toggleLayer1v] = useState(false);
   const [layer0v,toggleLayer0v] = useState(true);
   const [lastDate, setLastDate] = useState("");
+  const [isLoading, setLoading] = useState(false)
   
   var prevDateIdx = 0;
 
@@ -45,7 +48,8 @@ const App = () => {
       if(!activityVisible){
         toggleActivities(!activityVisible);
         const token = Cookies.getItem("token")
-        
+        setLoading(true);
+        console.log(isLoading)
         const response = await fetch('https://ai-tutor-be.onrender.com/activity',{
           method:'GET',
           headers:{
@@ -55,6 +59,7 @@ const App = () => {
         }).catch((err)=>{
           console.error(err);
         })
+        
 
         const activity = await response.json();
         // activity.reverse();
@@ -64,6 +69,7 @@ const App = () => {
         //   }
         // })
         setData(activity)
+        setLoading(false);
         console.log("### ",activity)
       }else{
         toggleActivities(!activityVisible);
@@ -121,64 +127,74 @@ const App = () => {
               <button id="sb-button" style={{
                 right: activityVisible?"-50%":"0px"
               }} onClick={()=>getActivity()}>{activityVisible?"❌":"👉"}</button> {/* a hover triggered animated icon icons */}
+              
               <div id="sb-content" style={{
                 borderWidth:activityVisible?'1px':'1px',
                 padding:activityVisible?'15px':'0px',
                 width:activityVisible?'auto':'2px',
                 
               }}>
+                
                 <div id="sb-content-in">
                 { 
                   //reuse the layercard components to browse the whole history
+                  
+                  
+                  isLoading ?
+                  <div id="activity-layer0" style={{padding: '300% 10px'}}>
+                    <HashLoader color="gray"/>
+                  </div>:
                   data&&activityVisible&&isLoggedIn?data.map((chunk,i)=>{
                     
                     if(chunk.layer0){
                       
                       return (
                         <>
-                          <div id="activity-layer0" >
-                            {chunk.layer0.prompt} 
-                            {chunk.layer0?
-                            <button onClick={()=>getLayer0(chunk)}> 👉</button>:
-                            ""
+                          <div id="activity-buttons" onClick={()=>getLayer0(chunk)} style={{cursor:"pointer"}}>
+                            <div id="activity-layer0" style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
+                              {chunk.layer0.prompt} 
+                              {chunk.layer0?
+                              <button onClick={()=>getLayer0(chunk)}> <ArrowCircleRightRounded/> </button>:
+                              ""
+                              }
+                            </div>
+                            {
+                              <div id="chapters-container" style={{
+                                display: showLayer0&&chunk.layer0.layer1[0]?"flex":"none"
+                              }}>
+                                <Navbar></Navbar>
+                                <button id="close-chapters" style={{
+                                  textAlign:"end",
+                                  padding: "0px 15px",
+                                  fontSize:'1.3em'}} onClick={()=>setShowLayer0(!showLayer0)}>
+                                  ↩
+                                </button>
+                                {/* <div id="browse_l0"style={{
+                                  display:showLayer0?"block":"none"
+                                }}>
+                                  <Layer0 
+                                    data={chunk.layer0.prompt}
+                                    // levelName = {levelName}
+                                    // levelContent={levelContent}
+                                    // subject={subject}
+                                    // data={data}
+                                    // fetchData={fetchData} 
+                                    // loading={loading}
+                                  />
+                                </div> */}
+                              </div>
+                            // chunk.layer0.layer1[0] && layer0v?
+                            // <Layer0
+                            //   data={data}
+                            //   // index={data.index}
+                            //   // levelName={data.level?data.level.levelName:"⚠️"}
+                            //   // levelContent={data.level?data.level.levelContent:"⚠️"}
+                            //   // subject={data.level?data.level.subject:"⚠️"}
+                            //   // key={data.level?data.index:"⚠️"}
+                            // />:
+                            // "$$$$$$$$$$$$$$$$$"
                             }
                           </div>
-                          {
-                            <div id="chapters-container" style={{
-                              display: showLayer0&&chunk.layer0.layer1[0]?"flex":"none"
-                            }}>
-                              <Navbar></Navbar>
-                              <button id="close-chapters" style={{
-                                textAlign:"end",
-                                padding: "0px 15px",
-                                fontSize:'1.3em'}} onClick={()=>setShowLayer0(!showLayer0)}>
-                                ↩
-                              </button>
-                              {/* <div id="browse_l0"style={{
-                                display:showLayer0?"block":"none"
-                              }}>
-                                <Layer0 
-                                  data={chunk.layer0.prompt}
-                                  // levelName = {levelName}
-                                  // levelContent={levelContent}
-                                  // subject={subject}
-                                  // data={data}
-                                  // fetchData={fetchData} 
-                                  // loading={loading}
-                                />
-                              </div> */}
-                            </div>
-                          // chunk.layer0.layer1[0] && layer0v?
-                          // <Layer0
-                          //   data={data}
-                          //   // index={data.index}
-                          //   // levelName={data.level?data.level.levelName:"⚠️"}
-                          //   // levelContent={data.level?data.level.levelContent:"⚠️"}
-                          //   // subject={data.level?data.level.subject:"⚠️"}
-                          //   // key={data.level?data.index:"⚠️"}
-                          // />:
-                          // "$$$$$$$$$$$$$$$$$"
-                          }
                         </>
                       )
                     }else{
@@ -206,7 +222,7 @@ const App = () => {
                   }):<div className="vertical-text">Need to login :(</div> 
                 }
                 {
-                  isLoggedIn?
+                  isLoggedIn&&!isLoading?
                   <div id="activity-login" >
                     Today
                   </div>:

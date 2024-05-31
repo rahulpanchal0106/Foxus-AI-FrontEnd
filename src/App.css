@@ -157,7 +157,7 @@ p{
   align-items:center;
   z-index: 40;
   transition: all 0.7s;
-  
+  width: 330px; 
 }
 
 .dark #sb-content{
@@ -177,6 +177,7 @@ p{
   border-radius: 5px;
   border: 1px whitesmoke solid;
   scroll-behavior: smooth;
+  width: 330px;
 }
 #sb-content-in{
   display: flex;

@@ -39,7 +39,7 @@ const App = () => {
   const [layer0v,toggleLayer0v] = useState(true);
   const [lastDate, setLastDate] = useState("");
   const [isLoading, setLoading] = useState(false)
-  
+  const [isOverflowing, setIsOverflowing] = useState(false)
   var prevDateIdx = 0;
 
 
@@ -110,6 +110,15 @@ const App = () => {
     return `${dd}-${mm}-${yy} ${hh}:${min}:${ss}`
   }
   
+  function checkOverflow(chunk){
+    const promptElement = document.getElementById(`prompt-${chunk.time}`);
+    const containerElement = document.querySelector(".scroll-container");
+    
+    if (promptElement) {
+      console.log(promptElement)
+      setIsOverflowing(promptElement.offsetWidth >= containerElement.offsetWidth);
+    }
+  }
   return (
     <Router>
       <ThemeContextProvider>
@@ -151,13 +160,35 @@ const App = () => {
                       return (
                         <>
                           <div id="activity-buttons" onClick={()=>getLayer0(chunk)} style={{cursor:"pointer"}}>
-                            <div id="activity-layer0" style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
-                              {chunk.layer0.prompt} 
-                              {chunk.layer0?
-                              <button onClick={()=>getLayer0(chunk)}> <ArrowCircleRightRounded/> </button>:
-                              ""
+                          <div id="activity-layer0" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                            <div className="scroll-container">
+                              
+                              <p  className={
+                                document.getElementById(`prompt-${chunk.time}`)?
+                                document.getElementById(`prompt-${chunk.time}`).clientWidth>document.querySelector(".scroll-container").offsetWidth?'scroll-content':'':console.log("No ele")
+                              } id={`prompt-${chunk.time}`}>
+                                {
+                                  document.getElementById(`prompt-${chunk.time}`)?
+                                  console.log(document.getElementById(`prompt-${chunk.time}`).style.width," ------- ", document.querySelector(".scroll-container").offsetWidth ):
+                                  ""
+                                }
+                                {/* {
+                                  document.getElementById(`prompt-${chunk.time}`)?
+                                  document.getElementById(`prompt-${chunk.time}`).clientWidth>=document.querySelector(".scroll-container").offsetWidth?'scroll-content':'':''
+                                } */}
+                                {chunk.layer0.prompt}
+                              </p>
+                              {
+                                
                               }
                             </div>
+                            {chunk.layer0 && (
+                              <button onClick={() => getLayer0(chunk)}> 
+                                <ArrowCircleRightRounded />
+                              </button>
+                            )}
+                          </div>
+
                             {
                               <div id="chapters-container" style={{
                                 display: showLayer0&&chunk.layer0.layer1[0]?"flex":"none"

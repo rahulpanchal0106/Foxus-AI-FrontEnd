@@ -148,7 +148,7 @@ p{
 #sidebar-container{
   position: fixed;
   left: 0px;
-  top: 100px;
+  top: 50px;
   padding: 10px;
   bottom: 0px;
   display: flex;
@@ -156,8 +156,7 @@ p{
   justify-content: center;
   align-items:center;
   z-index: 40;
-  transition: all 0.7s;
-  width: 330px; 
+  transition: all 0.7s; 
 }
 
 .dark #sb-content{

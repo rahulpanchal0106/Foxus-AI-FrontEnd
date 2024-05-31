@@ -35,7 +35,7 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
     setLoading(true);
     const token = Cookies.getItem('token');
     try {
-      const response = await fetch('http://localhost:3000/layer1', {
+      const response = await fetch('https://ai-tutor-be.onrender.com/layer1', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

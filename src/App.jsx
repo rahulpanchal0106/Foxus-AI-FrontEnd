@@ -23,6 +23,7 @@ import Layer0Card from "./components/layer0Card/Layer0Card";
 import { MyContext } from "./context/MyContext";
 import HashLoader from "react-spinners/HashLoader";
 import { ArrowCircleRight, ArrowCircleRightRounded, ArrowCircleRightTwoTone, ArrowRight, ArrowRightAlt, ArrowRightAltRounded, ArrowRightOutlined, JoinRightOutlined, RampRight, SwipeRight, TurnSlightRight } from "@mui/icons-material";
+import AutoScroll from "./components/AutoScroll";
 
 //acterenity testa
 //import Test from './components/test'
@@ -161,27 +162,33 @@ const App = () => {
                         <>
                           <div id="activity-buttons" onClick={()=>getLayer0(chunk)} style={{cursor:"pointer"}}>
                           <div id="activity-layer0" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                            <div className="scroll-container">
+                            {/* <div className="scroll-container">
                               
-                              <p  className={
-                                document.getElementById(`prompt-${chunk.time}`)?
-                                document.getElementById(`prompt-${chunk.time}`).clientWidth>document.querySelector(".scroll-container").offsetWidth?'scroll-content':'':console.log("No ele")
-                              } id={`prompt-${chunk.time}`}>
+                              <p  
+                              id={`prompt-${chunk.time}`}
+                              className="">
+                                {
+                                  // document.getElementById(`prompt-${chunk.time}`)?
+                                  // console.log(document.getElementById(`prompt-${chunk.time}`).offsetWidth," ------- ", document.querySelector(".scroll-container").offsetWidth ):
+                                  // ""
+                                  
+                                }
                                 {
                                   document.getElementById(`prompt-${chunk.time}`)?
-                                  console.log(document.getElementById(`prompt-${chunk.time}`).style.width," ------- ", document.querySelector(".scroll-container").offsetWidth ):
-                                  ""
-                                }
-                                {/* {
-                                  document.getElementById(`prompt-${chunk.time}`)?
                                   document.getElementById(`prompt-${chunk.time}`).clientWidth>=document.querySelector(".scroll-container").offsetWidth?'scroll-content':'':''
-                                } */}
+                                }
                                 {chunk.layer0.prompt}
                               </p>
-                              {
-                                
-                              }
+                              
+                            </div> */}
+
+                            {/* <AutoScroll chunk={chunk} /> */}
+                            <div className="scroll-container">
+                              <p id={`prompt-${chunk.time}`}>
+                                {chunk.layer0.prompt}
+                              </p>
                             </div>
+
                             {chunk.layer0 && (
                               <button onClick={() => getLayer0(chunk)}> 
                                 <ArrowCircleRightRounded />
@@ -225,6 +232,13 @@ const App = () => {
                             // />:
                             // "$$$$$$$$$$$$$$$$$"
                             }
+                            {
+                              document.getElementById(`prompt-${chunk.time}`)?
+                              document.getElementById(`prompt-${chunk.time}`).offsetWidth>document.querySelector(".scroll-container").offsetWidth
+                              ?
+                              document.getElementById(`prompt-${chunk.time}`).classList.add('scroll-content'):document.getElementById(`prompt-${chunk.time}`).classList.add("no")
+                              :''
+                            }
                           </div>
                         </>
                       )
@@ -250,6 +264,8 @@ const App = () => {
                       }
                       
                     }
+
+                    <AutoScroll chunk={chunk} />
                   }):<div className="vertical-text">Need to login :(</div> 
                 }
                 {

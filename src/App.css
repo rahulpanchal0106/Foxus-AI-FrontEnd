@@ -250,9 +250,12 @@ p{
 .scroll-container {
   max-width: 80%; /* Adjust as necessary */
   overflow: hidden;
-  white-space: nowrap;
+  
   position: relative;
   flex: 1; /* Ensure it takes available space */
+}
+.scroll-container p{
+  word-wrap: break-word;
 }
 
 .scroll-content {

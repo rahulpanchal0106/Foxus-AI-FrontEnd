@@ -15,9 +15,14 @@
 .container{
   font-family: "Caudex", serif;
   z-index: 100;
+  display: grid;
+ 
   
 }
 
   :root {
     --transition-duration: 1s;
 }
+
+
+

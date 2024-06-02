@@ -101,7 +101,7 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
             <div className='gradient' />
           </div>
         <Navbar></Navbar>
-        <button id="close-chapters" className="arrow-button" style={{
+        <button id="close-chapters" className="arrow-button-one" style={{
           textAlign:"end",
           padding: "0px 15px",
           fontSize:'1.3em'}} onClick={()=>setShowLayer1(!showLayer1)}>

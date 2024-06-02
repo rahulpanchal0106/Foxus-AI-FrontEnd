@@ -133,13 +133,10 @@ li{
 }
 
 
-.arrow-button {
+.arrow-button:hover {
   animation: backward-bounce 1s infinite;
 }
 
-.arrow-icon {
-  transform: rotate(-45deg); 
-}
 
 @keyframes backward-bounce {
   0% {

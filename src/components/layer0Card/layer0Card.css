@@ -142,13 +142,11 @@
 
 /* backward arrow animation  */
 
-.arrow-button {
+.arrow-button-one:hover{
   animation: backward-bounce 1s infinite;
 }
 
-.arrow-icon {
-  transform: rotate(-45deg); 
-}
+
 
 @keyframes backward-bounce {
   0% {

@@ -24,6 +24,10 @@ import { MyContext } from "./context/MyContext";
 import HashLoader from "react-spinners/HashLoader";
 import { ArrowCircleRight, ArrowCircleRightRounded, ArrowCircleRightTwoTone, ArrowRight, ArrowRightAlt, ArrowRightAltRounded, ArrowRightOutlined, JoinRightOutlined, RampRight, SwipeRight, TurnSlightRight } from "@mui/icons-material";
 import AutoScroll from "./components/AutoScroll";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
+
 
 //acterenity testa
 //import Test from './components/test'
@@ -41,6 +45,7 @@ const App = () => {
   const [lastDate, setLastDate] = useState("");
   const [isLoading, setLoading] = useState(false)
   const [isOverflowing, setIsOverflowing] = useState(false)
+  const [isOpen, setIsOpen] = useState(true);
   var prevDateIdx = 0;
 
 
@@ -120,6 +125,10 @@ const App = () => {
       setIsOverflowing(promptElement.offsetWidth >= containerElement.offsetWidth);
     }
   }
+ 
+
+  
+
   return (
     <Router>
       <ThemeContextProvider>
@@ -128,15 +137,19 @@ const App = () => {
           <div className='main'>
             <div className='gradient' />
           </div>
+
+         
           <div className="container app">
             <Navbar />
+
+           
             <div id="sidebar-container" style={{
               padding:activityVisible?'15px':'2px',
               
             }}>
               <button id="sb-button" style={{
                 right: activityVisible?"-50%":"0px"
-              }} onClick={()=>getActivity()}>{activityVisible?"❌":"👉"}</button> {/* a hover triggered animated icon icons */}
+              }} onClick={()=>getActivity()}>{activityVisible? <ArrowBackIcon />: <ArrowForwardIcon />}</button> {/* a hover triggered animated icon icons */}
               
               <div id="sb-content" style={{
                 borderWidth:activityVisible?'1px':'1px',

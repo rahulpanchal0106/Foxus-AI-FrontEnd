@@ -7,6 +7,7 @@ import HashLoader from "react-spinners/HashLoader";
 import styles from "./layer2.module.css";
 import Navbar from "../../components/navbar/Navbar";
 import { MyContext } from "../../context/MyContext";
+import { stepLabelClasses } from "@mui/material";
 
 
 
@@ -56,7 +57,7 @@ const Layer2 = ({
       <p>
         <strong>Chapter:</strong> {cleanName(chapter)}
       </p>
-      <p>
+      <p className="level">
         <strong>Level:</strong> {cleanName(level)}
       </p>
       <p>

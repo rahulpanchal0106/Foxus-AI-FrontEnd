@@ -1,28 +1,65 @@
-
-.loadingContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; 
-  }
-  
-  .chapter
-  {
-    margin: 10px;
-   
-  }
-
-.container{
+.container {
   font-family: "Caudex", serif;
   z-index: 100;
-  display: grid;
- 
   
 }
 
-  :root {
-    --transition-duration: 1s;
+.infoTable{
+  margin-left: 200px;
+}
+.infoTable td{
+  padding: 15px;
+}
+.lessonList {
+  margin-left: 100px;
+  margin-right: 50px; 
 }
 
 
+
+@media (max-width: 350px) {
+  .infoTable {
+    margin-left: 10px; 
+  }
+
+  .infoTable td {
+    padding: 10px; 
+  }
+
+  .lessonList {
+    margin-left: 10px; 
+    margin-right: 10px; 
+}
+
+@media (max-width: 480px) {
+  .infoTable {
+    margin-left: 20px; 
+  }
+
+  .infoTable td {
+    padding: 12px; 
+  }
+
+  .lessonList {
+    margin-left: 20px; 
+    margin-right: 20px; 
+  }
+}
+
+@media (max-width: 720px) {
+  .infoTable {
+    margin-left: 100px; 
+  }
+
+  .infoTable td {
+    padding: 15px; 
+  }
+
+  .lessonList {
+    margin-left: 50px; 
+    margin-right: 50px; 
+  }
+}
+
+}
 

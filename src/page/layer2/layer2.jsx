@@ -9,8 +9,6 @@ import Navbar from "../../components/navbar/Navbar";
 import { MyContext } from "../../context/MyContext";
 import { stepLabelClasses } from "@mui/material";
 
-
-
 const Layer2 = ({
   chapter,
   level,
@@ -20,23 +18,21 @@ const Layer2 = ({
   loading,
 }) => {
   const location = useLocation();
-  //const [data, setData] = useState(null);
-  //const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const prevLocationRef = useRef(null);
   const [lessons_from_l2, setLFL2] = useState(data);
   const DBl2 = useContext(MyContext)
 
-  useEffect(()=>{
-    if(DBl2){
+  useEffect(() => {
+    if (DBl2) {
       // console.log("↩️↩️↩️↩️↩️↩️↩️↩️↩️↩️", DBl2)
     }
     setLFL2(DBl2);
-  },[DBl2])
-  
+  }, [DBl2])
+
   if (loading) {
     return (
-      <div className={styles.loadingContainer} style={{width:"100%"}}>
+      <div className={styles.loadingContainer} style={{ width: "100%" }}>
         <HashLoader color="#616A6B" />
       </div>
     );
@@ -44,43 +40,48 @@ const Layer2 = ({
   if (error) return <div>Error: {error}</div>;
   if (!data) return null;
 
-  const cleanName = (chapter) => {
+  const cleanName = (name) => {
     // Remove asterisks from chapter name
-    return chapter.replace(/[*]/g, "");
+    return name.replace(/[*]/g, "");
   };
 
   return (
-    
-    <MyContext.Provider value={{DBl2}}>
-    <div className={styles.container} style={{width: '100%'}}>
-      
-      <p>
-        <strong>Chapter:</strong> {cleanName(chapter)}
-      </p>
-      <p className="level">
-        <strong>Level:</strong> {cleanName(level)}
-      </p>
-      <p>
-        <strong>Subject:</strong> {subject}
-      </p>
-      <h2>Lessons:</h2>
-      <ul className={styles.lessonList}>
-        {data.map((lesson, index) => (
-          <li key={index} className={styles.lessonListItem}>
-            <Layer2Card
-              key={index}
-              lessonName={lesson.lessonName}
-              lessonContent={lesson.lessonContent}
-              chapter={chapter}
-              level={level}
-              subject={subject}
-              index={index}
-            />
-          </li>
-        ))}
-      </ul>
-    </div>
-  </MyContext.Provider>
+    <MyContext.Provider value={{ DBl2 }}>
+      <div className={styles.container} style={{ width: '100%' }}>
+        <table className={styles.infoTable}>
+          <tbody>
+            <tr>
+              <td><strong>Chapter:</strong></td>
+              <td>{cleanName(chapter)}</td>
+            </tr>
+            <tr>
+              <td><strong>Level:</strong></td>
+              <td>{cleanName(level)}</td>
+            </tr>
+            <tr>
+              <td><strong>Subject:</strong></td>
+              <td>{subject}</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2>Lessons:</h2>
+        <ul className={`${styles.lessonList} ${styles.responsiveLessonList}`}>
+          {data.map((lesson, index) => (
+            <li key={index} className={styles.lessonListItem}>
+              <Layer2Card
+                key={index}
+                lessonName={lesson.lessonName}
+                lessonContent={lesson.lessonContent}
+                chapter={chapter}
+                level={level}
+                subject={subject}
+                index={index}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </MyContext.Provider>
   );
 };
 

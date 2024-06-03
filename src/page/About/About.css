@@ -117,6 +117,9 @@
   .feedback-textarea {
     font-size: 0.9rem;
   }
+  .username-input{
+    font-size: 0.9rem;
+  }
 
   .feedback-submit-button {
     padding: 0.6rem;
@@ -135,6 +138,10 @@
   }
 
   .feedback-textarea {
+    font-size: 0.8rem;
+  }
+
+  .username-input{
     font-size: 0.8rem;
   }
 
@@ -174,4 +181,22 @@
 .team-member p {
   margin: 0;
   font-size: 16px;
+}
+
+
+
+.username-input {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+
+.username-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }

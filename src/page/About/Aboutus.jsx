@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import AnimatedTooltip from "../../components/ui/ToolTip";
 import "./About.css";
 import axios from "axios";
+import { toast } from 'react-toastify';
 
 const people = [
   {
@@ -39,6 +40,7 @@ const people = [
 ];
 
 const About = () => {
+  const [username, setUsername] = useState("");
   const [feedback, setFeedback] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -46,18 +48,23 @@ const About = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(feedback);
+    console.log({ username, feedback });
 
     const data = {
+      Username: username,
       Feedback: feedback
     };
 
     try {
       const response = await axios.post('https://sheet.best/api/sheets/6fd36419-7088-48b0-b007-c46a7afded38', data);
       console.log(response);
+      setUsername('');
       setFeedback('');
       setError(null);
       setSuccess(true);
+      toast.success("Feedback submitted successfully!", {
+        position: "top-right"
+      });
     } catch (err) {
       if (err.response) {
         console.error('Error response:', err.response.data);
@@ -74,6 +81,7 @@ const About = () => {
       console.error('Error config:', err.config);
       setSuccess(false);
     }
+    
   };
 
   return (
@@ -117,6 +125,13 @@ const About = () => {
       <div className="feedback-form-container">
         <h2 className="feedback-title">Feel free to share your feedback</h2>
         <form onSubmit={handleSubmit} className="feedback-form">
+          <input
+            type="text"
+            className="username-input"
+            placeholder="Enter your username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
           <textarea
             className="feedback-textarea"
             rows="4"
@@ -132,7 +147,7 @@ const About = () => {
           </button>
         </form>
         {error && <p className="error-message">{error}</p>}
-        {success && <p className="success-message">Feedback submitted successfully!</p>}
+        
       </div>
     </div>
   );

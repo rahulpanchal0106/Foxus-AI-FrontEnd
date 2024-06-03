@@ -35,7 +35,7 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
     setLoading(true);
     const token = Cookies.getItem('token');
     try {
-      const response = await fetch('https://ai-tutor-be.onrender.com/layer1', {
+      const response = await fetch('http://localhost:3000/layer1', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,7 +47,10 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
             levelContent: levelContent, 
             subject: subject
           },
-        }),
+          index: index,
+          layer0_indecies: [],
+          layer1_indecies: []
+        }),   
       });
 
       const resultData = await response.json();
@@ -73,6 +76,8 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
   // };
   const handleClick = () => {
     setShowLayer1(!showLayer1);
+    console.log("🟩🟩🟩 ",index)
+    console.log("DBl1: ",DBl1)
     if (!data && !showLayer1 && !loading) {
       fetchData();
     }

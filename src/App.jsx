@@ -51,7 +51,7 @@ const App = () => {
         const token = Cookies.getItem("token")
         setLoading(true);
         console.log(isLoading)
-        const response = await fetch('https://ai-tutor-be.onrender.com/activity',{
+        const response = await fetch('http://localhost:3000/activity',{
           method:'GET',
           headers:{
             "Content-Type": "application/json",
@@ -59,6 +59,7 @@ const App = () => {
           }
         }).catch((err)=>{
           console.error(err);
+          setLoading(false);
         })
         
 

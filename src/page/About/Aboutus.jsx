@@ -38,10 +38,10 @@ const people = [
   },
 ];
 
-
-
 const About = () => {
   const [feedback, setFeedback] = useState("");
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -49,39 +49,32 @@ const About = () => {
     console.log(feedback);
 
     const data = {
-      Feedback:feedback
+      Feedback: feedback
+    };
+
+    try {
+      const response = await axios.post('https://sheet.best/api/sheets/6fd36419-7088-48b0-b007-c46a7afded38', data);
+      console.log(response);
+      setFeedback('');
+      setError(null);
+      setSuccess(true);
+    } catch (err) {
+      if (err.response) {
+        console.error('Error response:', err.response.data);
+        console.error('Error status:', err.response.status);
+        console.error('Error headers:', err.response.headers);
+        setError(`Error: ${err.response.status} - ${err.response.data}`);
+      } else if (err.request) {
+        console.error('Error request:', err.request);
+        setError('Error: No response received from the server.');
+      } else {
+        console.error('Error message:', err.message);
+        setError(`Error: ${err.message}`);
+      }
+      console.error('Error config:', err.config);
+      setSuccess(false);
     }
-
-    axios.post('https://sheet.best/api/sheets/6fd36419-7088-48b0-b007-c46a7afded38',data).then((response) => {
-
-    console.log(response);
-    setFeedback('');
-    })
-  }
-  //   try {
-  //     // Assuming you have an API endpoint to submit the feedback
-  //     await fetch("https://sheet.best/api/sheets/6fd36419-7088-48b0-b007-c46a7afded38", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ feedback }),
-  //     });
-  //     console.log("Feedback submitted:", feedback);
-  //     setFeedback("");
-  //   } catch (error) {
-  //     console.error("Error submitting feedback:", error);
-  //   }
-
-  //   checkTokenAndNavigate();
-  // };
-
-  // const checkTokenAndNavigate = () => {
-  //   const token = Cookies.get("token");
-  //   if (!token) {
-  //     navigate("/login");
-  //   }
-  // };
+  };
 
   return (
     <div className="about-container">
@@ -138,6 +131,8 @@ const About = () => {
             Submit
           </button>
         </form>
+        {error && <p className="error-message">{error}</p>}
+        {success && <p className="success-message">Feedback submitted successfully!</p>}
       </div>
     </div>
   );

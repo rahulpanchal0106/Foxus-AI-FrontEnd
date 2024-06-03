@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import AnimatedTooltip from "../../components/ui/ToolTip";
 import "./About.css";
+import axios from "axios";
 
 const people = [
   {
@@ -45,31 +46,42 @@ const About = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(feedback);
 
-    try {
-      // Assuming you have an API endpoint to submit the feedback
-      await fetch("/api/submit-feedback", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ feedback }),
-      });
-      console.log("Feedback submitted:", feedback);
-      setFeedback("");
-    } catch (error) {
-      console.error("Error submitting feedback:", error);
+    const data = {
+      Feedback:feedback
     }
 
-    checkTokenAndNavigate();
-  };
+    axios.post('https://sheet.best/api/sheets/6fd36419-7088-48b0-b007-c46a7afded38',data).then((response) => {
 
-  const checkTokenAndNavigate = () => {
-    const token = Cookies.get("token");
-    if (!token) {
-      navigate("/login");
-    }
-  };
+    console.log(response);
+    setFeedback('');
+    })
+  }
+  //   try {
+  //     // Assuming you have an API endpoint to submit the feedback
+  //     await fetch("https://sheet.best/api/sheets/6fd36419-7088-48b0-b007-c46a7afded38", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ feedback }),
+  //     });
+  //     console.log("Feedback submitted:", feedback);
+  //     setFeedback("");
+  //   } catch (error) {
+  //     console.error("Error submitting feedback:", error);
+  //   }
+
+  //   checkTokenAndNavigate();
+  // };
+
+  // const checkTokenAndNavigate = () => {
+  //   const token = Cookies.get("token");
+  //   if (!token) {
+  //     navigate("/login");
+  //   }
+  // };
 
   return (
     <div className="about-container">

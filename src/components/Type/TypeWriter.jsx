@@ -1,3 +1,4 @@
+import React from 'react';
 import { TypewriterEffect, TypewriterEffectSmooth } from "../ui/typewriter/TypeWrite";
 import "./typewriter.css";
 
@@ -9,7 +10,7 @@ export default function TypewriterEffectDemo() {
     },
     {
       text: "whatever",
-      className: "text-orange-500 imp-txt dark:text-orange-500",
+      className: "text-orange-500 text-orange-500",
     },
     {
       text: "you",
@@ -19,9 +20,10 @@ export default function TypewriterEffectDemo() {
       text: "want,",
       className: "v",
     },
+   
     {
       text: "whenever",
-      className: "text-orange-500 dark:text-ornage-500 imp-txt",
+      className: "text-orange-500 imp-txt",
     },
     {
       text: "you",
@@ -32,10 +34,11 @@ export default function TypewriterEffectDemo() {
       className: "v",
     },
   ];
+
   return (
-    <div className="flex flex-col items-center justify-center h-[20rem] ">
-      <p className="mb-10 vt">
-        The journey to mastery begins here
+    <div className="flex flex-col items-center justify-center h-[20rem]">
+      <p className="text-highlight mb-10 vt text-2xl font-extrabold leading-10 tracking-tight sm:text-3xl sm:leading-none md:text-3xl dark:text-5xl">
+        The journey to <span className=" text-orange-500 ">mastery</span> begins here
       </p>
       <TypewriterEffectSmooth words={words} className="something" />
     </div>

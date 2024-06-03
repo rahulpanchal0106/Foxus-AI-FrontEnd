@@ -47,11 +47,17 @@ export const TypewriterEffect = ({
               ))}
               &nbsp;
             </div>
+            
           );
+         
         })}
       </motion.div>
+    
     );
+    
   };
+
+  
 
   return (
     <div
@@ -108,6 +114,7 @@ export const TypewriterEffectSmooth = ({
                   {char}
                 </span>
               ))}
+              
               &nbsp;
             </div>
           );
@@ -118,6 +125,7 @@ export const TypewriterEffectSmooth = ({
 
   return (
     <div className={cn("flex space-x-1 my-6", className)}>
+      
       <motion.div
         className="overflow-hidden pb-2"
         initial={{

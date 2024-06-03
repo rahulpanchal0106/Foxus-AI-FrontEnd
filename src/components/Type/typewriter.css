@@ -24,13 +24,11 @@
 .v {
     font-family: "Geist Variable";
 }
-.something
-{
+.something {
     /* font-family: "Forum", serif; */
     /* font-family: "Barlow", sans-serif; */
     font-family: "Caudex", serif;
-   
-
+    white-space: pre-line;
 }
 
 /* 
@@ -42,13 +40,15 @@
     .dark .vt{
         font-size:18px;
     }
+} */
 
+.dark .text-highlight{
+    font-size: 27px;
+}
+
+.something span {
+    display: inline-block;
+    margin-bottom: 0.25em; 
     
-  } */
-
-
-
-
-
-
-  
+   
+}

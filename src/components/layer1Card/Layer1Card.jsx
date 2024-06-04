@@ -25,7 +25,10 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
       // console.log(":::::::::::: ",selectedFromDB.layer0.layer1[index]?selectedFromDB.layer0.layer1[index].layer2:"NO LESSONS")
       
       // console.log("🟩🟩🟩 ",DBl1.DBl1.layer2 && DBl1.DBl1 && DBl1?DBl1.DBl1.layer2[index]:"")
-      if(DBl1.DBl1.layer2 && DBl1.DBl1 && DBl1) setDBl2(DBl1.DBl1.layer2[index])
+      if(DBl1.DBl1.layer2 && DBl1.DBl1 && DBl1) {
+        setDBl2(null)
+        setDBl2(DBl1.DBl1.layer2[index])
+      }
 
     }
   }, [DBl1]);

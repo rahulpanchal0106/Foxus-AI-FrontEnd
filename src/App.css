@@ -273,3 +273,29 @@ p{
   }
 }
 
+#reload_button{
+  /* bottom:0px;
+  position: relative;
+  z-index: 0; */
+
+  
+}
+#reload_button:first-child{
+  /* width: 70px;
+  position: relative;
+  z-index: 0; */
+
+
+  /* backdrop-filter: blur(10px);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  justify-content: center;
+  align-items: center;
+  position:relative;
+  left: 50%; */
+}

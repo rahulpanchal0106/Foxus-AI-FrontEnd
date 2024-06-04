@@ -55,7 +55,7 @@ const Layer0 = () => {
 
     try {
       const token = Cookies.getItem("token");
-      const response = await fetch("http://localhost:3000/layer0", {
+      const response = await fetch("https://ai-tutor-be.onrender.com/layer0", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

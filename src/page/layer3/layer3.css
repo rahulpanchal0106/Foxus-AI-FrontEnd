@@ -10,6 +10,8 @@
   max-height: 50vh;
   overflow: auto;
   font-family: "Caudex", serif;
+  padding-left: 70px;
+  padding-right: 70px;
 }
 .loading,
 .error {
@@ -103,11 +105,13 @@
 
 
 /* Responsive styles  */
-@media (max-width: 768px) {
+@media (max-width: 720px) {
   .layer3-container {
    
     margin: 10px;
     padding: 10px;
+    padding-left: 70px;
+    padding-right: 30px;
   }
 
   .lessonName {
@@ -115,9 +119,30 @@
   }
 }
 
+@media (max-width: 600px)  {
+  .layer3-container {
+   
+    margin: 10px;
+    padding: 10px;
+    padding-left: 70px;
+  }
+
+  .lessonName {
+    font-size: 20px;
+  }
+}
+
+
+
 @media (max-width: 480px) {
+
+  .layer3-container{
+    padding-left: 70px;
+    padding-right: 40px;
+  }
   .lessonName {
     font-size: 15px;
+
   }
 
   .data p {

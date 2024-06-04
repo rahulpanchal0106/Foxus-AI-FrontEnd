@@ -43,7 +43,7 @@ const Layer1 = ({
             <div className={styles.tableCell}><strong>Level Name:</strong> {levelName}</div>
           </div>
           <div className={styles.tableRow}>
-            <div className={styles.tableCell}><strong>Level Content:</strong> {levelContent}</div>
+            <div className={styles.tableCell}><strong className=' p-0'>Level Content:</strong> {levelContent}</div>
           </div>
           <div className={styles.tableRow}>
             <div className={styles.tableCell}><strong>Subject:</strong> {subject}</div>

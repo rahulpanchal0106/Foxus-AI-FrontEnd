@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useState, useRef, useContext, useEffect } from "react";
 import Layer2Card from "../../components/layer2Card/Layer2Card";
-import Cookies from 'js-cookies'
+import Cookies from 'js-cookies';
 import { toast } from 'react-toastify';
 import HashLoader from "react-spinners/HashLoader";
 import styles from "./layer2.module.css";
@@ -32,7 +32,7 @@ const Layer2 = ({
 
   if (loading) {
     return (
-      <div className={styles.loadingContainer} style={{ width: "100%" }}>
+      <div className={styles.loadingContainer}>
         <HashLoader color="#616A6B" />
       </div>
     );
@@ -47,7 +47,7 @@ const Layer2 = ({
 
   return (
     <MyContext.Provider value={{ DBl2 }}>
-      <div className={styles.container} style={{ width: '100%' }}>
+      <div className={styles.container}>
         <table className={styles.infoTable}>
           <tbody>
             <tr>
@@ -64,12 +64,11 @@ const Layer2 = ({
             </tr>
           </tbody>
         </table>
-        <h2>Lessons:</h2>
-        <ul className={`${styles.lessonList} ${styles.responsiveLessonList}`}>
+        <h2 className="font-extrabold">Lessons:</h2>
+        <ul className={styles.lessonList}>
           {data.map((lesson, index) => (
             <li key={index} className={styles.lessonListItem}>
               <Layer2Card
-                key={index}
                 lessonName={lesson.lessonName}
                 lessonContent={lesson.lessonContent}
                 chapter={chapter}

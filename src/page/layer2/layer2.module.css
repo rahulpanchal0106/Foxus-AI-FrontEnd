@@ -1,73 +1,74 @@
 .container {
   font-family: "Caudex", serif;
   z-index: 100;
-  
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .loadingContainer {
   display: flex;
   justify-content: center;
-  width: 100%;
   align-items: center;
   height: 100vh;
 }
 
-.infoTable{
+.infoTable {
   margin-left: 200px;
+  width: calc(100% - 200px);
 }
-.infoTable td{
+.infoTable td {
   padding: 15px;
 }
+
 .lessonList {
   margin-left: 100px;
-  margin-right: 50px; 
-}
-
-
-
-@media (max-width: 350px) {
-  .infoTable {
-    margin-left: 10px; 
-  }
-
-  .infoTable td {
-    padding: 10px; 
-  }
-
-  .lessonList {
-    margin-left: 10px; 
-    margin-right: 10px; 
-}
-
-@media (max-width: 480px) {
-  .infoTable {
-    margin-left: 20px; 
-  }
-
-  .infoTable td {
-    padding: 12px; 
-  }
-
-  .lessonList {
-    margin-left: 20px; 
-    margin-right: 20px; 
-  }
+  margin-right: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 @media (max-width: 720px) {
   .infoTable {
-    margin-left: 100px; 
-  }
-
-  .infoTable td {
-    padding: 15px; 
+    margin-left: 50px;
+    width: calc(100% - 50px);
   }
 
   .lessonList {
-    margin-left: 50px; 
-    margin-right: 50px; 
+    margin-left: 20px;
+    margin-right: 20px;
   }
 }
 
+@media (max-width: 480px) {
+  .infoTable {
+    margin-left: 20px;
+    width: calc(100% - 20px);
+  }
+
+  .infoTable td {
+    padding: 12px;
+  }
+
+  .lessonList {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
 
+@media (max-width: 350px) {
+  .infoTable {
+    margin-left: 3px;
+    width: calc(100% - 3px);
+  }
+
+  .infoTable td {
+    padding: 10px;
+  }
+
+  .lessonList {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}

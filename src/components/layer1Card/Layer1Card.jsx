@@ -4,10 +4,11 @@ import HashLoader from 'react-spinners/HashLoader';
 import Layer2 from "../../page/layer2/layer2";
 import { ThemeContext } from "../../context/ThemeContext";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
 import "./layer1Card.css"
 import Navbar from '../navbar/Navbar';
 import { MyContext } from '../../context/MyContext';
+
+
 const Layer1Card = ({ index, chapter, level, subject }) => {
   const { theme } = useContext(ThemeContext);
   const [showLayer2, setShowLayer2] = useState(false);
@@ -98,7 +99,7 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
           return;
         }}
       >
-        <p>{data?" 🔥":" ⭕"}</p>
+        <p >{data?" 🔥":" ⭕"}</p>
         {cleanChapterName(chapter)}
         
         {/*<div className={`layer1-card ${showLayer2 ? 'active' : ''}`} onClick={handleClick}>

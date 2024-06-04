@@ -5,6 +5,7 @@ import { NavLink,useNavigate } from "react-router-dom";
 import "./mix.css"; // Replace with your actual CSS file
 import Cookies from 'js-cookies';
 import { toast } from 'react-toastify';
+import { UserNameContext } from '../../context/usernameContext';
 
 const Login = () => {
     const [passShow, setPassShow] = useState(false);
@@ -88,9 +89,16 @@ const Login = () => {
 
         
     }
+    function handleClick(e){
+        logInuser(e);
+        Cookies.setItem('username',inpval.username,{expires:'5h'})
+    }
 
     return (
         <>
+        {/* <UserNameContext.Provider value={{inpval}}> */}
+
+        
             <section>
                 <div className='form_data'>
                     <div className='form_heading'>
@@ -111,7 +119,9 @@ const Login = () => {
                                 </div>
                             </div>
                         </div>
-                        <button className='btn' onClick= {logInuser}>
+                        <button className='btn' onClick= {
+                            handleClick
+                        }>
                             Login
                         </button>
 
@@ -132,6 +142,7 @@ const Login = () => {
                 
                 
             </section>
+            {/* </UserNameContext.Provider> */}
         </>
     )
 }

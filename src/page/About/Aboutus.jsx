@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import AnimatedTooltip from "../../components/ui/ToolTip";
 import "./About.css";
 import axios from "axios";
 import { toast } from 'react-toastify';
+import { UserNameContext } from "../../context/usernameContext";
+
 
 const people = [
   {
@@ -40,25 +42,30 @@ const people = [
 ];
 
 const About = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [feedback, setFeedback] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
+  // const {username} = useContext(UserNameContext);
+  const username = Cookies.get('username')
+  
+  console.log(username)
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log({ username, feedback });
 
     const data = {
       Username: username,
+      Email: email,
       Feedback: feedback
     };
 
     try {
       const response = await axios.post('https://sheet.best/api/sheets/6fd36419-7088-48b0-b007-c46a7afded38', data);
       console.log(response);
-      setUsername('');
+      setEmail('');
       setFeedback('');
       setError(null);
       setSuccess(true);
@@ -83,6 +90,8 @@ const About = () => {
     }
     
   };
+
+  
 
   return (
     <div className="about-container">
@@ -128,9 +137,9 @@ const About = () => {
           <input
             type="text"
             className="username-input"
-            placeholder="Enter your username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter your Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <textarea
             className="feedback-textarea"

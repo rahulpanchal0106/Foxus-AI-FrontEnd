@@ -23,8 +23,7 @@ const Layer1 = ({
       // setData(selectedFromDB.layer0.layer1[index]?selectedFromDB.layer0.layer1[index].response:null);
       // console.log("{{{{{{}}}}}} ",selectedFromDB.layer0.layer1[index]?selectedFromDB.layer0.layer1[index].response.chapters:"NO CHAPTERS")
       // console.log(":::::::::::: ",selectedFromDB.layer0.layer1[index]?selectedFromDB.layer0.layer1[index].layer2:"NO LESSONS")
-      console.log("🔥 ",DBl1)
-      console.log("🍎 ",data)
+
       if(DBl1.DBl1 ){
         setLFL1(null);
         // data=null;

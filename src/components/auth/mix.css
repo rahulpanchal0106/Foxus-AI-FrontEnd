@@ -209,3 +209,13 @@ form .btn:hover {
 input{
     color: black
 }
+
+
+.showpass {
+    color: #333; 
+  }
+  
+ 
+  body.dark-mode .showpass {
+    color: #fff; 
+  }

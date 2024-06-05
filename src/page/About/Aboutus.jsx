@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import AnimatedTooltip from "../../components/ui/ToolTip";
 import "./About.css";
 import axios from "axios";
 import { toast } from 'react-toastify';
+import { UserNameContext } from "../../context/usernameContext";
+
 
 const people = [
   {
@@ -40,25 +42,30 @@ const people = [
 ];
 
 const About = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [feedback, setFeedback] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
+  // const {username} = useContext(UserNameContext);
+  const username = Cookies.get('username')
+  
+  console.log(username)
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log({ username, feedback });
 
     const data = {
       Username: username,
+      Email: email,
       Feedback: feedback
     };
 
     try {
       const response = await axios.post('https://sheet.best/api/sheets/6fd36419-7088-48b0-b007-c46a7afded38', data);
       console.log(response);
-      setUsername('');
+      setEmail('');
       setFeedback('');
       setError(null);
       setSuccess(true);
@@ -84,21 +91,23 @@ const About = () => {
     
   };
 
+  
+
   return (
     <div className="about-container">
       <section className="about-content">
-        <h1>About Us</h1>
-        <h2>Welcome to AI Tutor</h2>
+        <h1 className=" font-extrabold">About Us</h1>
+        <h2 >Welcome to AI Tutor</h2>
         <p>
           At AI Tutor, our mission is to revolutionize the way you learn and explore new topics. We harness the power of artificial intelligence to create a personalized, engaging, and interactive educational experience.
         </p>
         
-        <h2>Our Vision</h2>
+        <h2 >Our Vision</h2>
         <p>
           We believe that everyone deserves access to high-quality education tailored to their individual needs and learning pace. AI Tutor is designed to provide just that by adapting to your skill level and offering a comprehensive learning journey.
         </p>
         
-        <h2>How It Works</h2>
+        <h2 >How It Works</h2>
         <ul>
           <li><strong>Search Anything You Want:</strong> Begin your educational journey by searching for any topic you're interested in. Our intelligent search function quickly finds the most relevant content for you.</li>
           <li><strong>Select Your Level:</strong> Whether you're a beginner, intermediate, or expert, our platform categorizes content to suit your level of understanding. Simply choose your level to get started.</li>
@@ -108,7 +117,7 @@ const About = () => {
           <li><strong>Ask Doubts:</strong> Have questions or need further clarification? Use our doubt resolution feature to get answers from our AI tutor.</li>
         </ul>
         
-        <h2>Features</h2>
+        <h2 >Features</h2>
         <ul>
           <li><strong>Personalized Learning Paths:</strong> Content tailored to your level of expertise.</li>
           <li><strong>In-Depth Explanations:</strong> Detailed chapters that cover topics thoroughly.</li>
@@ -118,7 +127,7 @@ const About = () => {
       </section>
 
       <div className="team-section">
-        <h2>Meet Our Team</h2>
+        <h2 className=" font-extrabold">Meet Our Team</h2>
         <AnimatedTooltip items={people} />
       </div>
 
@@ -128,9 +137,9 @@ const About = () => {
           <input
             type="text"
             className="username-input"
-            placeholder="Enter your username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter your Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <textarea
             className="feedback-textarea"

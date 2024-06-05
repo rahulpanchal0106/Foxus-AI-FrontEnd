@@ -1,7 +1,8 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
 import HashLoader from 'react-spinners/HashLoader';
 import Layer1Card from '../../components/layer1Card/Layer1Card';
 import styles from "./layer1.module.css";
+
 import { MyContext } from '../../context/MyContext';
 
 const Layer1 = ({
@@ -12,14 +13,22 @@ const Layer1 = ({
   loading
 }) => {
   const [error, setError] = useState(null);
-  const [lessonsFromL1, setLessonsFromL1] = useState(data);
+  const [lessonsFromL1, setLFL1] = useState(data);
   const DBl1 = useContext(MyContext);
-
+  const dataRef = useRef(null); 
   useEffect(() => {
-    if (DBl1 && DBl1.DBl1) {
-      console.log("🔥 ", DBl1);
-      if (DBl1.DBl1.prompt && DBl1.DBl1.prompt.levelContent === levelContent) {
-        setLessonsFromL1(DBl1);
+    DBl1.DBl1? console.log(DBl1.DBl1.prompt):""
+    setLFL1(null);
+    if (DBl1 ) {
+      // setData(selectedFromDB.layer0.layer1[index]?selectedFromDB.layer0.layer1[index].response:null);
+      // console.log("{{{{{{}}}}}} ",selectedFromDB.layer0.layer1[index]?selectedFromDB.layer0.layer1[index].response.chapters:"NO CHAPTERS")
+      // console.log(":::::::::::: ",selectedFromDB.layer0.layer1[index]?selectedFromDB.layer0.layer1[index].layer2:"NO LESSONS")
+
+      if(DBl1.DBl1 ){
+        setLFL1(null);
+        // data=null;
+        dataRef.current = null; 
+        setLFL1(DBl1.DBl1.prompt && DBl1.DBl1.prompt.levelContent==levelContent?DBl1:null);
       }
     }
   }, [DBl1]);

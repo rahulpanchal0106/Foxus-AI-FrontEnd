@@ -21,15 +21,21 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
 
   useEffect(() => {
     if (selectedFromDB && !data) {
-      setData(selectedFromDB.layer0.layer1[index]?selectedFromDB.layer0.layer1[index].response:null);
+      setData(null);
+      setDBl1(null)
+      // console.log("💀💀💀 ",selectedFromDB.layer0.layer1[index]?
+      //   selectedFromDB.layer0.layer1[index].prompt.levelContent:"No lavel\n",
+      //   levelContent
+      // )
+      setData(selectedFromDB.layer0.layer1[index] && selectedFromDB.layer0.layer1[index].prompt.levelContent === levelContent?selectedFromDB.layer0.layer1[index].response:null);
       // console.log("{{{{{{}}}}}} ",selectedFromDB.layer0.layer1[index]?selectedFromDB.layer0.layer1[index].response.chapters:"NO CHAPTERS")
       // console.log(":::::::::::: ",selectedFromDB.layer0.layer1[index]?selectedFromDB.layer0.layer1[index].layer2:"NO LESSONS")
       
-      
       setDBl1(selectedFromDB.layer0.layer1[index])
+      
 
     }
-  }, [selectedFromDB]);
+  }, [selectedFromDB,data]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -47,7 +53,10 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
             levelContent: levelContent, 
             subject: subject
           },
-        }),
+          index: index,
+          layer0_indecies: [],
+          layer1_indecies: []
+        }),   
       });
 
       const resultData = await response.json();
@@ -73,6 +82,8 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
   // };
   const handleClick = () => {
     setShowLayer1(!showLayer1);
+    
+    console.log("DBl1: ",DBl1)
     if (!data && !showLayer1 && !loading) {
       fetchData();
     }
@@ -82,6 +93,7 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
   }
   return (
     <MyContext.Provider value={{DBl1}}>
+    {/* <MyContextProvider> */}
     <div className="layer0-card-container">
       
       <div
@@ -104,7 +116,10 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
         <button id="close-chapters" className="arrow-button-one" style={{
           textAlign:"end",
           padding: "0px 15px",
-          fontSize:'1.3em'}} onClick={()=>setShowLayer1(!showLayer1)}>
+          fontSize:'1.3em'}} onClick={()=>{
+            setShowLayer1(!showLayer1)     
+            window.location.reload();     //SOLUTION TO THE STATE MERGE ISSUE 🤡
+          }}>
           <ArrowBackIcon fontSize="large" />
         </button>
         <Layer1

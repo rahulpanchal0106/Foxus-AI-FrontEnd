@@ -23,6 +23,7 @@ const Layer2Card = ({
   useEffect(()=>{
     if(DBl2 && !data && DBl2.DBl2){
       // console.log("🤡🤡🤡🤡🤡 ",lessonName ,DBl2.DBl2&& DBl2?DBl2.DBl2.layer3[0]:"")
+      setData(null)
       setData(DBl2.DBl2&&DBl2.DBl2.layer3[index]?DBl2.DBl2.layer3[index].response:null)
     }
   },[DBl2])
@@ -46,6 +47,7 @@ const Layer2Card = ({
             levelName: level,
             subject: subject,
           },
+          index: index
         }),
       });
 

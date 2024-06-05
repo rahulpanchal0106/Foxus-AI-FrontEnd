@@ -42,8 +42,12 @@
     }
 } */
 
+.text-highlight{
+    font-size: 30px ;
+}
+
 .dark .text-highlight{
-    font-size: 27px;
+    font-size: 30px;
 }
 
 .something span {
@@ -51,4 +55,13 @@
     margin-bottom: 0.25em; 
     
    
+}
+
+@media (max-width:480px) {
+    .text-highlight{
+        font-size: 25px;
+    }
+    .dark .text-highlight{
+        font-size: 25px;
+    }
 }

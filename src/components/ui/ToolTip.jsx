@@ -61,6 +61,7 @@ const AnimatedTooltip = ({ items }) => {
                 {item.name}
               </div>
               <div className="text-white text-xs">{item.designation}</div>
+              <div className="text-white text-xs">{item.designation1}</div>
             </motion.div>
           )}
           <a href={item.github}>

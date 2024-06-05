@@ -22,13 +22,10 @@ import RelativeDate from "./components/relative";
 import Layer0Card from "./components/layer0Card/Layer0Card";
 import { MyContext } from "./context/MyContext";
 import HashLoader from "react-spinners/HashLoader";
-import { ArrowCircleRight, ArrowCircleRightRounded, ArrowCircleRightTwoTone, ArrowRight, ArrowRightAlt, ArrowRightAltRounded, ArrowRightOutlined, JoinRightOutlined, RampRight, SwipeRight, TurnSlightRight } from "@mui/icons-material";
+import { ArrowCircleRight, ArrowCircleRightRounded, ArrowCircleRightTwoTone, ArrowRight, ArrowRightAlt, ArrowRightAltRounded, ArrowRightOutlined, Close, CoronavirusSharp, CropSquareSharp, Forward5Outlined, JoinRightOutlined, OpenInFull, RampRight, SwipeRight, TurnRight, TurnSlightRight, X } from "@mui/icons-material";
 import AutoScroll from "./components/AutoScroll";
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
-
-
+import AnimatedTooltip from "./components/ui/ToolTip";
+// import from '@mui/icons-material/RightErro';
 //acterenity testa
 //import Test from './components/test'
 
@@ -45,11 +42,14 @@ const App = () => {
   const [lastDate, setLastDate] = useState("");
   const [isLoading, setLoading] = useState(false)
   const [isOverflowing, setIsOverflowing] = useState(false)
-  const [isOpen, setIsOpen] = useState(true);
+  
   var prevDateIdx = 0;
 
 
   async function getActivity(){
+    trigger_page_refresh()
+    // setSelectedFromDB(null);
+    // setData(null)
     try{
       if(!activityVisible){
         toggleActivities(!activityVisible);
@@ -64,6 +64,7 @@ const App = () => {
           }
         }).catch((err)=>{
           console.error(err);
+          setLoading(false);
         })
         
 
@@ -76,6 +77,7 @@ const App = () => {
         // })
         setData(activity)
         setLoading(false);
+        trigger_page_refresh()
         console.log("### ",activity)
       }else{
         toggleActivities(!activityVisible);
@@ -89,6 +91,7 @@ const App = () => {
   }
 
   
+  
   useEffect(()=>{
     const checkCookie=()=> Cookies.getItem("token")?setLogIn(true):setLogIn(false)
     checkCookie()
@@ -97,12 +100,34 @@ const App = () => {
   function getLayer1(){
     toggleLayer1v(!layer1v);
   }
+  
+  const logState = () => {
+    console.log("SelectedFromDB: ", selectedFromDB);
+    console.log("Data: ", data);
+    console.log("IsLoggedIn: ", isLoggedIn);
+    console.log("ActivityVisible: ", activityVisible);
+    console.log("ShowLayer0: ", showLayer0);
+    console.log("Layer1v: ", layer1v);
+    console.log("Layer0v: ", layer0v);
+    console.log("IsLoading: ", isLoading);
+    console.log("IsOverflowing: ", isOverflowing);
+    console.log("LastDate: ", lastDate);
+  };
+  
+  
   function getLayer0(sd){
+    logState()
     // setShowLayer0(!showLayer0);
     toggleActivities(!activityVisible)
     console.log("sb ",sd)
+    
+    setSelectedFromDB(null);
+    
+    setData(null)
+    setSelectedFromDB(null);
     setSelectedFromDB(sd)
-    toggleLayer0v(!layer0v);
+
+    // toggleLayer0v(!layer0v);
   }
   function getCurrentDateString(){
     const date = new Date();
@@ -115,6 +140,12 @@ const App = () => {
 
     return `${dd}-${mm}-${yy} ${hh}:${min}:${ss}`
   }
+
+  function trigger_page_refresh(){
+    // window.location.reload();
+    setSelectedFromDB(null);
+    
+  }
   
   function checkOverflow(chunk){
     const promptElement = document.getElementById(`prompt-${chunk.time}`);
@@ -125,55 +156,83 @@ const App = () => {
       setIsOverflowing(promptElement.offsetWidth >= containerElement.offsetWidth);
     }
   }
- 
 
-  
-
+  function screenWidth(){
+    const screenw=window.screen.width;
+    console.log(screenw)
+    return screenw     
+  }
   return (
     <Router>
       <ThemeContextProvider>
         <ThemeProvider>
+        {/* <MyContext.Provider value={{ selectedFromDB, setSelectedFromDB }}> */}
         <MyContext.Provider value={{ selectedFromDB, setSelectedFromDB }}>
           <div className='main'>
             <div className='gradient' />
           </div>
 
-         
-          <div className="container app">
-            <Navbar />
-
-           
-            <div id="sidebar-container" style={{
-              padding:activityVisible?'15px':'2px',
-              
+          <div className="container app" id="app" style={{
+            overflow: activityVisible?'hidden':'auto'
+          }} >
+          <div id="sidebar-container" style={{
+              padding:activityVisible && !isLoading?'0px 0px 0px 0px':'2px',
+              width:activityVisible && !isLoading ?
+              'auto'
+              :'0px',
+              // position: activityVisible? 'sticky': 'absolute'
             }}>
               <button id="sb-button" style={{
-                right: activityVisible?"-50%":"0px"
-              }} onClick={()=>getActivity()}>{activityVisible? <ArrowBackIcon />: <ArrowForwardIcon />}</button> {/* a hover triggered animated icon icons */}
+                right: activityVisible && !isLoading?"-50%":"0px",
+                marginLeft: activityVisible&& !isLoading?'0px':'40px',
+                marginRight: activityVisible&& !isLoading && window.screen.width<=600?'40px':'0px',
+              }} onClick={()=>getActivity()}>{
+                isLoading ?
+                <div style={{marginLeft: '3px'}} className="spinner" />:
+                activityVisible? 
+                <Close/> :
+                <ArrowRight/> }</button> {/* a hover triggered animated icon icons */}
+              
               
               <div id="sb-content" style={{
-                borderWidth:activityVisible?'1px':'1px',
-                padding:activityVisible?'15px':'0px',
-                width:activityVisible?'auto':'2px',
+                borderWidth:activityVisible && !isLoading?'1px':'0px',
+                padding:activityVisible&& !isLoading?'15px':'0px',
+                width:activityVisible && !isLoading?
+                window.screen.width<=600?'100vw':'auto'
+                :'0px',
+                // boxShadow:activityVisible && !isLoading?
+                // window.screen.width<=600?'70vw':'auto'
+                // :'0px',
                 
               }}>
-                
+                <div id="reload_button">
+                <AnimatedTooltip  items={[
+                  {
+                  id:1,
+                  name:"Clear State",
+                  designation:"Reload for",
+                  designation1:"accurate history",
+                  image: "./loop.png",
+                  github:window.location
+                  }
+                ]}/>
+              </div>
                 <div id="sb-content-in">
                 { 
                   //reuse the layercard components to browse the whole history
                   
                   
-                  isLoading ?
-                  <div id="activity-layer0" style={{padding: '300% 10px'}}>
-                    <HashLoader color="gray"/>
-                  </div>:
+                  
                   data&&activityVisible&&isLoggedIn?data.map((chunk,i)=>{
                     
                     if(chunk.layer0){
                       
                       return (
                         <>
-                          <div id="activity-buttons" onClick={()=>getLayer0(chunk)} style={{cursor:"pointer"}}>
+                          <div id="activity-buttons" onClick={()=>{
+                            getLayer0(chunk);
+                            setSelectedFromDB(chunk);
+                          }} style={{cursor:"pointer"}}>
                           <div id="activity-layer0" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                             {/* <div className="scroll-container">
                               
@@ -278,7 +337,7 @@ const App = () => {
                       
                     }
 
-                    <AutoScroll chunk={chunk} />
+                    // <AutoScroll chunk={chunk} />
                   }):<div className="vertical-text">Need to login :(</div> 
                 }
                 {
@@ -286,7 +345,7 @@ const App = () => {
                   <div id="activity-login" >
                     Today
                   </div>:
-                  ""
+                  null
                 }
                 </div>
                 
@@ -294,25 +353,34 @@ const App = () => {
               </div>
             </div>
             
-            <Routes>
-              {/* <Route path="/" element={<Home />} /> */}
-              <Route path="/" element={<Layer0  />} />
-              <Route path="/layer1" element={<Layer1 />} />{" "}
-              {/* Add route for Layer1 */}
-              <Route path="/layer2" element={<Layer2 />} />{" "}
-              {/* <Route path="/layer3" element={<Layer3 />} />{" "} */}
 
-              {/* add routh for login  */}
+            <div id="main-content">
 
-              <Route path="/login" element={<Login />} />{" "}
-
-              {/* add routh for signup */}
+              <Navbar />
               
-              <Route path="/register" element={<Register />} />{" "}
-              <Route path="/about" element={<About />} />{" "}
+              
+              <Routes>
+                {/* <Route path="/" element={<Home />} /> */}
+                <Route path="/" element={<Layer0  />} />
+                <Route path="/layer1" element={<Layer1 />} />{" "}
+                {/* Add route for Layer1 */}
+                <Route path="/layer2" element={<Layer2 />} />{" "}
+                {/* <Route path="/layer3" element={<Layer3 />} />{" "} */}
 
-            </Routes>
-            {/* <Test/> */}
+                {/* add routh for login  */}
+
+                <Route path="/login" element={<Login />} />{" "}
+
+                {/* add routh for signup */}
+                
+                <Route path="/register" element={<Register />} />{" "}
+                <Route path="/about" element={<About />} />{" "}
+
+              </Routes>
+              {/* <Test/> */}
+
+            </div>
+            
           </div>
           </MyContext.Provider>
         </ThemeProvider>

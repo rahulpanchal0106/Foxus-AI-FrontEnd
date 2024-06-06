@@ -46,7 +46,7 @@ const Layer1 = ({
 
   return (
     <MyContext.Provider value={{ DBl1 }}>
-      <div className={styles.layer1Container}>
+      <div className={styles.layer1Container} style={{width: "100%"}}>
         {/* <div className={styles.levelInfo}> */}
           {/* <div className={styles.tableRow}>
             <div className={styles.tableCell}><strong>Level Name:</strong> {levelName}</div>

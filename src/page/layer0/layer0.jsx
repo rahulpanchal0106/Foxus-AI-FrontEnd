@@ -132,13 +132,15 @@ const Layer0 = () => {
         // }}
       >
         {loading ? (
-          <div className="loader-threedot"></div>
+          // <div className="loader-threedot"></div>
+          <img src="/search.gif"  alt="" className={styles.icon} />
         ) : (
           // <img src="/search.png" alt="" className={styles.icon} />
           <img src="/search.png"  alt="" className={styles.icon} />
+          
         )}
         
-          <div style={{display:loading?'flex':'flex'}} className="loader-threedot" ></div>
+        <div style={{display:loading?'flex':'none', position:'absolute'}} className={styles.loaderThreedot}></div>
         
       </button>
       

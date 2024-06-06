@@ -48,8 +48,8 @@
 
 
 /* HTML: <div class="loader"></div> */
-.loader-threedot {
-    height: 15px;
+.loaderThreedot {
+    height: 3px;
     aspect-ratio: 5;
     --_g:no-repeat radial-gradient(farthest-side,#000 94%,#0000);
     background: var(--_g),var(--_g),var(--_g),var(--_g);

@@ -8,13 +8,13 @@
 }
 
 .vt{
-    font-size: 18px;
+    
     font-family: 'Geist Variable';
 }
 
 .dark .vt {
     color: white;
-    font-size: 18px;
+
     font-family: 'Geist Variable';
 }
 .light .v {
@@ -63,8 +63,5 @@
     }
     .dark .text-highlight{
         font-size: 25px;
-    }
-    .vt{
-        font-size: 15px;
     }
 }

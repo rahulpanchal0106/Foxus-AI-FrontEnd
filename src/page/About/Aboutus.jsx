@@ -96,18 +96,18 @@ const About = () => {
   return (
     <div className="about-container">
       <section className="about-content">
-        <h1>About Us</h1>
-        <h2>Welcome to AI Tutor</h2>
+        <h1 className=" font-extrabold">About Us</h1>
+        <h2 >Welcome to AI Tutor</h2>
         <p>
           At AI Tutor, our mission is to revolutionize the way you learn and explore new topics. We harness the power of artificial intelligence to create a personalized, engaging, and interactive educational experience.
         </p>
         
-        <h2>Our Vision</h2>
+        <h2 >Our Vision</h2>
         <p>
           We believe that everyone deserves access to high-quality education tailored to their individual needs and learning pace. AI Tutor is designed to provide just that by adapting to your skill level and offering a comprehensive learning journey.
         </p>
         
-        <h2>How It Works</h2>
+        <h2 >How It Works</h2>
         <ul>
           <li><strong>Search Anything You Want:</strong> Begin your educational journey by searching for any topic you're interested in. Our intelligent search function quickly finds the most relevant content for you.</li>
           <li><strong>Select Your Level:</strong> Whether you're a beginner, intermediate, or expert, our platform categorizes content to suit your level of understanding. Simply choose your level to get started.</li>
@@ -117,7 +117,7 @@ const About = () => {
           <li><strong>Ask Doubts:</strong> Have questions or need further clarification? Use our doubt resolution feature to get answers from our AI tutor.</li>
         </ul>
         
-        <h2>Features</h2>
+        <h2 >Features</h2>
         <ul>
           <li><strong>Personalized Learning Paths:</strong> Content tailored to your level of expertise.</li>
           <li><strong>In-Depth Explanations:</strong> Detailed chapters that cover topics thoroughly.</li>
@@ -127,7 +127,7 @@ const About = () => {
       </section>
 
       <div className="team-section">
-        <h2>Meet Our Team</h2>
+        <h2 className=" font-extrabold">Meet Our Team</h2>
         <AnimatedTooltip items={people} />
       </div>
 

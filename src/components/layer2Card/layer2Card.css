@@ -144,3 +144,10 @@ code{
   padding: 5px;
   border-radius: 3px;
 }
+
+@media (max-width: 480px) {
+ .layer-container{
+  width: 370px;
+ }
+  
+}

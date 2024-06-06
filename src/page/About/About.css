@@ -3,38 +3,95 @@
   width: 100%;
   padding: 10px;
   min-height: calc(100vh - 80px);
-  /* font-family: Arial, sans-serif; */
 }
 
 .about-content {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 0 15px -10px #2d3748;
+  box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.2);
 }
 
-.about-content h1, .about-content h2 {
+.about-content h1 {
   color: #1a365d;
   text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: 700;
+  position: relative;
+}
+.about-content h2{
+  color: #1a365d;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  position: relative;
+}
+
+.about-content h1::after, .about-content h2::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #1a365d;
+  margin: 10px auto 0;
 }
 
 .about-content p, .about-content ul {
   color: #333;
-  line-height: 1.6;
+  line-height: 1.8;
   margin-bottom: 20px;
+  font-size: 1.1rem;
 }
 
 .about-content ul {
   padding-left: 20px;
 }
 
-.about-content li{
-    text-align: left;
-    list-style: inside;
+.about-content li {
+  text-align: left;
+  list-style: inside;
+  margin-bottom: 10px;
 }
 
+/* Animation */
+.about-content h2, .about-content p, .about-content ul {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.about-content h2:nth-of-type(1),
+.about-content p:nth-of-type(1) {
+  animation-delay: 0.3s;
+}
+
+.about-content h2:nth-of-type(2),
+.about-content p:nth-of-type(2) {
+  animation-delay: 0.6s;
+}
+
+.about-content h2:nth-of-type(3),
+.about-content ul:nth-of-type(1) {
+  animation-delay: 0.9s;
+}
+
+.about-content h2:nth-of-type(4),
+.about-content ul:nth-of-type(2) {
+  animation-delay: 1.2s;
+}
+
+/* Feedback form */
 .feedback-form-container {
   max-width: 550px;
   margin: 25px auto;
@@ -109,15 +166,16 @@
   .feedback-form-container {
     max-width: 90%;
   }
-  
+
   .feedback-title {
     font-size: 1.5rem;
   }
-  
+
   .feedback-textarea {
     font-size: 0.9rem;
   }
-  .username-input{
+
+  .username-input {
     font-size: 0.9rem;
   }
 
@@ -141,7 +199,7 @@
     font-size: 0.8rem;
   }
 
-  .username-input{
+  .username-input {
     font-size: 0.8rem;
   }
 
@@ -183,8 +241,6 @@
   font-size: 16px;
 }
 
-
-
 .username-input {
   margin-bottom: 10px;
   padding: 10px;
@@ -193,7 +249,6 @@
   border-radius: 5px;
   width: 100%;
 }
-
 
 .username-input:focus {
   outline: none;

@@ -37,7 +37,7 @@ export default function TypewriterEffectDemo() {
 
   return (
     <div className="flex flex-col items-center justify-center h-[20rem]">
-      <p className="text-highlight mb-10 vt text-2xl font-extrabold leading-10 tracking-tight sm:text-3xl sm:leading-none md:text-3xl dark:text-5xl">
+      <p className="text-highlight mb-10 vt font-extrabold leading-10 tracking-tight ">
         The journey to <span className=" text-orange-500 ">mastery</span> begins here
       </p>
       <TypewriterEffectSmooth words={words} className="something" />

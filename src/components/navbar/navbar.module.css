@@ -11,6 +11,7 @@
     z-index: 40;
     padding: 10px;
     margin-bottom: 10px;
+   
     /* position: sticky;
     top: 0px;
     /*backdrop-filter: blur(10px); */
@@ -73,14 +74,12 @@
 }
 
 @media (max-width: 768px) {
-    .container {        
+    .container {
+        /* flex-wrap: wrap; */
         justify-content: center;
-        /* padding: 0px 50px 10px 50px; Adjust padding as needed */
-        /* height: 160px; */
-    }
-
-    .container a{
-        font-size: 1.5em;
+        padding: 0px 50px 10px 50px; /* Adjust padding as needed */
+        height: 160px;
+        flex-direction: row;
     }
 
     .logo {
@@ -96,5 +95,4 @@
         margin-top: 10px; /* Adjust margin as needed */
     }
 }
-
 

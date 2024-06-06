@@ -188,6 +188,7 @@ const App = () => {
                 right: activityVisible && !isLoading?"-50%":"0px",
                 marginLeft: activityVisible&& !isLoading?'0px':'40px',
                 marginRight: activityVisible&& !isLoading && window.screen.width<=600?'40px':'0px',
+                opacity: 0.5
               }} onClick={()=>getActivity()}>{
                 isLoading ?
                 <div style={{marginLeft: '3px'}} className="spinner" />:

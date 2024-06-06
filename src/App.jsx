@@ -459,6 +459,7 @@ const App = () => {
                 borderTop: "1px solid #f5c6cb",
                 borderRadius: "5px",
               }}
+              className="lg:hidden"
             >
               *For a better experience, please switch to desktop mode.
             </div>

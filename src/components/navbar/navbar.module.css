@@ -93,7 +93,12 @@
         flex-basis: 100%;
         justify-content: center;
         margin-right: 0;
-        margin-top: 10px; /* Adjust margin as needed */
+        /* margin-top: 10px; Adjust margin as needed */
     }
 }
-
+@media (max-width: 487px)
+{
+    .logo{
+        font-size: 20px;
+    }
+}

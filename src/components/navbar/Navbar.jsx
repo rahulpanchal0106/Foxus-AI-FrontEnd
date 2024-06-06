@@ -45,7 +45,7 @@ export const Navbar = () => {
       <Link to="/" className={styles.logo}>
         <div style={{
           color:'var(--color)'
-        }} >AI Learner</div>
+        }}>AI Learner</div>
       </Link>
       <div className={styles.links}>
         <ThemeToggle className="" />
@@ -63,7 +63,7 @@ export const Navbar = () => {
       {isLoggedIn && (
         <div className="pt-2">
           <div className="relative">
-            <div onClick={() => setOpen(!open)} className="cursor-pointer object-cover rounded-full mb-4">
+            <div onClick={() => setOpen(!open)} className="cursor-pointer object-cover rounded-full mb-4 lg:mr-10">
               <AccountCircleIcon fontSize="large" />
             </div>
             {open && (

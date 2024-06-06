@@ -3,15 +3,19 @@
 
 .layer3-container {
   margin: 0px 30px 30px 30px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #808080;
+  border-radius:1rem;
   text-align: justify;
   max-height: 50vh;
   overflow: auto;
   font-family: "Caudex", serif;
-  padding-left: 70px;
-  padding-right: 70px;
+}
+.dark .layer3-container{
+  background: #18181b;
+}
+.light .layer3-container{
+  background: white;
 }
 .loading,
 .error {
@@ -38,10 +42,13 @@
 .lessonName
 {
   display: flex;
+  padding: 10px;
   justify-content: center;
   align-items: center;
-  font-size: 30px;
+  font-size: 1.4em;
   font-family: "Caudex", serif;
+  text-align: center;
+  /* margin-right: 15px; */
 }
 
 /* CSS for button */
@@ -56,7 +63,7 @@
 
 .button-container button {
   padding: 10px 20px;
-  background-color: #0b0b0c; /* Blue background */
+  background-color: #309ef3; /* Blue background */
   color: #fff; /* White text */
   border: none;
   border-radius: 5px;
@@ -109,27 +116,27 @@
   .layer3-container {
    
     margin: 10px;
-    padding: 10px;
-    padding-left: 70px;
-    padding-right: 30px;
+    /* padding: 10px; */
+    /* padding-left: 70px;
+    padding-right: 30px; */
   }
 
-  .lessonName {
+  /* .lessonName {
     font-size: 24px;
-  }
+  } */
 }
 
 @media (max-width: 600px)  {
   .layer3-container {
    
     margin: 10px;
-    padding: 10px;
-    padding-left: 70px;
+    /* padding: 10px;
+    padding-left: 70px; */
   }
 
-  .lessonName {
+  /* .lessonName {
     font-size: 20px;
-  }
+  } */
 }
 
 
@@ -137,13 +144,13 @@
 @media (max-width: 480px) {
 
   .layer3-container{
-    padding-left: 70px;
-    padding-right: 40px;
+    /* padding-left: 70px;
+    padding-right: 40px; */
   }
-  .lessonName {
+  /* .lessonName {
     font-size: 15px;
 
-  }
+  } */
 
   .data p {
     font-size: 10px;
@@ -159,6 +166,11 @@
 .layer3-resp li{
   padding: 5px;
   list-style:disc;
+}
+
+.layer3-resp{
+  padding: 10px;
+  width: 100%;
 }
 
 pre pre{

@@ -97,7 +97,7 @@ const About = () => {
     <div className="about-container">
       <section className="about-content">
         <h1 className=" font-extrabold">About Us</h1>
-        <h2 >Welcome to AI Tutor</h2>
+        {/* <h2 >Welcome to AI Tutor</h2> */}
         <p>
           At AI Tutor, our mission is to revolutionize the way you learn and explore new topics. We harness the power of artificial intelligence to create a personalized, engaging, and interactive educational experience.
         </p>
@@ -137,7 +137,7 @@ const About = () => {
           <input
             type="text"
             className="username-input"
-            placeholder="Enter your Email"
+            placeholder="Enter your Email "
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -146,6 +146,7 @@ const About = () => {
             rows="4"
             placeholder="Write your feedback here..."
             value={feedback}
+            required
             onChange={(e) => setFeedback(e.target.value)}
           ></textarea>
           <button

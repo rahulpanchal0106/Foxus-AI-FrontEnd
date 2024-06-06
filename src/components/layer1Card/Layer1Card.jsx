@@ -7,6 +7,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import "./layer1Card.css"
 import Navbar from '../navbar/Navbar';
 import { MyContext } from '../../context/MyContext';
+import CheckCircle from '@mui/icons-material/CheckCircle';
 
 
 const Layer1Card = ({ index, chapter, level, subject }) => {
@@ -105,8 +106,15 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
           return;
         }}
       >
-        <p >{data?" 🔥":" ⭕"}</p>
-        {cleanChapterName(chapter)}
+        <div className="chapter-name">
+          <div className="notiglow"></div>
+          <div className="notiborderglow"></div>
+          <p>
+            {cleanChapterName(chapter)}
+          </p>
+          {data?<CheckCircle/>:" "}
+        </div>
+
         
         {/*<div className={`layer1-card ${showLayer2 ? 'active' : ''}`} onClick={handleClick}>
           

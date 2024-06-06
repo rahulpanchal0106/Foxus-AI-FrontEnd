@@ -4,13 +4,16 @@
   flex-wrap: wrap;
   justify-content: space-around;
   font-family: 'Geist Variable';
+
+  
+
 }
 #chapters-container:first-child{
   z-index: 0;
 }
 
 .layer0-card {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc;
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -19,8 +22,123 @@
   flex: 0 0 calc(33.33% - 20px);
   max-width: calc(33.33% - 20px);
   margin-right: 20px;
-  text-align: center;
+  text-align: center; */
+
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  position: relative;
+  width: 18rem;
+  height: auto;
+  background: #29292c;
+  border-radius: 1rem;
+  overflow: hidden;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  --gradient: linear-gradient(to bottom, #2eadff, #3d83ff, #7e61ff);
+  --color: #32a6ff;
+  margin-bottom: 10px;
+  align-items: flex-start;
+  text-align: left;
+  padding: 10px;
 }
+
+
+.layer0-card::before{
+  position: absolute;
+    content: "";
+    inset: 0.0625rem;
+    border-radius: 0.9375rem;
+    background: #18181b;
+    
+}
+
+.light .layer0-card:before{
+  background: #e3e3ed;
+}
+.light .layer0-card{
+  background: #e3e3ed;
+}
+
+.layer0-card:after {
+  position: absolute;
+  content: "";
+  width: 0.25rem;
+  inset: 0.65rem auto 0.65rem 0.5rem;
+  border-radius: 0.125rem;
+  background: var(--gradient);
+  transition: transform 300ms ease;
+  
+}
+.layer0-card:hover:after {
+  transform: translateX(0.15rem)
+}
+.level-name {
+  color: var(--color);
+  padding: 0.65rem 0.25rem 0.4rem 1.25rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: transform 300ms ease;
+  z-index: 5;
+}
+.layer0-card:hover .level-name {
+  transform: translateX(0.15rem)
+}
+
+.level-content {
+  color: #99999d;
+  padding: 0 1.25rem;
+  transition: transform 300ms ease;
+  z-index: 5;
+}
+
+.layer0-card:hover .level-content {
+  transform: translateX(0.25rem)
+}
+
+.notiglow,
+.notiborderglow {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle closest-side at center, white, transparent);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.notiglow {
+  z-index: 3;
+}
+
+.notiborderglow {
+  z-index: 1;
+}
+
+.layer0-card:hover .notiglow {
+  opacity: 0.1
+}
+
+.layer0-card:hover .notiborderglow {
+  opacity: 0.1
+}
+
+.note {
+  color: var(--color);
+  
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 0.9rem;
+  width: 75%;
+}
+
+
+
+
+
 
 #chapters-container{
   position: fixed;
@@ -31,6 +149,7 @@
   height: 100vh;
   width: 100%;
   border-radius: 7px;
+  z-index: 10;
 }
 .dark #chapters-container{
   background-color: #0f172a;
@@ -56,12 +175,12 @@
 
 .layer0-card:hover {
   /* from app.css root */
-  background-color: var(--light-bg-hover);
+  /* background-color: var(--light-bg-hover); */
 }
 
 
 .dark .layer0-card:hover {
-  background-color: var(--dark-bg-hover);
+  /* background-color: var(--dark-bg-hover); */
   color: #000;
 }
 
@@ -140,6 +259,7 @@
 }
 
 
+
 /* backward arrow animation  */
 
 .arrow-button-one:hover{
@@ -159,3 +279,11 @@
     transform: translateX(0);
   }
 }
+
+
+
+
+
+
+
+

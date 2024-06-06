@@ -4,6 +4,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Caudex&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
 
+
+/*    #32a6ff   
+Use it as a primary color */
+
+
+
 :root{
   --bg:white;
   --textColor:black;
@@ -81,6 +87,11 @@ p{
 
 .card {
   padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: baseline;
+  align-items: center;
 }
 
 .read-the-docs {
@@ -157,7 +168,7 @@ p{
   transition: all 0.7s;
   position: sticky;
   z-index: 0;
-  height: 105vh;
+  height: 100vh;
 }
 
 .dark #sb-content{
@@ -174,10 +185,11 @@ p{
   overflow: auto;
   display: flex;
   flex-direction: column;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   border: 1px whitesmoke solid;
   border-top: none;
   border-bottom: none;
+  border-left: none;
   scroll-behavior: smooth;
   
   top: 0px;
@@ -214,10 +226,11 @@ p{
 }
 
 #activity-login{
-  padding: 5px 15px;
+  padding: 2px 15px;
+  color:#309ef3;
   font-weight: 600;
-  border-bottom: 1px gray solid;
-  border-top: 1px rgba(128, 128, 128, 0.151) solid;
+  /* border-bottom: 1px gray solid; */
+  /* border-top: 1px rgba(128, 128, 128, 0.151) solid; */
   border-radius: 1.5em;
   margin: 5px 10px;
   transition: all 0.7s;
@@ -225,7 +238,7 @@ p{
 #activity-buttons{
   
   border-radius: 1.5em;
-  padding: 5px 15px;
+  padding: 0px 15px;
   margin-bottom: 5px;
   max-width: 300px;
 }

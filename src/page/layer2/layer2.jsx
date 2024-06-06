@@ -9,6 +9,7 @@ import Navbar from "../../components/navbar/Navbar";
 import { MyContext } from "../../context/MyContext";
 import { stepLabelClasses } from "@mui/material";
 
+import "./layer2.module.css"
 const Layer2 = ({
   chapter,
   level,
@@ -48,7 +49,7 @@ const Layer2 = ({
   return (
     <MyContext.Provider value={{ DBl2 }}>
       <div className={styles.container}>
-        <table className={styles.infoTable}>
+        {/* <table className={styles.infoTable}>
           <tbody>
             <tr>
               <td><strong>Chapter:</strong></td>
@@ -63,8 +64,46 @@ const Layer2 = ({
               <td>{subject}</td>
             </tr>
           </tbody>
-        </table>
-        <h2 className="font-extrabold">Lessons:</h2>
+        </table> */}
+
+        <div id="info-parent" style={{
+          width: "100%",
+          // height: "20vh",
+          // background: "var(--bg-dark)",
+          // background: "linear-gradient(344deg, rgba(40,40,55,1) 0%, rgba(16,16,18,1) 50%)",
+          // boxShadow: "4px 6px 14px #00000036",
+          borderRadius: "7px",
+          // color: "#F9F9F9",
+          // padding: "16px",
+          // transition: "all .3s",
+          display:'flex',
+          flexDirection: window.screen.width<550?'column':'row',
+          // flexDirection:'column',
+          justifyContent:'space-evenly',
+          alignItems:'flex-start'
+        }}  className="flex">
+          {/* <div className="notiglow"></div>
+          <div className="notiborderglow"></div> */}
+          <div className="info" style={{
+            display:'flex',
+            flexDirection:'column',
+            marginBottom: '10px'
+          }}  >
+            <p style={{color:"#309ef3"  ,fontWeight:'light',padding:'0px', fontSize:'0.8em',width:"100%", textAlign:'left'}} >Chapter</p>
+            {cleanName(chapter)}
+          </div>
+          <div className="info" style={{ overflow:'auto',marginBottom: '10px' }} >
+          <p style={{color:"#309ef3" ,fontWeight:'light',padding:'0px', fontSize:'0.8em',width:"100%", textAlign:'left'}} >Level</p>
+            {cleanName(level)}
+          </div>
+          <div className="info" style={{  overflow:'auto' }} >
+          <p style={{color:"#309ef3" ,fontWeight:'light',padding:'0px', fontSize:'0.8em',width:"100%", textAlign:'left'}} >Subject</p>
+            {subject}
+          </div>
+        </div>
+
+
+        {/* <h2 className="font-extrabold">Lessons:</h2> */}
         <ul className={styles.lessonList}>
           {data.map((lesson, index) => (
             <li key={index} className={styles.lessonListItem}>

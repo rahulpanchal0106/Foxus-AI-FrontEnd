@@ -29,6 +29,42 @@
   gap: 5px;
 }
 
+#info-parent {
+  width: 190px;
+  height: 254px;
+  background: rgb(40,40,55);
+  background: linear-gradient(344deg, rgba(40,40,55,1) 0%, rgba(16,16,18,1) 50%);
+  box-shadow: 4px 6px 14px #00000036;
+  border-radius: 3px;
+  color: #F9F9F9;
+  padding: 16px;
+  transition: all .3s;
+ }
+ .info{
+  background-color: red;
+ }
+ 
+.notiglow,
+.notiborderglow {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle closest-side at center, white, transparent);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.notiglow {
+  z-index: 3;
+}
+
+.notiborderglow {
+  z-index: 1;
+}
+
+
+
 @media (max-width: 720px) {
   .infoTable {
     margin-left: 50px;
@@ -54,6 +90,7 @@
   .lessonList {
     margin-left: 10px;
     margin-right: 10px;
+    padding: 10px 0px;
   }
 }
 

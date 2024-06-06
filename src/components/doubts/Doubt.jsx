@@ -92,7 +92,7 @@ const Doubt = ({ lessonName, chapter, subject, lessonExplaination }) => {
     },
   };
   return (
-    <div className="container" style={{ background: theme === 'light' ? 'white' : '#10172a' }}>
+    <div className="container" style={{ background: theme === 'light' ? 'white' : '#18181b' }}>
       
       <div className="input-container">
         <input

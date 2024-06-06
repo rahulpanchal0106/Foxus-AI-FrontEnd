@@ -293,16 +293,22 @@ const Layer3 = ({
         position: 'fixed',
         width: '100%',
         height: '100vh',
-        padding: 'inherit',
+        padding: '0px 25px',
         left: '0px',
         overflow: 'auto',
-        background: theme === 'light'?'white' : '#10172a',
+        background: theme === 'light'?'white' : '#18181b',
       } : {}}>
-        <div className="layer3info">
-          <h2 className="lessonName">{lessonName}</h2>
+        <div className="layer3info" style={{
+          display:"flex",
+          flexDirection:"row",
+          justifyContent:"space-between",
+          padding: "0px 5px"
+        }}>
+          <p> </p>
+          <h2 className="lessonName" style={{color:"#309ef3"}} >{lessonName}</h2>
           {/* <div className="actions"> */}
-            <button onClick={handleFullScreenMode} >
-              <FullscreenIcon className="fullscreen-icon" fontSize="large" />
+            <button onClick={handleFullScreenMode} style={{color: 'gray', marginLeft: "10px"}}>
+              {fullScreen?<FullscreenExitIcon className="fullscreen-icon" />:<FullscreenIcon className="fullscreen-icon" />}
             </button>
           {/* </div> */}
         </div>

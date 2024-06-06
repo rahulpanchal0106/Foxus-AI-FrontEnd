@@ -43,7 +43,9 @@ export const Navbar = () => {
                    }} />
       </div>
       <Link to="/" className={styles.logo}>
-        <div>AI Learner</div>
+        <div style={{
+          color:'var(--color)'
+        }} >AI Learner</div>
       </Link>
       <div className={styles.links}>
         <ThemeToggle className="" />

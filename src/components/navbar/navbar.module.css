@@ -28,6 +28,7 @@
 
 .logo{
     flex: 1;
+    color:var(--color);
     text-align: center;
     justify-content: center;
     font-size: 36px;

@@ -9,6 +9,7 @@ import { MyContext } from "../../context/MyContext";
 import { Tooltip } from "@mui/material";
 import AnimatedTooltip from "../../components/ui/ToolTip";
 import { ThemeContext } from "../../context/ThemeContext";
+import Card from "../../components/Card/Card";
 
 
 const Layer0 = () => {
@@ -121,17 +122,26 @@ const Layer0 = () => {
         placeholder="Enter your subject or topic here"
         className={styles.in}
       />
+
       <button
         onClick={checkTokenAndNavigate}
         disabled={loading}
         className={styles.btn}
+        // style={{
+        //   background:loading?'red':''
+        // }}
       >
         {loading ? (
-          <img src="/search.gif" alt="" className={styles.icon} />
+          <div className="loader-threedot"></div>
         ) : (
-          <img src="/search.png" alt="" className={styles.icon} />
+          // <img src="/search.png" alt="" className={styles.icon} />
+          <img src="/search.png"  alt="" className={styles.icon} />
         )}
+        
+          <div style={{display:loading?'flex':'flex'}} className="loader-threedot" ></div>
+        
       </button>
+      
       {error && <p>{error}</p>}
       {result && (
         <div className="card">
@@ -149,6 +159,14 @@ const Layer0 = () => {
                 subject={level.subject}
                 key={index}
               />
+
+              // <Card 
+              //   index={index}
+              //   levelName={level.levelName}
+              //   levelContent={level.levelContent}
+              //   subject={level.subject}
+              //   key={index}
+              // />
             ))
           ) : (
             <ul style={{ textAlign: "left" }}>

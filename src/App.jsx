@@ -180,9 +180,11 @@ const App = () => {
               width:activityVisible && !isLoading ?
               'auto'
               :'0px',
+              height: activityVisible?'105vh':'100vh'
               // position: activityVisible? 'sticky': 'absolute'
             }}>
               <button id="sb-button" style={{
+                display:isLoggedIn?'block':'none',
                 right: activityVisible && !isLoading?"-50%":"0px",
                 marginLeft: activityVisible&& !isLoading?'0px':'40px',
                 marginRight: activityVisible&& !isLoading && window.screen.width<=600?'40px':'0px',

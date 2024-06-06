@@ -1,7 +1,7 @@
 /* layer1Card.css */
 @import url('https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-.layer1-card {
+/* .layer1-card {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -14,8 +14,150 @@
   font-family: "Caudex", serif;
   font-weight: 700;
   font-style: italic;
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  width: 100%;
+  transition: background-color 0.3s ease;
+} 
+*/
+
+.layer-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  
 }
+
+.layer1-card {
+  /* border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex: 0 0 calc(33.33% - 20px);
+  max-width: calc(33.33% - 20px);
+  margin-right: 20px;
+  text-align: center; */
+
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  position: relative;
+  width: 100%;
+  height: auto;
+  background: #29292c;
+  border-radius: 1rem;
+  overflow: hidden;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  --gradient: linear-gradient(to bottom, #2eadff, #3d83ff, #7e61ff);
+  --color: #32a6ff;
+  margin-bottom: 10px;
+  align-items: flex-start;
+  text-align: left;
+  padding: 10px;
+}
+
+
+.layer1-card::before{
+  position: absolute;
+    content: "";
+    inset: 0.0625rem;
+    border-radius: 0.9375rem;
+    background: #18181b;
+    
+}
+
+.light .layer1-card:before{
+  background: #e3e3ed;
+}
+.light .layer1-card{
+  background: #e3e3ed;
+}
+
+.layer1-card:after {
+  position: absolute;
+  content: "";
+  width: 0.25rem;
+  inset: 0.65rem auto 0.65rem 0.5rem;
+  border-radius: 0.125rem;
+  background: var(--gradient);
+  transition: transform 300ms ease;
+  
+}
+.layer1-card:hover:after {
+  transform: translateX(0.15rem)
+}
+.chapter-name {
+  color: var(--color);
+  padding: 0.65rem 0.25rem 0.4rem 1.25rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: transform 300ms ease;
+  z-index: 15;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.layer1-card:hover .chapter-name {
+  transform: translateX(0.15rem)
+}
+
+.level-content {
+  color: #99999d;
+  padding: 0 1.25rem;
+  transition: transform 300ms ease;
+  z-index: 15;
+}
+
+.layer1-card:hover .level-content {
+  transform: translateX(0.25rem)
+}
+
+.notiglow,
+.notiborderglow {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle closest-side at center, white, transparent);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.notiglow {
+  z-index: 13;
+}
+
+.notiborderglow {
+  z-index: 11;
+}
+
+.layer1-card:hover .notiglow {
+  opacity: 0.1
+}
+
+.layer1-card:hover .notiborderglow {
+  opacity: 0.1
+}
+
+.note {
+  color: var(--color);
+  
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 0.9rem;
+  width: 75%;
+}
+
+
+
 
 .layer1-card strong {
   font-weight: bold;
@@ -34,9 +176,9 @@
     transform: scale(1);
   }
 }
-
+/* 
 .layer1-card:hover {
-  /* from app.css root */
+  
   background-color: var(--light-bg-hover);
   animation-name: hoverAnimation;
   animation-duration: 0.5s;
@@ -47,7 +189,7 @@
   animation-name: hoverAnimation;
   animation-duration: 0.5s;
   color: #000;
-}
+} */
 
 .close{
   width: 100%;

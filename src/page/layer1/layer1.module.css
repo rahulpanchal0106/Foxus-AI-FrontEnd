@@ -36,10 +36,12 @@
 /* Container */
 .layer1Container {
     max-width: 1200px;
-    margin: 0 auto;
-    margin-top: 20px;
+    width: 100vw;
+    /* margin: 0 auto; */
+    /* margin-top: 20px; */
     padding: 2rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding-top: 0px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
     border-radius: 8px;
     animation: fadeIn 1s ease-in-out;
     font-family: "Caudex", serif;

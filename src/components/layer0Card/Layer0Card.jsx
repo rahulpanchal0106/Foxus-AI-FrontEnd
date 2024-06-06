@@ -7,6 +7,8 @@ import "./layer0Card.css";
 import Navbar from "../navbar/Navbar";
 import { MyContext } from "../../context/MyContext";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Card from "../Card/Card";
+import CheckCircle from "@mui/icons-material/CheckCircle";
 
 const Layer0Card = ({ index, levelName, levelContent, subject }) => {
   const { theme } = useContext(ThemeContext);
@@ -91,6 +93,7 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
   function handleChaptersClose(){
     setShowChapters(!showChapters);
   }
+  
   return (
     <MyContext.Provider value={{DBl1}}>
     {/* <MyContextProvider> */}
@@ -101,8 +104,9 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
         className="layer0-card"
         onClick={() => handleClick()}
       >
-        
-        <p className="level-name">{levelName} {data?" 🔥":" ⭕"}</p>
+        <div className="notiglow"></div>
+        <div className="notiborderglow"></div>
+        <p className="level-name" style={{width:"100%",display:'flex',flexDirection:'row',justifyContent:'space-between'}}>{levelName} {data?<CheckCircle/>:""}</p>
         <p className="level-content">{levelContent}</p>
         
       </div>
@@ -134,6 +138,9 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
     </div>
     </MyContext.Provider>
   );
+
+  <Card/>
+
 };
 
 export default Layer0Card;

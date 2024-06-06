@@ -5,6 +5,9 @@ import Cookies from 'js-cookie'; // Import Cookies
 import { MyContext } from "../../context/MyContext";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import Fullscreen from "@mui/icons-material/Fullscreen";
+
+import DoneIcon from '@mui/icons-material/CheckCircle';
 
 const Layer2Card = ({
   lessonName,
@@ -81,20 +84,35 @@ const Layer2Card = ({
         className={`layer2-card-out ${showLayer3 ? "active" : ""}`}
         onClick={handleClick}
       >
+        <div className="notiglow"></div>
+        <div className="notiborderglow"></div>
         <div className={`layer2-card-in ${showLayer3 ? "active" : ""}`}>
-          <p style={{position: "absolute"}}>{data?" 🔥":" ⭕"}</p>
-          <h3>
           
+          <h3 style={{
+            display:"flex",
+            flexDirection:"row",
+            justifyContent:"space-between",
+            color: "var(--color)"
+          }}>
+
             <strong className="lesson">{lessonName} </strong>
+            {data?
+              <DoneIcon  />
+            :" "}
           </h3>
-          <p className="lessonContent">{lessonContent}</p>
+          <div style={{
+            display:"flex",
+            flexDirection:"row",
+            width: '100%',
+            justifyContent:"space-between"
+            
+          }}>
+            <p className="lessonContent">{lessonContent}</p>
+            <button className="accordion-button">{showLayer3 ? <ExpandLessIcon /> : <ExpandMoreIcon />}</button>
+          </div>
         </div>
-        <button className="accordion-button">
-        {showLayer3 ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-          
-        </button>
       </div>
-      <div style={{ display: showLayer3 ? "block" : "none" }}>
+      <div className="layer3-parent" style={{ display: showLayer3 ? "flex" : "none" }}>
 
         <Layer3
           lessonName={lessonName}

@@ -81,6 +81,8 @@
         padding: 0px 50px 10px 50px; /* Adjust padding as needed */
         height: 160px;
         flex-direction: row;
+        width: 400px;
+        align-items: center;
     }
 
     .logo {

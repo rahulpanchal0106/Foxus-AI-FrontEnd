@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import ThemeToggle from "../themeToggle/ThemeToggle";
 import Cookies from "js-cookie";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import styles from "./navbar.module.css";
+import { ThemeContext } from "../../context/ThemeContext";
 
 export const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -11,7 +12,8 @@ export const Navbar = () => {
   const [open, setOpen] = useState(false);
   const Menus = ['AboutUs', 'Logout'];
   const navigate = useNavigate();
-
+  const {theme} = useContext(ThemeContext);
+  console.log("THEMEEEEEEEEEEEEEEEE: ",theme)
   useEffect(() => {
     const token = Cookies.get("token");
     setIsLoggedIn(!!token);
@@ -36,7 +38,9 @@ export const Navbar = () => {
   return (
     <div className={styles.container}>
       <div className={styles.social}>
-        <img src="/bird.png" alt="logo" width={50} height={50} className={styles.icon} />
+        <img src="/bird.png" alt="logo"  width={50} height={50} className={styles.icon} style={{
+          filter: theme=='dark'?'invert(1)':'invert(0)'
+                   }} />
       </div>
       <Link to="/" className={styles.logo}>
         <div>AI Learner</div>

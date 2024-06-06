@@ -36,6 +36,13 @@
     margin-left: 20px; /* Adjust margin as needed */
 }
 
+.dark #logo{
+    filter: invert(1);
+}
+.light #logo{
+    filter: invert(0);
+}
+
 .links{
     display: flex;
     align-items: end;

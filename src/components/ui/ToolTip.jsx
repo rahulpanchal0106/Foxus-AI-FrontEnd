@@ -64,7 +64,7 @@ const AnimatedTooltip = ({ items }) => {
               <div className="text-white text-xs">{item.designation1}</div>
             </motion.div>
           )}
-          <a href={item.github}>
+          <a href={item.github} target="_blank">
             <img
               onMouseMove={handleMouseMove}
               height={100}

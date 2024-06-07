@@ -11,7 +11,7 @@ export const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();
   const [open, setOpen] = useState(false);
-  const Menus = ['AboutUs', 'Logout'];
+  const Menus = ['About Us', 'Log out' ];
   const navigate = useNavigate();
   const {theme} = useContext(ThemeContext);
   console.log("THEMEEEEEEEEEEEEEEEE: ",theme)
@@ -30,9 +30,9 @@ export const Navbar = () => {
   };
 
   const handleMenuClick = (menu) => {
-    if (menu === "Logout") {
+    if (menu === "Log out") {
       handleLogout();
-    } else if (menu === "AboutUs") {
+    } else if (menu === "About Us") {
       navigate("/about");
       setOpen(false);
     }
@@ -40,15 +40,20 @@ export const Navbar = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.social}>
-        <img src="/bird.png" alt="logo"  width={50} height={50} className={styles.icon} style={{
-          filter: theme=='dark'?'invert(1)':'invert(0)'
-                   }} />
-      </div>
+      {/* <div className={styles.social}>
+        
+      </div> */}
       <Link to="/" className={styles.logo}>
         <div style={{
-          color:'var(--color)'
-        }}>FoxusAI</div>
+          color:'var(--color)',
+          fontFamily:'claude',
+          fontSize: '1em',
+          display:'flex',
+          flexDirection:'row',
+          alignItems:'center'
+        }}>
+          <img src="/bird.png" alt="logo"  width={50} height={50} className={styles.icon} />
+          Foxus AI</div>
       </Link>
       <div className={styles.links}>
         <ThemeToggle className="" />

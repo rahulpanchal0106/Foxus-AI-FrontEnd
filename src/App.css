@@ -211,8 +211,48 @@ p{
   border-radius: 50%;
   width: 38px;
   height: 38px;
-  z-index: 0;
+  opacity: 1;
   
+  
+}
+#sb-info{
+  opacity:0;
+  padding: 5px 10px;
+  position: absolute;
+  background-color: #1f2937;
+  color: white;
+  width: fit-content;
+  border-radius: 1em;
+  /* display: none; */
+  transition: all 0.3s;
+  animation: init 1s ease 1s 2;
+}
+@keyframes init{
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+#sb-top{
+  opacity:0;
+  left: 11px;
+  position: absolute;
+  top: 3.5vh;
+  transition: all 0.3s;
+  animation: init 1s ease 1s 2;
+}
+#sb-button:hover #sb-info{
+  opacity: 1;
+  /* display: flex; */
+}
+#sb-button:hover #sb-top{
+  opacity: 1;
+  /* display: flex; */
 }
 
 .light #sb-button{
@@ -370,3 +410,4 @@ p{
     height: 100vh;
   }
 }
+

@@ -221,10 +221,11 @@ const App = () => {
                       window.screen.width <= 600
                         ? "40px"
                         : "0px",
-                    opacity: 0.5,
+                    opacity: 1,
                   }}
                   onClick={() => getActivity()}
-                >
+                > 
+
                   {isLoading ? (
                     <div style={{ marginLeft: "3px" }} className="spinner" />
                   ) : activityVisible ? (
@@ -232,6 +233,10 @@ const App = () => {
                   ) : (
                     <ArrowRight />
                   )}
+                  <div id="sb-top" className="w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-white dark:border-b-gray-800"></div>
+                  <div id="sb-info">
+                    History</div>
+
                 </button>{" "}
                 {/* a hover triggered animated icon icons */}
                 <div

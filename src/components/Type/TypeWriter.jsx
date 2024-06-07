@@ -13,7 +13,7 @@ export default function TypewriterEffectDemo() {
     },
     {
       text: "whatever",
-      className: "text-orange-500 imp-txt dark:text-orange-500",
+      className: "text-blue-400 imp-txt dark:text-blue-400",
     },
     {
       text: "you",
@@ -25,7 +25,7 @@ export default function TypewriterEffectDemo() {
     },
     {
       text: "whenever",
-      className: "text-orange-500 dark:text-ornage-500 imp-txt",
+      className: "text-blue-400 dark:text-blue-400 imp-txt",
     },
     {
       text: "you",
@@ -40,7 +40,7 @@ export default function TypewriterEffectDemo() {
   return (
     <div className="flex flex-col items-center justify-center h-[10rem] lg:h-[20rem] mt-5">
       <p className="sm:mb-4 md:mb-6 lg:mb-8 xl:mb-10 2xl:mb-12 vt font-extrabold leading-10 tracking-tight sm:text-xl md:text-2xl lg:text-4xl xl:text-4xl">
-        The journey to <span className="text-orange-500">mastery</span> begins
+        The journey to <span className="text-orange-500" style={{color:"#32a6ff", fontFamily:'claude'}}>mastery</span> begins
         here
       </p>
 

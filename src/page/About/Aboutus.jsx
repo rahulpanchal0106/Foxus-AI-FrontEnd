@@ -12,7 +12,7 @@ const people = [
   {
     id: 1,
     name: "Rahul Panchal",
-    image: "./2.jpeg",
+    image: "./2.png",
     github: "https://github.com/rahulpanchal0106"
   },
   {
@@ -97,14 +97,14 @@ const About = () => {
     <div className="about-container">
       <section className="about-content">
         <h1 className=" font-extrabold">About Us</h1>
-        {/* <h2 >Welcome to AI Tutor</h2> */}
+        {/* <h2 >Welcome to Foxus AI</h2> */}
         <p>
-          At AI Tutor, our mission is to revolutionize the way you learn and explore new topics. We harness the power of artificial intelligence to create a personalized, engaging, and interactive educational experience.
+          At Foxus AI, our mission is to revolutionize the way you learn and explore new topics. We harness the power of artificial intelligence to create a personalized, engaging, and interactive educational experience.
         </p>
         
         <h2 >Our Vision</h2>
         <p>
-          We believe that everyone deserves access to high-quality education tailored to their individual needs and learning pace. AI Tutor is designed to provide just that by adapting to your skill level and offering a comprehensive learning journey.
+          We believe that everyone deserves access to high-quality education tailored to their individual needs and learning pace. Foxus AI is designed to provide just that by adapting to your skill level and offering a comprehensive learning journey.
         </p>
         
         <h2 >How It Works</h2>
@@ -114,7 +114,7 @@ const About = () => {
           <li><strong>Explore Topics:</strong> Based on your selected level, we present a range of topics for you to delve into. Each topic is carefully curated to enhance your learning experience.</li>
           <li><strong>Detailed Chapters:</strong> Click on a topic to reveal chapters that offer in-depth explanations. Our content is designed to be comprehensive, clear, and engaging.</li>
           <li><strong>Interactive Quizzes:</strong> After studying a chapter, test your knowledge with our automatically generated quizzes. These quizzes are based on the detailed explanations provided in the chapters.</li>
-          <li><strong>Ask Doubts:</strong> Have questions or need further clarification? Use our doubt resolution feature to get answers from our AI tutor.</li>
+          <li><strong>Ask Doubts:</strong> Have questions or need further clarification? Use our doubt resolution feature to get answers from our Foxus AI.</li>
         </ul>
         
         <h2 >Features</h2>
@@ -122,7 +122,7 @@ const About = () => {
           <li><strong>Personalized Learning Paths:</strong> Content tailored to your level of expertise.</li>
           <li><strong>In-Depth Explanations:</strong> Detailed chapters that cover topics thoroughly.</li>
           <li><strong>Interactive Quizzes:</strong> Custom quizzes to reinforce your learning.</li>
-          <li><strong>Doubt Resolution:</strong> Get answers to your questions from our AI tutor.</li>
+          <li><strong>Doubt Resolution:</strong> Get answers to your questions from our Foxus AI.</li>
         </ul>
       </section>
 

@@ -400,7 +400,8 @@ const App = () => {
                                 </div>
                               </>
                             );
-                          } else {
+                          }
+                          else {
                             // console.log("⌚⌚⌚ ",chunk.loginTime)
                             const date = new Date(chunk.loginTime);
                             const prevDate = data[prevDateIdx].loginTime;
@@ -417,6 +418,10 @@ const App = () => {
                                   <div id="activity-login">
                                     {<RelativeDate date={prevDate} />}
                                   </div>
+
+                                  {data[prevDateIdx].loginTime?
+                                    <p style={{fontSize:"0.5em", color:"#888"}}>~~~ End ~~~</p>
+                                  :null}
                                 </>
                               );
                             }

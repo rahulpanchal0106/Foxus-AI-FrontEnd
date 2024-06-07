@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import styles from "./navbar.module.css";
 import { ThemeContext } from "../../context/ThemeContext";
+import { useMediaQuery } from 'react-responsive';
 
 export const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,6 +15,8 @@ export const Navbar = () => {
   const navigate = useNavigate();
   const {theme} = useContext(ThemeContext);
   console.log("THEMEEEEEEEEEEEEEEEE: ",theme)
+  const isMobile = useMediaQuery({ maxWidth: 480 });
+
   useEffect(() => {
     const token = Cookies.get("token");
     setIsLoggedIn(!!token);
@@ -45,11 +48,19 @@ export const Navbar = () => {
       <Link to="/" className={styles.logo}>
         <div style={{
           color:'var(--color)'
-        }} >AI Learner</div>
+        }}>FoxusAI</div>
       </Link>
       <div className={styles.links}>
         <ThemeToggle className="" />
         {isLoggedIn ? null : (
+      <>
+        {isMobile && ( // Show login link only on smaller devices
+          <NavLink to="/login" className={styles.navLink}>
+            Log in
+          </NavLink>
+        )}
+
+        {!isMobile && ( // Show both login and signup links on larger devices
           <>
             <NavLink to="/register" className={styles.navLink}>
               Sign Up
@@ -59,11 +70,13 @@ export const Navbar = () => {
             </NavLink>
           </>
         )}
+      </>
+    )}
       </div>
       {isLoggedIn && (
         <div className="pt-2">
           <div className="relative">
-            <div onClick={() => setOpen(!open)} className="cursor-pointer object-cover rounded-full mb-4">
+            <div onClick={() => setOpen(!open)} className="cursor-pointer object-cover rounded-full mb-4 lg:mr-10">
               <AccountCircleIcon fontSize="large" />
             </div>
             {open && (

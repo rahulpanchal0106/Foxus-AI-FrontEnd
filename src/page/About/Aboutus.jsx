@@ -18,7 +18,7 @@ const people = [
   {
     id: 2,
     name: "Jay Patel",
-    image: "./1.jpeg",
+    image: "./demon.jpg",
     github:"https://github.com/Jay100125"
   },
   {

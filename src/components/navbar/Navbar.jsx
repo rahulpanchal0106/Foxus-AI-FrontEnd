@@ -46,14 +46,18 @@ export const Navbar = () => {
       <Link to="/" className={styles.logo}>
         <div style={{
           color:'var(--color)',
-          fontFamily:'claude',
+          fontFamily:'Caudex',
           fontSize: '1em',
+          fontWeight:'100',
           display:'flex',
           flexDirection:'row',
-          alignItems:'center'
+          alignItems:'center',
+          width:'fit-content',
+          
         }}>
           <img src="/bird.png" alt="logo"  width={50} height={50} className={styles.icon} />
-          Foxus AI</div>
+          <p className={styles.fancyTitle} >Foxus AI</p>
+        </div>
       </Link>
       <div className={styles.links}>
         <ThemeToggle className="" />

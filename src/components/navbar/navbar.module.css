@@ -105,3 +105,31 @@
         font-size: 20px;
     }
 }
+
+.fancyTitle{
+    
+    background-image:  url('../../../public/ssscales\(3\).svg') ;
+    
+    background-repeat: repeat;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    
+    padding:0px;
+    /* font-size: 170px; */
+    animation: filling 8s infinite ease;
+
+    /* text-shadow: 0px 0px 0px rgba(131, 131, 131, 0.155);  */
+      
+}
+@keyframes filling {
+    0%{
+      background-position-x: left;
+      background-position-y: top;
+    }
+    
+    50%{
+        background-position-x: right ;
+        background-position-y: bottom;
+    }
+  }
+  

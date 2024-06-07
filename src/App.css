@@ -244,7 +244,7 @@ p{
   position: absolute;
   top: 3.5vh;
   transition: all 0.3s;
-  animation: init 1s ease 1s 2;
+  animation: init 1s ease 1s 1;
 }
 #sb-button:hover #sb-info{
   opacity: 1;

@@ -108,7 +108,7 @@
 
 .fancyTitle{
     
-    background-image:  url('../../../public/ssscales\(3\).svg') ;
+    background-image:  url('/ssscales\(3\).svg') ;
     
     background-repeat: repeat;
     -webkit-text-fill-color: transparent;

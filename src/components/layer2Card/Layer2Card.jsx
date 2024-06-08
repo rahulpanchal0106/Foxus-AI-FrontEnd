@@ -36,7 +36,7 @@ const Layer2Card = ({
     // Fetch data
     const token = Cookies.get('token'); // Get token from cookies
     try {
-      const response = await fetch("https://ai-tutor-be.onrender.com/layer3", {
+      const response = await fetch("https://foxus-ai-be.onrender.com/layer3", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import "./mix.css";
-import { AlternateEmail, Backspace, Visibility, VisibilityOff } from '@mui/icons-material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Register = () => {
   const [passShow, setPassShow] = useState(false);
@@ -33,23 +34,23 @@ export const Register = () => {
     const { fname, username, password, cpassword } = inpval;
 
     if (fname === "") {
-      alert("please enter your name");
+      toast.error("Please enter your name");
       return;
     }
     if (username === "") {
-      alert("please enter your username");
+      toast.error("Please enter your username");
       return;
     }
     if (password === "") {
-      alert("enter your password");
+      toast.error("Please enter your password");
       return;
     }
     if (cpassword === "") {
-      alert("enter your confirm password");
+      toast.error("Please enter your confirm password");
       return;
     }
     if (password !== cpassword) {
-      alert("password and confirm password not match");
+      toast.error("Password and confirm password do not match");
       return;
     }
 
@@ -60,21 +61,20 @@ export const Register = () => {
       });
 
       if (response.data.success) {
-        
         toast.success("Account created.");
         navigate('/login');
       } else {
-        
         toast.error("Account creation failed. Please try again.");
       }
     } catch (err) {
       console.log(err);
-      toast.error("Something went wrong. Please try again.");
+      toast.error(<div> <a href="https://forms.gle/Kstv3bzGpnXx62oq6" target="_blank" rel="noopener noreferrer">Click here to join the waitlist</a></div>);
     }
   }
 
   return (
     <>
+      <ToastContainer />
       <section>
         <div className='form_data'>
           <div className='form_heading'>

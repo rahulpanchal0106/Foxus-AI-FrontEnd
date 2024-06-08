@@ -56,7 +56,7 @@ const Login = () => {
 
         // Send login request to backend
         try {
-            const response = await fetch('https://ai-tutor-be.onrender.com/login', {  // Replace '/login' with your actual backend route
+            const response = await fetch('https://foxus-ai-be.onrender.com/login', {  // Replace '/login' with your actual backend route
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

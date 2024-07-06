@@ -27,7 +27,7 @@ export const Register = () => {
       }
     })
   }
-
+  
   const addUserdata = async (e) => {
     e.preventDefault();
 
@@ -55,21 +55,29 @@ export const Register = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/signup', { //https://ai-tutor-be.onrender.com
+      const response = await axios.post('https://foxus-ai-be.onrender.com/signup', {
         username: inpval.username,
         password: inpval.password,
       });
-
-      if (response.data.success) {
+    
+      console.log(response, "*******************");
+    
+      if (response.status === 201) {
         toast.success("Account created.");
         navigate('/login');
       } else {
         toast.error("Account creation failed. Please try again.");
       }
-    } catch (err) {
-      console.log(err);
-      toast.error(<div> <a href="https://forms.gle/Kstv3bzGpnXx62oq6" target="_blank" rel="noopener noreferrer">Click here to join the waitlist</a></div>);
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        // console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        // window.alert("Username Already Exists");
+        toast.error("Username Already Exists");
+      } else {
+        toast.error("Account creation failed. Please try again.");
+      }
     }
+    
   }
 
   return (

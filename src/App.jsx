@@ -78,7 +78,7 @@ const App = () => {
         setLoading(true);
         console.log(isLoading);
         const response = await fetch(
-          "https://ai-tutor-be.onrender.com/activity",
+          "https://foxus-ai-be.onrender.com/activity",
           {
             method: "GET",
             headers: {

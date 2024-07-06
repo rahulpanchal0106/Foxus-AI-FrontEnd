@@ -56,6 +56,7 @@ const Login = () => {
 
         // Send login request to backend
         try {
+            
             const response = await fetch('https://foxus-ai-be.onrender.com/login', {  // Replace '/login' with your actual backend route
                 method: 'POST',
                 headers: {
@@ -91,6 +92,7 @@ const Login = () => {
         
     }
     function handleClick(e){
+        window.alert("A critical bug has occurred, so we've disabled the logins for sometime")
         logInuser(e);
         Cookies.setItem('username',inpval.username,{expires:'5h'})
     }

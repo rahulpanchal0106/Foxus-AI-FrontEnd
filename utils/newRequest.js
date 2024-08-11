@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const newRequest = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://foxus-ai-be.onrender.com",
 });
 
 export default newRequest;

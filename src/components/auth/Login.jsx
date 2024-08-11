@@ -57,7 +57,7 @@ const Login = () => {
         // Send login request to backend
         try {
             
-            const response = await fetch('https://foxus-ai-be.onrender.com/login', {  // Replace '/login' with your actual backend route
+            const response = await fetch(import.meta.env.VITE_SERVER+'/login', { 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

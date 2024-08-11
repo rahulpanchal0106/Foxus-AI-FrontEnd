@@ -78,7 +78,7 @@ const App = () => {
         setLoading(true);
         console.log(isLoading);
         const response = await fetch(
-          "/activity",  //https://foxus-ai-be.onrender.com
+          import.meta.env.VITE_SERVER+"/activity",  //https://foxus-ai-be.onrender.com
           {
             method: "GET",
             headers: {

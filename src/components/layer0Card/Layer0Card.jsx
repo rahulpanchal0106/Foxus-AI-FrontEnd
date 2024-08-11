@@ -43,7 +43,7 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
     setLoading(true);
     const token = Cookies.getItem('token');
     try {
-      const response = await fetch('https://foxus-ai-be.onrender.com/layer1', {
+      const response = await fetch(import.meta.env.VITE_SERVER+'/layer1', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

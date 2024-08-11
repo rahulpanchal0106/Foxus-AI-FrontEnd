@@ -108,6 +108,7 @@ const App = () => {
     } catch (err) {
       console.error(err);
       window.alert("Disabled for now due to unexpected circumstances");
+      setLoading(false);
     }
   }
 

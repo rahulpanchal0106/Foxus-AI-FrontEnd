@@ -130,6 +130,7 @@ const About = () => {
         <h2 className=" font-extrabold">Meet Our Team</h2>
         <AnimatedTooltip items={people} />
       </div>
+      
 
       <div className="feedback-form-container">
         <h2 className="feedback-title">Feel free to share your feedback</h2>

@@ -49,6 +49,7 @@ import {
 } from "@mui/icons-material";
 import AutoScroll from "./components/AutoScroll";
 import AnimatedTooltip from "./components/ui/ToolTip";
+import ProductHuntEmbed from "./components/PH";
 // import from '@mui/icons-material/RightErro';
 //acterenity testa
 //import Test from './components/test'
@@ -188,12 +189,12 @@ const App = () => {
         <ThemeProvider>
           {/* <MyContext.Provider value={{ selectedFromDB, setSelectedFromDB }}> */}
           <MyContext.Provider value={{ selectedFromDB, setSelectedFromDB }}>
-            <div className="main">
+            <div className="main ">
               <div className="gradient" />
             </div>
 
             <div
-              className="container app"
+              className="container app flex flex-col"
               id="app"
               style={{
                 overflow: activityVisible ? "hidden" : "auto",
@@ -457,26 +458,18 @@ const App = () => {
                   <Route path="/about" element={<About />} />{" "}
                 </Routes>
                 {/* <Test/> */}
-              </div>
+                <div
+                className="flex w-full flex-row justify-center items-center mt-5 bottom-10">
+                  <ProductHuntEmbed/>
+                </div>
             </div>
-            <div
-              style={{
-                marginTop: "auto",
-                textAlign: "center",
-                padding: "10px",
-                backgroundColor: "#E2FAFC",
-                color: "#721c24",
-                borderTop: "1px solid #f5c6cb",
-                borderRadius: "5px",
-              }}
-              className="lg:hidden"
-            >
-              {/* *For a better experience, please switch to desktop mode. */}
-            </div>
+          </div>
+            
           </MyContext.Provider>
         </ThemeProvider>
       </ThemeContextProvider>
       <ToastContainer />
+      
     </Router>
   );
 };

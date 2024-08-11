@@ -78,7 +78,7 @@ const App = () => {
         setLoading(true);
         console.log(isLoading);
         const response = await fetch(
-          "httP://localhost:3000/activity",  //https://foxus-ai-be.onrender.com
+          "https://foxus-ai-be.onrender.com/activity",  //https://foxus-ai-be.onrender.com
           {
             method: "GET",
             headers: {

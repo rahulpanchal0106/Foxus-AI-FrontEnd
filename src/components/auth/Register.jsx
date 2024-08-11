@@ -55,7 +55,7 @@ export const Register = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/signup', {  //https://foxus-ai-be.onrender.com
+      const response = await axios.post('https://foxus-ai-be.onrender.com/signup', {  //https://foxus-ai-be.onrender.com
         username: inpval.username,
         password: inpval.password,
       });

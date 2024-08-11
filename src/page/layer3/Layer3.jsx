@@ -189,7 +189,7 @@ const Layer3 = ({
     setIsGeneratingQuiz(true); // Set loading state to true when generating quiz
     const token = Cookies.getItem("token");
     try {
-      const response = await fetch("https://ai-tutor-be.onrender.com/quiz", {
+      const response = await fetch("https://foxus-ai-be.onrender.com/quiz", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

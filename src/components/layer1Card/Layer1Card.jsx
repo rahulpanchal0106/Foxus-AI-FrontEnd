@@ -8,6 +8,7 @@ import "./layer1Card.css"
 import Navbar from '../navbar/Navbar';
 import { MyContext } from '../../context/MyContext';
 import CheckCircle from '@mui/icons-material/CheckCircle';
+import { toast } from 'react-toastify';
 
 
 const Layer1Card = ({ index, chapter, level, subject }) => {
@@ -57,6 +58,12 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
       });
 
       const resultData = await response.json();
+      if(response.status==429){
+        toast.warn("You have attempted too soon. Please try again in about 10 seconds",{position:"top-right"})
+        setTimeout(() => {
+          toast.info("Try reading the already fetched content!");
+        }, 200);  
+      }
       if (!response.ok) {
         throw new Error(
           resultData.message ||
@@ -67,7 +74,7 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
       setData(resultData);
       setError(null);
     } catch (error) {
-      console.error('Error:', error.message);
+      console.error('Error🍻:', error.message);
       setError(error.message || error );
     } finally {
       setLoading(false);
@@ -158,7 +165,7 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
             chapter={chapter}
             level={level}
             subject={subject}
-            data={data} 
+            data={data?data:[]} 
             fetchData={fetchData} 
             loading={loading}
           />

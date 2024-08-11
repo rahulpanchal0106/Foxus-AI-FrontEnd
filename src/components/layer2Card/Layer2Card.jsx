@@ -8,6 +8,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Fullscreen from "@mui/icons-material/Fullscreen";
 
 import DoneIcon from '@mui/icons-material/CheckCircle';
+import { toast } from "react-toastify";
 
 const Layer2Card = ({
   lessonName,
@@ -55,7 +56,12 @@ const Layer2Card = ({
       });
 
       const resultData = await response.json();
-      if (response.status === 501) {
+      if(response.status === 429){
+        toast.warn("You've attempted too soon. Please try again in about 10 seconds.", { position: "top-right" });
+        setTimeout(() => {
+          toast.info("Try reading the already fetched content!");
+        }, 200);        
+      }else if (response.status === 501) {
         setData(resultData.error);
       } else if (!response.ok) {
         throw new Error(

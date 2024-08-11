@@ -5,6 +5,7 @@ import Latex from "react-latex";
 import { ThemeContext } from "../../context/ThemeContext";
 import "highlight.js/styles/night-owl.css";
 import Highlight from 'react-highlight';
+import { toast } from "react-toastify";
 
 const Doubt = ({ lessonName, chapter, subject, lessonExplaination }) => {
   const [loading, setLoading] = useState(false);
@@ -34,7 +35,12 @@ const Doubt = ({ lessonName, chapter, subject, lessonExplaination }) => {
         }),
       });
       const resultData = await response.json();
-      if (!response.ok) {
+      if(response.status==429){
+        toast.warn("You have attempted too soon. Please try again in about 10 seconds",{position:"top-right"})
+        setTimeout(() => {
+          toast.info("Try reading the already fetched content!");
+        }, 200);  
+      }else if (!response.ok) {
         throw new Error(
           resultData.message || "Failed to get result from backend."
         );

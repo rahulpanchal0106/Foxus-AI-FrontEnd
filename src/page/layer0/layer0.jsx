@@ -66,7 +66,9 @@ const Layer0 = () => {
       });
 
       const resultData = await response.json();
-      if (resultData.length === 0) {
+      if(response.status==429){
+        toast.warn("You have attempted too soon. Please try again in about 10 seconds",{position:"top-right"})
+      }else if (resultData.length === 0) {
         setResult("No response from PaLM2");
         setError("No response from PaLM2");
         toast.error("No response from PaLM2", {

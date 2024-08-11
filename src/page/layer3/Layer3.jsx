@@ -168,6 +168,7 @@ import Highlight from 'react-highlight';
 import { ThemeContext } from "../../context/ThemeContext";
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
+import { toast } from "react-toastify";
 
 const Layer3 = ({
   lessonName,
@@ -201,9 +202,15 @@ const Layer3 = ({
           },
         }),
       });
-      const resultData = await response.json();
-      console.log(resultData);
-      setQuizData(resultData);
+      if(response.status==429){
+        toast.warn("You have attempted too soon. Please try again in about 10 seconds",{position:"top-right"})
+      }else{
+        const resultData = await response.json();
+        
+        // console.log(resultData);
+        setQuizData(resultData);
+
+      }
     } catch (error) {
       console.error("Error:", error.message);
     } finally {

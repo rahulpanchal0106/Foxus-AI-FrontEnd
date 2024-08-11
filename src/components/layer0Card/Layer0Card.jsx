@@ -9,6 +9,7 @@ import { MyContext } from "../../context/MyContext";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Card from "../Card/Card";
 import CheckCircle from "@mui/icons-material/CheckCircle";
+import { toast } from "react-toastify";
 
 const Layer0Card = ({ index, levelName, levelContent, subject }) => {
   const { theme } = useContext(ThemeContext);
@@ -68,6 +69,12 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
             resultData.error ||
             'Failed to get result from backend.'
         );
+      }
+      if(response.status==429){
+        toast.warn("You have attempted too soon. Please try again in about 10 seconds",{position:"top-right"})
+        setTimeout(() => {
+          toast.info("Try reading the already fetched content!");
+        }, 200);  
       }
       setData(resultData);
       setError(null);

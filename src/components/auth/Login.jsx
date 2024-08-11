@@ -92,10 +92,10 @@ const Login = () => {
         
     }
     function handleClick(e){
-        window.alert("A critical bug has occurred, so we've disabled the logins for sometime")
-        return;
-        // logInuser(e);
-        // Cookies.setItem('username',inpval.username,{expires:'5h'})
+        //window.alert("A critical bug has occurred, so we've disabled the logins for sometime")
+        //return;
+        logInuser(e);
+        Cookies.setItem('username',inpval.username,{expires:'5h'})
     }
 
     return (

@@ -107,7 +107,7 @@ const App = () => {
       }
     } catch (err) {
       console.error(err);
-      window.alert("Maybe you have an old account, in that case sign up again");
+      window.alert("Disabled for now due to unexpected circumstances");
     }
   }
 

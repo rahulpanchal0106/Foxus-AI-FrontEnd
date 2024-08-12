@@ -63,7 +63,7 @@ const About = () => {
     };
 
     try {
-      const response = await axios.post(import.meta.env.VITE_SERVER, data);
+      const response = await axios.post(import.meta.env.VITE_SHEET, data);
       console.log(response);
       setEmail('');
       setFeedback('');

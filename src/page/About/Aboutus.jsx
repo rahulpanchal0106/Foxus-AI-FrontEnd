@@ -56,8 +56,11 @@ const About = () => {
     e.preventDefault();
     console.log({ username, feedback });
 
+    const timestamp = new Date().toISOString(); 
+
     const data = {
       Username: username,
+      Timestamp: timestamp,
       Email: email,
       Feedback: feedback
     };
@@ -157,7 +160,7 @@ const About = () => {
             Submit
           </button>
         </form>
-        {error && <p className="error-message">{error}</p>}
+        {error && <p color="red" className="error-message">{error}</p>}
         
       </div>
     </div>

@@ -56,14 +56,17 @@ const About = () => {
     e.preventDefault();
     console.log({ username, feedback });
 
+    const timestamp = new Date().toISOString(); 
+
     const data = {
       Username: username,
+      Timestamp: timestamp,
       Email: email,
       Feedback: feedback
     };
 
     try {
-      const response = await axios.post('https://sheet.best/api/sheets/6fd36419-7088-48b0-b007-c46a7afded38', data);
+      const response = await axios.post(import.meta.env.VITE_SHEET, data);
       console.log(response);
       setEmail('');
       setFeedback('');
@@ -157,7 +160,7 @@ const About = () => {
             Submit
           </button>
         </form>
-        {error && <p className="error-message">{error}</p>}
+        {error && <p color="red" className="error-message">{error}</p>}
         
       </div>
     </div>

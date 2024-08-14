@@ -4,6 +4,7 @@ import Layer1Card from '../../components/layer1Card/Layer1Card';
 import FeedbackCard from '../../components/Feedback-card/feedback-card';
 import { MyContext } from '../../context/MyContext';
 import styles from './layer1.module.css';
+import {LoadingScreen0} from '../Loading Pages/LoadingScreen';
 
 const Layer1 = ({
   levelName, 
@@ -36,7 +37,8 @@ const Layer1 = ({
   if (loading) {
     return (
       <div className={styles.loadingContainer}>
-        <HashLoader color="#616A6B" />
+        {/* <HashLoader color="#616A6B" /> */}
+        <LoadingScreen0/>
       </div>
     );
   }

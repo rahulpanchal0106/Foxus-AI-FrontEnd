@@ -22,7 +22,7 @@ const FeedBack=()=>{
         const data = {
           Username: username,
           Timestamp: timestamp,
-          Email: email,
+          Email: "@"+username,
           Feedback: feedback
         };
     
@@ -53,11 +53,12 @@ const FeedBack=()=>{
           setSuccess(false);
         }
         
-      };
+    };
+    
     return (
         <form onSubmit={handleSubmit} className="feedback-form">
           <input
-            type="email"
+            type="text"
             className="username-input hidden"
             placeholder="Enter your Email "
             value={username}

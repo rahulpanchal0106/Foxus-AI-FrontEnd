@@ -11,6 +11,7 @@ import { stepLabelClasses } from "@mui/material";
 
 import "./layer2.module.css"
 import FeedbackCard from "../../components/Feedback-card/feedback-card";
+import LoadingScreen, { LoadingScreen1 } from "../Loading Pages/LoadingScreen";
 const Layer2 = ({
   chapter,
   level,
@@ -35,7 +36,8 @@ const Layer2 = ({
   if (loading) {
     return (
       <div className={styles.loadingContainer}>
-        <HashLoader color="#616A6B" />
+        {/* <HashLoader color="#616A6B" /> */}
+        <LoadingScreen1/>
       </div>
     );
   }

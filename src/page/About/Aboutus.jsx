@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
+
 import AnimatedTooltip from "../../components/ui/ToolTip";
 import "./About.css";
 import axios from "axios";
 import { toast } from 'react-toastify';
 import { UserNameContext } from "../../context/usernameContext";
+import FeedBack from "../../components/Feedback/feedback";
 
 
 const people = [
@@ -42,57 +43,10 @@ const people = [
 ];
 
 const About = () => {
-  const [email, setEmail] = useState("");
+  
   const [feedback, setFeedback] = useState("");
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
-  const navigate = useNavigate();
-
-  // const {username} = useContext(UserNameContext);
-  const username = Cookies.get('username')
   
-  console.log(username)
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log({ username, feedback });
-
-    const timestamp = new Date().toISOString(); 
-
-    const data = {
-      Username: username,
-      Timestamp: timestamp,
-      Email: email,
-      Feedback: feedback
-    };
-
-    try {
-      const response = await axios.post(import.meta.env.VITE_SHEET, data);
-      console.log(response);
-      setEmail('');
-      setFeedback('');
-      setError(null);
-      setSuccess(true);
-      toast.success("Feedback submitted successfully!", {
-        position: "top-right"
-      });
-    } catch (err) {
-      if (err.response) {
-        console.error('Error response:', err.response.data);
-        console.error('Error status:', err.response.status);
-        console.error('Error headers:', err.response.headers);
-        setError(`Error: ${err.response.status} - ${err.response.data}`);
-      } else if (err.request) {
-        console.error('Error request:', err.request);
-        setError('Error: No response received from the server.');
-      } else {
-        console.error('Error message:', err.message);
-        setError(`Error: ${err.message}`);
-      }
-      console.error('Error config:', err.config);
-      setSuccess(false);
-    }
-    
-  };
 
   
 
@@ -137,29 +91,7 @@ const About = () => {
 
       <div className="feedback-form-container">
         <h2 className="feedback-title">Feel free to share your feedback</h2>
-        <form onSubmit={handleSubmit} className="feedback-form">
-          <input
-            type="text"
-            className="username-input"
-            placeholder="Enter your Email "
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <textarea
-            className="feedback-textarea"
-            rows="4"
-            placeholder="Write your feedback here..."
-            value={feedback}
-            required
-            onChange={(e) => setFeedback(e.target.value)}
-          ></textarea>
-          <button
-            type="submit"
-            className="feedback-submit-button"
-          >
-            Submit
-          </button>
-        </form>
+        <FeedBack/>
         {error && <p color="red" className="error-message">{error}</p>}
         
       </div>

@@ -76,9 +76,9 @@
 }
 .level-name {
   color: var(--color);
-  padding: 0.65rem 0.25rem 0.4rem 1.25rem;
-  font-weight: 500;
-  font-size: 1.1rem;
+  /* padding: 0.65rem 0.25rem 0.4rem 1.25rem; */
+  /* font-weight: 500; */
+  /* font-size: 1.1rem; */
   transition: transform 300ms ease;
   z-index: 5;
 }
@@ -184,6 +184,11 @@
   color: #000;
 }
 
+.review-card{
+  cursor:auto;
+  --gradient: linear-gradient(to bottom, #51a7ed, #8729f9, #e859a5);
+}
+
 
 /* media Query  */
 
@@ -209,7 +214,7 @@
   max-width: 640px;
   background-image: radial-gradient(
       at 27% 37%,
-      hsla(215, 98%, 61%, 1) 0px,
+      rgb(43, 116, 217) 0px,
       transparent 0%
     ),
     radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 1) 0px, transparent 50%),

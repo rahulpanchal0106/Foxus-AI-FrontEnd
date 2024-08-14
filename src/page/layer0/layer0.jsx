@@ -10,6 +10,8 @@ import { Tooltip } from "@mui/material";
 import AnimatedTooltip from "../../components/ui/ToolTip";
 import { ThemeContext } from "../../context/ThemeContext";
 import Card from "../../components/Card/Card";
+import FeedBack from "../../components/Feedback/feedback";
+import FeedbackCard from "../../components/Feedback-card/feedback-card";
 
 
 const Layer0 = () => {
@@ -113,77 +115,78 @@ const Layer0 = () => {
 
   return (
     <MyContext.Provider value={{ selectedFromDB }}>
-    {/* // <MyContextProvider> */}
-    <div className={styles.container}>
-      <TypewriterEffectDemo />
-      <input
-        type="text"
-        value={prompt}
-        onChange={handlePromptChange}
-        onKeyPress={handleKeyPress}
-        placeholder="Enter your subject or topic here"
-        className={styles.in}
-      />
+      {/* // <MyContextProvider> */}
+      <div className={styles.container}>
+        <TypewriterEffectDemo />
+        <input
+          type="text"
+          value={prompt}
+          onChange={handlePromptChange}
+          onKeyPress={handleKeyPress}
+          placeholder="Enter your subject or topic here"
+          className={styles.in}
+        />
 
-      <button
-        onClick={checkTokenAndNavigate}
-        disabled={loading}
-        className={styles.btn}
-        // style={{
-        //   background:loading?'red':''
-        // }}
-      >
-        {loading ? (
-          // <div className="loader-threedot"></div>
-          <img src="/search.gif"  alt="" className={styles.icon} />
-        ) : (
-          // <img src="/search.png" alt="" className={styles.icon} />
-          <img src="/search.png"  alt="" className={styles.icon} />
-          
-        )}
-        
-        <div style={{display:loading?'flex':'none', position:'absolute'}} className={styles.loaderThreedot}></div>
-        
-      </button>
-      
-      {error && <p>{error}</p>}
-      {result && (
-        <div className="card">
-          {/* <Tooltip  >
+        <button
+          onClick={checkTokenAndNavigate}
+          disabled={loading}
+          className={styles.btn}
+          // style={{
+          //   background:loading?'red':''
+          // }}
+        >
+          {loading ? (
+            // <div className="loader-threedot"></div>
+            <img src="/search.gif" alt="" className={styles.icon} />
+          ) : (
+            // <img src="/search.png" alt="" className={styles.icon} />
+            <img src="/search.png" alt="" className={styles.icon} />
+          )}
+
+          <div
+            style={{ display: loading ? "flex" : "none", position: "absolute" }}
+            className={styles.loaderThreedot}
+          ></div>
+        </button>
+
+        {error && <p>{error}</p>}
+        {result && (
+          <div className="card">
+            {/* <Tooltip  >
             <button className="button" id="reload-button" onClick={()=>window.location.reload()}>Reload</button>
           
           </Tooltip> */}
-          
-          {Array.isArray(result) ? (
-            result.map((level, index) => (
-              <Layer0Card
-                index={index}
-                levelName={level.levelName}
-                levelContent={level.levelContent}
-                subject={level.subject}
-                key={index}
-              />
 
-              // <Card 
-              //   index={index}
-              //   levelName={level.levelName}
-              //   levelContent={level.levelContent}
-              //   subject={level.subject}
-              //   key={index}
-              // />
-            ))
-          ) : (
-            <ul style={{ textAlign: "left" }}>
-              {result.result.split("\n\n").map((item, index) => (
-                <li key={index} style={{ marginLeft: "20px" }}>
-                  <span style={{ marginRight: "5px" }}>•</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          )}
-          
-          {/* <div id="reload_button">
+            {Array.isArray(result) ? (
+              result.map((level, index) => (
+                <Layer0Card
+                  index={index}
+                  levelName={level.levelName}
+                  levelContent={level.levelContent}
+                  subject={level.subject}
+                  key={index}
+                />
+
+                // <Card
+                //   index={index}
+                //   levelName={level.levelName}
+                //   levelContent={level.levelContent}
+                //   subject={level.subject}
+                //   key={index}
+                // />
+              ))
+            ) : (
+              <ul style={{ textAlign: "left" }}>
+                {result.result.split("\n\n").map((item, index) => (
+                  <li key={index} style={{ marginLeft: "20px" }}>
+                    <span style={{ marginRight: "5px" }}>•</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {/* <div id="reload_button">
             <AnimatedTooltip  items={[
               {
               id:1,
@@ -195,9 +198,10 @@ const Layer0 = () => {
               }
             ]}/>
           </div> */}
-        </div>
-      )}
-    </div>
+            <FeedbackCard/> 
+          </div>
+        )}
+      </div>
     </MyContext.Provider>
   );
 };

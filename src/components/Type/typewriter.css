@@ -6,6 +6,10 @@
     color: white;
     font-family: 'Geist Variable';
 }
+.dark .l {
+    color: #2b85cb;
+    font-family: 'Geist Variable';
+}
 
 .vt{
     
@@ -21,6 +25,10 @@
     font-family: "Geist Variable";
     color:black;
 }
+.light .l {
+    font-family: "Geist Variable";
+    color:#2b85cb;
+}
 .v {
     font-family: "Geist Variable";
 }
@@ -29,6 +37,15 @@
     /* font-family: "Barlow", sans-serif; */
     font-family: "Caudex", serif;
     white-space: pre-line;
+}
+.something-w {
+    /* font-family: "Forum", serif; */
+    /* font-family: "Barlow", sans-serif; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+
 }
 
 /* 
@@ -52,9 +69,15 @@
 
 .something span {
     display: inline-block;
-    margin-bottom: 0.25em; 
+    margin-bottom: 0.25em;   
+}
+.something-w span {
     
-   
+    
+}
+.l{
+    font-size: 35px;
+    
 }
 
 @media (max-width:480px) {

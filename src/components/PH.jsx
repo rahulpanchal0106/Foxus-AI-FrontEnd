@@ -12,7 +12,7 @@ const ProductHuntEmbed = () => {
   `;
 
   return (
-    <div dangerouslySetInnerHTML={{ __html: embedHTML }} className='flex flex-col justify-between items-center h-48 ' />
+    <div dangerouslySetInnerHTML={{ __html: embedHTML }} className='flex flex-col justify-between items-center h-36' />
   );
 };
 

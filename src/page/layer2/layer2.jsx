@@ -10,6 +10,7 @@ import { MyContext } from "../../context/MyContext";
 import { stepLabelClasses } from "@mui/material";
 
 import "./layer2.module.css"
+import FeedbackCard from "../../components/Feedback-card/feedback-card";
 const Layer2 = ({
   chapter,
   level,
@@ -117,6 +118,9 @@ const Layer2 = ({
               />
             </li>
           ))}
+          <li className='flex w-full justify-center'>
+            <FeedbackCard />
+          </li>
         </ul>
       </div>
     </MyContext.Provider>

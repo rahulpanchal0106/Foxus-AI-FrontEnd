@@ -12,6 +12,7 @@ import { ThemeContext } from "../../context/ThemeContext";
 import Card from "../../components/Card/Card";
 import FeedBack from "../../components/Feedback/feedback";
 import FeedbackCard from "../../components/Feedback-card/feedback-card";
+import { Info, InfoRounded, InfoSharp, InfoTwoTone } from "@mui/icons-material";
 
 
 const Layer0 = () => {
@@ -23,11 +24,12 @@ const Layer0 = () => {
   const navigate = useNavigate();
   const theme = useContext(ThemeContext)
   const { selectedFromDB } = useContext(MyContext);
-
+  const [visible, setVisible] = useState(true);
+  
   useEffect(() => {
     if (selectedFromDB ) {
 
-
+      
 
       setPrompt(null);
       setResult(null);
@@ -40,9 +42,35 @@ const Layer0 = () => {
     }
   }, [selectedFromDB]);
 
+  function InfoMessage() {
+    return toast.info("Type 'Language' for languages (e.g., 'HTML Language')",{
+      position:'top-center'
+    })
+    // useEffect(() => {
+    //   const timer = setTimeout(() => {
+    //     setVisible(false);
+    //   }, 5000);
+  
+    //   return () => clearTimeout(timer); // Cleanup the timer
+    // }, []);
+  
+    // if (!visible) return null;
+  
+    // return (
+    //   <p className="text-xs text-gray-500">
+    //     <InfoRounded className="text-xs" /> Type 'Language' for languages (e.g., 'JavaScript Language')
+    //   </p>
+    // );
+  }
+
   useEffect(() => {
     setApiCalled(false);
+    
   }, [prompt]);
+
+  useEffect(()=>{
+    InfoMessage()
+  },[])
 
   const handlePromptChange = (event) => {
     setPrompt(event.target.value);
@@ -66,6 +94,7 @@ const Layer0 = () => {
         },
         body: JSON.stringify({ prompt }),
       });
+      
 
       const resultData = await response.json();
       if(response.status==429){
@@ -118,13 +147,15 @@ const Layer0 = () => {
       {/* // <MyContextProvider> */}
       <div className={styles.container}>
         <TypewriterEffectDemo />
+        
         <input
           type="text"
           value={prompt}
           onChange={handlePromptChange}
           onKeyPress={handleKeyPress}
-          placeholder="Enter your subject or topic here"
+          placeholder="Enter your subject or topic here e.g. JavaScript Language"
           className={styles.in}
+          title="Type your query or topic here."
         />
 
         <button
@@ -135,6 +166,7 @@ const Layer0 = () => {
           //   background:loading?'red':''
           // }}
         >
+
           {loading ? (
             // <div className="loader-threedot"></div>
             <img src="/search.gif" alt="" className={styles.icon} />
@@ -148,6 +180,16 @@ const Layer0 = () => {
             className={styles.loaderThreedot}
           ></div>
         </button>
+        
+
+
+        {/* <button id="sb-button" style={{display:"flex", flexDirection:"row",justifyContent:"center",alignItems:"center",position:"relative"}} >
+            <InfoTwoTone/>
+            <div id="sb-top" className="w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-white dark:border-b-gray-800"></div>
+            <div id="sb-info" style={{
+              backgroundColor:"red",
+            }}>If you are searching for a Programming language, Then please do attach "Language" after the topic. e.g. JavaScript Language </div>
+        </button> */}
 
         {error && <p>{error}</p>}
         {result && (

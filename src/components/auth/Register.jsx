@@ -64,7 +64,9 @@ export const Register = () => {
     
       if (response.status === 201) {
         toast.success("Account created.");
-        navigate('/login');
+        setTimeout(()=>{
+          navigate('/login');
+        },1000)
       } else {
         toast.error("Account creation failed. Please try again.");
       }

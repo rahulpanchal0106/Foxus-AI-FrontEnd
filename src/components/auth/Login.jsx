@@ -6,10 +6,12 @@ import "./mix.css"; // Replace with your actual CSS file
 import Cookies from 'js-cookies';
 import { toast } from 'react-toastify';
 import { UserNameContext } from '../../context/usernameContext';
+import HashLoader from 'react-spinners/HashLoader';
 
 
 const Login = () => {
     const [passShow, setPassShow] = useState(false);
+    const [isLoading, setIsloading] = useState(false);
      const navigate = useNavigate(); 
 
     const [inpval, setInpval] = useState({
@@ -35,10 +37,6 @@ const Login = () => {
        
         e.preventDefault();
 
-        
-
-        
-        
         const { username, password } = inpval;
 
         if (username === "") {
@@ -56,7 +54,7 @@ const Login = () => {
 
         // Send login request to backend
         try {
-            
+            setIsloading(true);
             const response = await fetch(import.meta.env.VITE_SERVER+'/login', { 
                 method: 'POST',
                 headers: {
@@ -64,6 +62,7 @@ const Login = () => {
                 },
                 body: JSON.stringify({ username, password })
               });
+            setIsloading(false);
             if (response.ok) {
                 const data = await response.json();
                 navigate('/')
@@ -123,10 +122,17 @@ const Login = () => {
                                 </div>
                             </div>
                         </div>
-                        <button className='btn' onClick= {
+                        <button className='btn' style={{
+                            display:'flex',
+                            flexDirection:'row',
+                            justifyContent:"space-evenly",
+                            alignItems:'center',
+                            transition:'all 0.3s ease'
+                        }} onClick= {
                             handleClick
                         }>
-                            Login
+                            Login 
+                        {isLoading?<HashLoader color='gray'size={15}/>:""}
                         </button>
 
                        

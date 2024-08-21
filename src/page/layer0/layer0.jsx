@@ -68,9 +68,9 @@ const Layer0 = () => {
     
   }, [prompt]);
 
-  useEffect(()=>{
-    InfoMessage()
-  },[])
+  // useEffect(()=>{
+  //   InfoMessage()
+  // },[])
 
   const handlePromptChange = (event) => {
     setPrompt(event.target.value);
@@ -153,8 +153,9 @@ const Layer0 = () => {
           value={prompt}
           onChange={handlePromptChange}
           onKeyPress={handleKeyPress}
-          placeholder="Enter your subject or topic here e.g. JavaScript Language"
+          placeholder="Enter The Subject Here"
           className={styles.in}
+          maxLength={70}
           title="Type your query or topic here."
         />
 

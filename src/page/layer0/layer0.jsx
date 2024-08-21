@@ -102,7 +102,7 @@ const Layer0 = () => {
       }else if (resultData.length === 0) {
         setResult("No response from PaLM2");
         setError("No response from PaLM2");
-        toast.error("No response from PaLM2", {
+        toast.error("Currently under some major changes...", {
           position: "top-right",
         });
       } else if (!response.ok) {

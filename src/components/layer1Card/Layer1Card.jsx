@@ -107,6 +107,9 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
       <div
         key={index}
         className="layer1-card"
+        style={{
+          "--gradient": data?"linear-gradient(to bottom, #51a7ed, #23eac5, #23ea8d)" :"linear-gradient(to bottom, #2eadff, #3d83ff, #7e61ff)"
+        }}
         onClick={() => {
           setShowLayer2(!showLayer2); 
           handleClick()
@@ -119,7 +122,7 @@ const Layer1Card = ({ index, chapter, level, subject }) => {
           <p>
             {cleanChapterName(chapter)}
           </p>
-          {data?<CheckCircle/>:" "}
+          {data ? <CheckCircle /> : loading? <div className="loader_lesson"></div>:""}
         </div>
 
         

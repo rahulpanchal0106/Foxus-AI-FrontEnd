@@ -9,6 +9,8 @@ import Fullscreen from "@mui/icons-material/Fullscreen";
 
 import DoneIcon from '@mui/icons-material/CheckCircle';
 import { toast } from "react-toastify";
+import { CheckCircle } from "@mui/icons-material";
+import HashLoader from "react-spinners/HashLoader";
 
 const Layer2Card = ({
   lessonName,
@@ -102,9 +104,7 @@ const Layer2Card = ({
           }}>
 
             <strong className="lesson">{lessonName} </strong>
-            {data?
-              <DoneIcon  />
-            :" "}
+            {data ? <CheckCircle /> : loading? <div className="loader_lesson"></div>:""}
           </h3>
           <div style={{
             display:"flex",

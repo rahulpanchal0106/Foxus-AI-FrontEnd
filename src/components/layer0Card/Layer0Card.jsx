@@ -11,6 +11,7 @@ import Card from "../Card/Card";
 import CheckCircle from "@mui/icons-material/CheckCircle";
 import { toast } from "react-toastify";
 import Write from "../Type/Write";
+import HashLoader from "react-spinners/HashLoader";
 
 const Layer0Card = ({ index, levelName, levelContent, subject }) => {
   const { theme } = useContext(ThemeContext);
@@ -106,9 +107,13 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
     <MyContext.Provider value={{ DBl1 }}>
       {/* <MyContextProvider> */}
       <div className="layer0-card-container">
-        <div key={index} className="layer0-card" onClick={() => handleClick()}>
+      
+        <div key={index} className="layer0-card" style={{
+          "--gradient": data?"linear-gradient(to bottom, #51a7ed, #23eac5, #23ea8d)" :"linear-gradient(to bottom, #2eadff, #3d83ff, #7e61ff)"
+        }} onClick={() => handleClick()}>
           <div className="notiglow"></div>
           <div className="notiborderglow"></div>
+          
           <p
             className="level-name"
             style={{
@@ -118,7 +123,10 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
               justifyContent: "space-between",
             }}
           >
-            <Write word={levelName}/> {data ? <CheckCircle /> : ""}
+            <Write word={levelName}/> 
+            <div className="absolute right-3 top-2 transition ease-in-out duration-900">
+              {data ? <CheckCircle /> : loading? <HashLoader size={15} color="gray"/>:""}
+            </div>
           </p>
           <p className="level-content">{levelContent}</p>
         </div>

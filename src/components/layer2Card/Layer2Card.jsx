@@ -9,7 +9,7 @@ import Fullscreen from "@mui/icons-material/Fullscreen";
 
 import DoneIcon from '@mui/icons-material/CheckCircle';
 import { toast } from "react-toastify";
-import { CheckCircle } from "@mui/icons-material";
+import { CheckCircle, Download, DownloadForOffline, FontDownload } from "@mui/icons-material";
 import HashLoader from "react-spinners/HashLoader";
 
 const Layer2Card = ({
